@@ -12,9 +12,9 @@ Cũng chẳng để ý hôm nay là "mùng" 15 rồi, ra ngắm thấy trăng tr
 
 Hôm nay lại ngộ ra một điều nữa, à mà thật ra đã ngộ ra mấy bữa trước mà tại chưa có dịp ghi lại. Trước khi có máy ảnh thì mình cứ nghĩ cứ cầm là sẽ chụp được những gì mắt thấy, nhưng ngược lại: Không phải cái gì mắt mình nhìn thấy mình cũng ghi lại được và ngược lại, đôi khi kết quả chụp được cho mình một góc nhìn thật khác cũng của khung cảnh, nhất là cảnh đêm :). Và một cái nữa là ảnh chụp thô thường không như ý mình muốn, ít nhất là màu sắc, sau khi cân chỉnh mình mới thấy vừa ý.
 
-![BTS](/images/RTGQT1.jpg "BTS")
+![BTS](/assets/img/RTGQT1.jpg "BTS")
 
-![Rằm tháng Giêng](/images/RTGQT2.jpg "Rằm tháng Giêng")
+![Rằm tháng Giêng](/assets/img/RTGQT2.jpg "Rằm tháng Giêng")
 
 Nói chung là mình thích màu xanh, nên cái gì cũng bị ám xanh =]]. Hy vọng không quá tay :")
 
