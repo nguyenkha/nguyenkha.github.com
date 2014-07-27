@@ -11,21 +11,21 @@ theme:
 
   # Profile links on the left sidebar, leave blank to ignore
   social:
-    github: swanson
+    github: nguyenkha
     #bitbucket: philipj
-    hacker_news: swanson
+    # hacker_news: swanson
     #stackexchange: 348619
-    #stackoverflow: 348619
-    twitter: _swanson
-    #facebook: zuck
+    stackoverflow: 1317745
+    twitter: donguyenkha
+    facebook: nguyenkha
     #tumblr: animalygifs
     #linkedin: philipjagielski
     #gplus: 110552447039675960964
 
   # "Hi, I'm _______"
-  name: Matt Swanson
-  email: test@example.com
-  tagline: "weak opinions, strongly held"
+  name: Kha N. Do
+  email: donguyenkha@gmail.com
+  tagline: "web developer, photographer"
 
   # Google Analytics key, leave blank to ignore
   google_analytics_key: UA-xxxx-x
