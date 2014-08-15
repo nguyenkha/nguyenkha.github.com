@@ -20,13 +20,13 @@ Nói chung về mặt kỹ thuật thì mình không thể biết được bên 
 Chắc nhiêu đó hiện tượng là đủ để người chơi nghi ngờ tính minh bạch của sự kiện. Còn mình nhìn về vấn đề kỹ thuật thì có thể thông cảm là lúc đó rối quá, sửa sao được thì sửa đại vậy... ai ngờ đâu sửa cái này lại phát sinh cái khác (cũng từng thử một hệ thống không ổn định vì không kịp deadline). Nhưng có lẽ vẫn là sai lầm ngay từ đầu vì đã không tính toán kỹ nhất là đã có kinh nghiệm đau thương năm trước...
 
 Một số thông tin thú vị mình thấy được:
-* Tiki dzựt cô hồn viết bằng PHP có lẽ chạy bằng Apache hoặc PFM. Mình thấy PHP cũng không sao tuy hiệu năng không tốt bằng các ngôn ngữ khác :)
-* CSDL là MySQL (has gone away) và Memcached
-* Máy chủ có chạy nginx phía trước Apache hoặc PFM
-* Lúc đầu thì tiki chạy Google CE cũng tương tự AWS EC2. Nhưng có thể chỉ là để dev, vì cái này ở Mỹ, EC2 lúc sau thì ở Singapore. Mình thấy trang này đơn giản, nếu ngay từ đầu tính deploy trên PaaS thay vì IaaS chắc sẽ không xảy ra các vần đề như trên :)
-* Máy chủ chỉ chạy PHP, static đẩy qua CDN chắc dịch vụ của Google. Tuy nhiên có vài lúc lại host thẳng trên nginx
-* Client thì jQuery, Bootstrap, RequireJS. Thỉnh thoảng quên xóa Source Map nên mình thấy cả tên tác giả của phần trang sự kiện dzựt này :P
-* Mình chưa xài ELB nên không biết nó thế nào, nhưng nhìn vào DNS record có thể thấy có 8 con server phía sau ELB
+1. Tiki dzựt cô hồn viết bằng PHP có lẽ chạy bằng Apache hoặc PFM. Mình thấy PHP cũng không sao tuy hiệu năng không tốt bằng các ngôn ngữ khác :)
+CSDL là MySQL (has gone away) và Memcached
+2. Máy chủ có chạy nginx phía trước Apache hoặc PFM
+3. Lúc đầu thì tiki chạy Google CE cũng tương tự AWS EC2. Nhưng có thể chỉ là để dev, vì cái này ở Mỹ, EC2 lúc sau thì ở Singapore. Mình thấy trang này đơn giản, nếu ngay từ đầu tính deploy trên PaaS thay vì IaaS chắc sẽ không xảy ra các vần đề như trên :)
+4. Máy chủ chỉ chạy PHP, static đẩy qua CDN chắc dịch vụ của Google. Tuy nhiên có vài lúc lại host thẳng trên nginx
+5. Client thì jQuery, Bootstrap, RequireJS. Thỉnh thoảng quên xóa Source Map nên mình thấy cả tên tác giả của phần trang sự kiện dzựt này :P
+6. Mình chưa xài ELB nên không biết nó thế nào, nhưng nhìn vào DNS record có thể thấy có 8 con server phía sau ELB
 
 Nói thì nghe thế thôi, chứ giả dụ giao vụ này cho mình thì mình cũng không chắc là mình làm được như họ đâu :D. Người ngoài đứng nhìn bao giờ cũng thấy là nó đơn giản mà, mình nghe nhiều rồi, nhưng trong chăn mới biết chăn có rận ạ, cứ thử đi rồi biết. Nên mình viết bài này không hề có ý ném đá hay chỉ trích tiki, chỉ là thuần túy là những bài học kinh nghiệm rút ra được về mặt triển khai hệ thống thôi :)
 
