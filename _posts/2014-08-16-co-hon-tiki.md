@@ -22,7 +22,8 @@ Chắc nhiêu đó hiện tượng là đủ để người chơi nghi ngờ tí
 Một số thông tin thú vị mình thấy được:
 
 * Tiki dzựt cô hồn viết bằng PHP có lẽ chạy bằng Apache hoặc PFM. Mình thấy PHP cũng không sao tuy hiệu năng không tốt bằng các ngôn ngữ khác :)
-CSDL là MySQL (has gone away) và Memcached
+
+* CSDL là MySQL (has gone away) và Memcached
 
 * Máy chủ có chạy nginx phía trước Apache hoặc PFM
 
