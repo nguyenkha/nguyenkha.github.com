@@ -20,11 +20,11 @@ Nói chung về mặt kỹ thuật thì mình không thể biết được bên 
 Chắc nhiêu đó hiện tượng là đủ để người chơi nghi ngờ tính minh bạch của sự kiện. Còn mình nhìn về vấn đề kỹ thuật thì có thể thông cảm là lúc đó rối quá, sửa sao được thì sửa đại vậy... ai ngờ đâu sửa cái này lại phát sinh cái khác (cũng từng thử một hệ thống không ổn định vì không kịp deadline). Nhưng có lẽ vẫn là sai lầm ngay từ đầu vì đã không tính toán kỹ nhất là đã có kinh nghiệm đau thương năm trước...
 
 Một số thông tin thú vị mình thấy được:
-- Tiki dzựt cô hồn viết bằng PHP có lẽ chạy bằng Apache hoặc PFM. Mình thấy PHP cũng không sao tuy hiệu năng không tốt bằng các ngôn ngữ khác :)
-- CSDL là MySQL (has gone away) và Memcached
-- Máy chủ có chạy nginx phía trước Apache hoặc PFM
-- Lúc đầu thì tiki chạy Google CE cũng tương tự AWS EC2. Nhưng có thể chỉ là để dev, vì cái này ở Mỹ, EC2 lúc sau thì ở Singapore. Mình thấy trang này đơn giản, nếu ngay từ đầu tính deploy trên PaaS thay vì IaaS chắc sẽ không xảy ra các vần đề như trên :)
-- Máy chủ chỉ chạy PHP, static đẩy qua CDN chắc dịch vụ của Google. Tuy nhiên có vài lúc lại host thẳng trên nginx
+  - Tiki dzựt cô hồn viết bằng PHP có lẽ chạy bằng Apache hoặc PFM. Mình thấy PHP cũng không sao tuy hiệu năng không tốt bằng các ngôn ngữ khác :)
+  - CSDL là MySQL (has gone away) và Memcached
+  - Máy chủ có chạy nginx phía trước Apache hoặc PFM
+  - Lúc đầu thì tiki chạy Google CE cũng tương tự AWS EC2. Nhưng có thể chỉ là để dev, vì cái này ở Mỹ, EC2 lúc sau thì ở Singapore. Mình thấy trang này đơn giản, nếu ngay từ đầu tính deploy trên PaaS thay vì IaaS chắc sẽ không xảy ra các vần đề như trên :)
+  - Máy chủ chỉ chạy PHP, static đẩy qua CDN chắc dịch vụ của Google. Tuy nhiên có vài lúc lại host thẳng trên nginx
 - Client thì jQuery, Bootstrap, RequireJS. Thỉnh thoảng quên xóa Source Map nên mình thấy cả tên tác giả của phần trang sự kiện dzựt này :P
 - Mình chưa xài ELB nên không biết nó thế nào, nhưng nhìn vào DNS record có thể thấy có 8 con server phía sau ELB
 
