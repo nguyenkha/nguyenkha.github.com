@@ -7,7 +7,7 @@ categories:
 
 Thật ra là do bị tăng động do kết quả của vụ cô hồn tiki nên mình viết bài này xong chắc sẽ ngủ được.
 
-Về hiệu ứng lan toản đạt được thì sự kiện này của tiki đã nhận được sự hưởng ứng của rất nhiều người. Một số đã biết sự kiện đó năm ngoái. Mình không có tham gia nhưng có nghe "chửi" hơi bị nhiều về sự kiện đó. Chắc các bạn ấy cũng hy vọng và mình cũng thế là tiki sẽ rút ra kinh nghiệm cho đợt này... Nhưng tội nghiệp cái là con số có lẽ là nhiều hơn năm ngoái x lần nào đó :)) nên lại điệp khúc sập, lag, bad gateway, mysql has gone away =)) cái này buồn cười nhất
+Về hiệu ứng lan toả đạt được thì sự kiện này của tiki đã nhận được sự hưởng ứng của rất nhiều người. Một số đã biết sự kiện đó năm ngoái. Mình không có tham gia nhưng có nghe "chửi" hơi bị nhiều về sự kiện đó. Chắc các bạn ấy cũng hy vọng và mình cũng thế là tiki sẽ rút ra kinh nghiệm cho đợt này... Nhưng tội nghiệp cái là con số có lẽ là nhiều hơn năm ngoái x lần nào đó :)) nên lại điệp khúc sập, lag, bad gateway, mysql has gone away =)) cái này buồn cười nhất
 
 Nói chung về mặt kỹ thuật thì mình không thể biết chính xác được những gì bên trong hệ thống, chỉ có thể đưa ra suy đoán từ những thông tin mà mình có được. Về mặt nào đó cũng thấy tiki có rút kinh nghiệm, nhưng có lẽ là chưa rút hết hoặc thời gian chuẩn bị gấp quá hay sao ấy nên đã không lường trước ngay từ đầu sự kiện "tự DDOS chính mình" này. Lần này thì trang Dzựt đã được tách ra chạy trên domain riêng và host trên cloud, lúc đầu là Google sau đó AWS - nghe ghê chưa, điện toán đám mây đó :v
 
