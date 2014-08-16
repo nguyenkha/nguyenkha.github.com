@@ -51,8 +51,9 @@ Update: Xem qua danh sách trúng giải của tiki điểm lại coi có gì "l
 
 * Email dzựt được nhiều quà nhất là:
 
-  - ashleytr***@gmail.com: 9 món chủ yếu là sách + 1 cái USB
-  - luckyluk***@gmail.com: 5 món, giá trị nhất là ZenFone và máy tập cơ bụng :v thiên hạ gọi là "thánh dzựt"
+    1. ashleytr***@gmail.com: 9 món chủ yếu là sách + 1 cái USB
+    
+    2. luckyluk***@gmail.com: 5 món, giá trị nhất là ZenFone và máy tập cơ bụng :v thiên hạ gọi là "thánh dzựt"
 
 * Các thể loại mail khác: @live (2 cái, 1 là mình :v), ngoài ra còn có gameloft, gamek, fpt, daikin, adcompany, vpb, zing, abbank, eiu.edu.vn, pvu.edu.vn, ovi (của Nokia), aricent... :3
 
