@@ -42,3 +42,18 @@ Tiki bảo có đến 5000 lượt online mỗi giây, có thể thực tế cò
 Dẫu sao mình cũng may mắn dzựt được vài thứ :) mà mình cũng chưa biết làm gì với nó nữa :))
 
 P.S: Mình không có liên quan gì đến tiki nha :3
+
+Update: Xem qua danh sách trúng giải của tiki điểm lại coi có gì "lạ không nhé"
+
+* Email cắt bớt 2 ký tự cuối và *** 3 ký tự tiếp đó
+
+* Gmail chiếm số lượng lớn (1066) và sau đó là yahoo (362)
+
+* Email dzựt được nhiều quà nhất là:
+
+    - ashleytr***@gmail.com: 9 món chủ yếu là sách + 1 cái USB
+    - luckyluk***@gmail.com: 5 món, giá trị nhất là ZenFone và máy tập cơ bụng :v thiên hạ gọi là "thánh dzựt"
+
+* Các thể loại mail khác: @live (2 cái, 1 là mình :v), ngoài ra còn có gameloft, gamek, fpt, daikin, adcompany, vpb, zing, abbank, eiu.edu.vn, pvu.edu.vn, ovi (của Nokia), aricent... :3
+
+* Một vài cái không phải email: Nguyễn Công T***@, Huỳnh Ngọc Phư***@... (???)
