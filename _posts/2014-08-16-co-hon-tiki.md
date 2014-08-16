@@ -21,7 +21,7 @@ Chắc nhiêu đó hiện tượng là đủ để người chơi nghi ngờ tí
 
 Một số thông tin thú vị mình thấy được:
 
-* Tiki dzựt cô hồn viết bằng PHP có lẽ chạy bằng Apache hoặc PFM. Mình thấy PHP cũng không sao tuy hiệu năng không tốt bằng các ngôn ngữ khác :)
+* Tiki dzựt cô hồn viết bằng PHP có lẽ chạy bằng Apache hoặc PFM. Mình thấy PHP cũng không sao :)
 
 * Framework MVC là Phalcon viết bằng C native nên hiệu năng tốt hơn viết bằng PHP
 
@@ -40,3 +40,5 @@ Một số thông tin thú vị mình thấy được:
 Tiki bảo có đến 5000 lượt online mỗi giây, có thể thực tế còn nhiều hơn nhưng bị lag bớt rồi. Tính ra là con số này không quá lớn, họ chắc cũng đã ước lượng trước có điều vẫn chưa giải quyết tốt thôi. Nói thì nghe thế thôi, chứ giả dụ giao vụ này cho mình thì mình cũng không chắc là mình làm được như họ đâu :D. Người ngoài đứng nhìn bao giờ cũng thấy là nó đơn giản mà, mình nghe nhiều rồi, nhưng trong chăn mới biết chăn có rận ạ, cứ thử đi rồi biết. Cũng thông cảm với họ là những vấn đề kỹ thuật không phải dễ dàng gì mà giải thích ngoại trừ lời xin lỗi thôi :). Mình viết bài này không hề có ý ném đá hay chỉ trích tiki, chỉ là thuần túy là chia sẻ những bài học kinh nghiệm rút ra được về mặt triển khai hệ thống thôi :)
 
 Dẫu sao mình cũng may mắn dzựt được vài thứ :) mà mình cũng chưa biết làm gì với nó nữa :))
+
+P.S: Mình không có liên quan gì đến tiki nha :3
