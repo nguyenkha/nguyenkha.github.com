@@ -13,23 +13,23 @@ Thế rồi làn sóng ứng dụng smartphone phát triển như vũ bão. Nove
 
 Với sự phát triển của hệ thống mã nguồn mở, các máy chủ chạy Linux là gần như mặc nhiên, máy chủ Windows thì lại có phí bản quyền, quá đắt. Bản thân chính Microsoft cũng phải thêm hỗ trợ Linux cho nền tảng điện toán đám mây Azure của họ (điều mà họ vừa rồi rất tự hào tuyên bố). Có lẽ, Microsoft đã nhận ra rằng họ không thể đứng một mình một chợ nữa, Linux đầy ra đó, họ phải hỗ trợ thôi. Thế rồi open source Entity Framework và ASP.net MVC, cộng thêm Mono nữa là khỏi cần Windows để chạy và cũng hợp pháp. Nhưng có lẽ Mono vẫn không đủ để cộng đồng tin tưởng một nền tảng Web ổn định cho ASP.net trên máy chủ Linux. Và cuối cùng Microsoft đã tuyên bố, chuyển .NET 5 thành mã nguồn mở! Và các thành phần liên quan khác của ASP.net nữa [[5]]! Nghe sốc đó, nhưng với ai đã theo dõi tin tức thường xuyên thì động thái này không đến nỗi nằm ngoài dự đoán. Mình thì nghĩ là Microsoft sẽ mua Xamarin trước. Vậy là từ bây giờ .NET chính thức là cross-platform, không phải là ngoài lề như Mono nữa! Việc đầu tiên mình làm là... sửa lại mấy câu trong luận văn thạc sĩ =)), sắp nộp rồi mà vẫn phải sửa lại đó :)). Chắc trong vòng 1 năm nữa việc máy chủ Linux chạy ASP.net sẽ trở nên bình thường thậm chí phổ biến, chứ Mono nội cấu hình chắc đuối. Vài câu hỏi của mình sau việc này là:
 
-  1. Mono và Xamarin sẽ ra sao?
+  * Mono và Xamarin sẽ ra sao?
 
-    Có lẽ Mono đã hoàn thành nhiệm vụ của mình, nhưng vẫn sẽ tồn tại vì các bản phân phối Linux chắc cũng không thích mấy Microsoft
+    - Có lẽ Mono đã hoàn thành nhiệm vụ của mình, nhưng vẫn sẽ tồn tại vì các bản phân phối Linux chắc cũng không thích mấy Microsoft
 
-    NET 5 có thể sẽ merge luôn một phần của Mono vào (viễn cảnh đẹp nhỉ :D)
+    - NET 5 có thể sẽ merge luôn một phần của Mono vào (viễn cảnh đẹp nhỉ :D)
 
-  2. Còn Xamarin thì sao?
+  * Còn Xamarin thì sao?
 
-    Xamarin chắc vẫn kiếm từ iOS và Android là chính, họ có hợp tác với Microsoft nên chắc tập trung vô phần này thôi... và như mình nói đó, chắc rồi Microsoft sẽ mua luôn
+    - Xamarin chắc vẫn kiếm từ iOS và Android là chính, họ có hợp tác với Microsoft nên chắc tập trung vô phần này thôi... và như mình nói đó, chắc rồi Microsoft sẽ mua luôn
 
-  3. Java, Python, Ruby...
+  * Java, Python, Ruby...
 
-    Chắc sẽ có động lực để phát triển hơn, họ có thêm đối thủ cạnh trên trên máy chủ Linux rồi
+    - Chắc sẽ có động lực để phát triển hơn, họ có thêm đối thủ cạnh trên trên máy chủ Linux rồi
 
-  4. .NET for Linux, Mac
+  * .NET for Linux, Mac
 
-    Chắc Microsoft sẽ phải tung ra một bộ thư viện giao diện mới để wrap giao diện native của các hệ điều hành hành. Không biết Microsoft sẽ như thế nào, chứ Java thì chả có mấy cái được, nặng mà xấu quá!
+    - Chắc Microsoft sẽ phải tung ra một bộ thư viện giao diện mới để wrap giao diện native của các hệ điều hành hành. Không biết Microsoft sẽ như thế nào, chứ Java thì chả có mấy cái được, nặng mà xấu quá!
 
 Chắc còn nữa, mà mình không nhớ, sẽ cập nhật lại sau. Rồi phần cuối cùng là mình quá SỐC vì Microsoft hào phóng quá, tung ra bản full feature miễn phí luôn. Trước giờ xài bản Express hơi bị cùi, thiếu đủ thứ... Chắc là sẽ không tung ra VS for Mac hay Linux đâu, nhưng biết đâu những phiên bản sau.
 
