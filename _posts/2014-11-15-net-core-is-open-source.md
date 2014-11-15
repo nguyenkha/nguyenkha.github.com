@@ -15,7 +15,7 @@ Thế rồi làn sóng ứng dụng smartphone phát triển như vũ bão. Nove
 
 Với sự phát triển của hệ thống mã nguồn mở, các máy chủ chạy Linux là gần như mặc nhiên, máy chủ Windows thì lại có phí bản quyền, quá đắt. Bản thân chính Microsoft cũng phải thêm hỗ trợ Linux cho nền tảng điện toán đám mây Azure của họ (điều mà họ vừa rồi rất tự hào tuyên bố). Có lẽ, Microsoft đã nhận ra rằng họ không thể đứng một mình một chợ nữa, Linux đầy ra đó, họ phải hỗ trợ thôi. Thế rồi open source Entity Framework và ASP.net MVC, cộng thêm Mono nữa là khỏi cần Windows để chạy và cũng hợp pháp. Nhưng có lẽ Mono + ASP.net MVC vẫn không đủ để cộng đồng tin tưởng một nền tảng Web ổn định cho ASP.net trên máy chủ Linux. Và cuối cùng Microsoft đã tuyên bố, chuyển .NET 5 thành mã nguồn mở! Và các thành phần liên quan khác của ASP.net nữa [[5]]! Nghe sốc đó, nhưng với ai đã theo dõi tin tức thường xuyên thì động thái này không đến nỗi nằm ngoài dự đoán. Mình thì nghĩ là Microsoft sẽ mua Xamarin trước. Vậy là từ bây giờ .NET chính thức là cross-platform, không phải là ngoài lề như Mono nữa! Việc đầu tiên mình làm là... sửa lại mấy câu trong luận văn thạc sĩ =)), sắp nộp rồi mà vẫn phải sửa lại đó :)). Chắc trong vòng 1 năm nữa việc máy chủ Linux chạy ASP.net sẽ trở nên bình thường thậm chí phổ biến, chứ Mono nội cấu hình chắc đuối. Vài câu hỏi của mình sau việc này là:
 
-  * Mono và Xamarin sẽ ra sao?
+  * Mono sẽ ra sao?
 
     - Có lẽ Mono đã hoàn thành nhiệm vụ của mình, nhưng vẫn sẽ tồn tại vì các bản phân phối Linux chắc cũng không thích mấy Microsoft
 
