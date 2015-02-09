@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Malaysia - Singapore 2015\: Ngày 1 - Vật vã
+title: Malaysia - Singapore 2015 - Ngày 1 - Vật vã
 categories:
 - blog
 ---
@@ -17,4 +17,4 @@ Qua Singapore thì kiếm chỗ ăn lấy hơi, ăn ở một quán Tàu nào đ
 
 Nhập cảnh trở lại Malaysia gặp chút chuyện, nó thấy hơi lạ vì 1 ngày mình xuất nhập cảnh... 5 lần rồi. Hỏi vài câu tiếp, mày đi đâu thế, khi nào mày về Sài gòn. Xong, cũng qua. Mà nhìn vô passport cũng kỳ... không biết dấu nào với dấu nào vì cũng một ngày nên nó cũng hơi rối. Tới Larkin Bus Terminal đón xe tới Malacca thì ôi thôi, nó xô bồ, còn hơn cả bến xe ở VN @@. Dù sao cũng kiếm được một quán được được ăn tối rồi đi tiếp. Ngày hôm nay di chuyển qua lại tổng cộng chắc hơn 300km đường bộ. May mà đường cao tốc 110km/j (Malaysia gọi là j) nên đi cũng lẹ và thoải mái.
 
-Tới Malacca lúc 11:30PM, bị taxi chém 30RM ~ 200k đến khách sạn. Chê, đi bộ, đi xong kẹt vì nhiều đoạn không có chỗ đi bộ, xong ngồi như trẻ em cơ nhỡ... Gọi điện nhờ tổng đài taxi thì bảo 12 giờ rồi... chắc không có taxi... khách sạn cũng bảo thế... Ngồi đó chừng nửa tiếng thì có 1 chiếc taxi đi qua, hỏi giá, 25RM... thôi đi đại biết là đắt nhưng thôi... dù sao ông chú tìm không ra khách sạn đánh 3-4 vòng kiếm cho bằng được cái khách sạn cho cả đám... Ngồi viết vài dòng để khỏi quên... Giờ chắc thăng được rồi...
+Tới Malacca lúc 11:30PM, bị taxi chém 30RM ~ 200k đến khách sạn. Chê, đi bộ, đi xong kẹt vì nhiều đoạn không có chỗ đi bộ, xong ngồi như trẻ em cơ nhỡ... Gọi điện nhờ tổng đài taxi thì bảo 12 giờ rồi... chắc không có taxi... khách sạn cũng bảo thế... Ngồi đó chừng nửa tiếng thì có 1 chiếc taxi đi qua, hỏi giá, 25RM... thôi đi đại biết là đắt nhưng thôi... dù sao ông chú tìm không ra khách sạn đánh 3-4 vòng kiếm cho bằng được cái khách sạn cho cả đám... Ngồi viết vài dòng để khỏi quên... Giờ chắc thăng được rồi... Mai sẽ bổ sung hình!
