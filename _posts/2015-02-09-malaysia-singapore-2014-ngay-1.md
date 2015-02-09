@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Malaysia - Singapore 2015: Ngày 1 - Vật vã
+title: Malaysia - Singapore 2015\: Ngày 1 - Vật vã
 categories:
 - blog
 ---
