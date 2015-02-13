@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Malaysia - Singapore 2015: Tổng kết
+title: Malaysia - Singapore 2015 - Tổng kết
 categories:
 - blog
 ---
