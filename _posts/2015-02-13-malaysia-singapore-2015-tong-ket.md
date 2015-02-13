@@ -1,0 +1,40 @@
+---
+layout: post
+title: Malaysia - Singapore 2015: Tổng kết
+categories:
+- blog
+---
+
+Cuối cùng cũng đã quay về. Đúng là chuyến đi "bão táp", ngay từ lúc đi đã xảy ra rất nhiều rắc rối. Tối hôm trước khi đi mình có dấu hiệu viêm họng (có cả máu nữa...) nhưng vẫn quyết tâm phải đi chuyến này. Vì mình là người lên plan, dẫn đường, đặt phòng và vé này nọ đều đứng tên mình nên nếu mình không đi thì mọi người sẽ gặp rắc rối mất... mình cũng không nói là mình bệnh rồi nhưng chắc mọi người cũng để ý. Xong, vừa ra sân bay đã gặp chuyện, mém trễ chuyến bay, nhưng cũng học được nhiều thứ. Do ngày 1 có quá nhiều di chuyển xuyên biên giới nên đã viết lại để khỏi quên. Giờ viết tiếp những ngày còn lại và tổng kết.
+
+Sau khi lê lết tìm được khách sạn ở Malacca với giá taxi 25RM, vẫn thấy hơi đắt, nhưng chả lẽ lang thang rồi đợi polis tóm nhờ mấy chú đưa về. À, ở Malaysia thì "c" -> "s" nên nhìn nó ngộ ngộ. Có một sai lầm của mình ngay từ đầu là đi Malacca vào ngày thứ ba, mà theo wikitravel là ngày đó người ta đóng cửa nghỉ gần hết ~.~. Và sai lầm tiếp theo lần nào cũng mắc là kiếm cái khách sạn rẻ quá =)), nó nằm ở vị trí không thuận lợi để đi đây đó... lần sau sẽ đọc kỹ hơn. Sau 2 ngày ở Malacca thì có cảm giác đây không phải là nơi dành cho người đi bộ hay sao á, lề đường chỗ có chỗ không, vạch qua đường ít thấy... toàn dùng Vietnam-style haha. Phố cổ Malacca thì nằm trên bờ sông, mình chưa đi Hội An bao giờ (chuyến đi Đà Nẵng bị cắt cái rụp vì phải ra Hà nội phỏng vấn Visa). Nhưng mọi người trong nhóm nói cũng giống. Mình thì lần này quyết tâm ăn thức ăn địa phương xem sao, nhưng xem ra là không hợp :)), ăn cho biết thôi, lần sau sẽ lựa mấy món dễ ăn hơn. Đi dạo vòng vòng, muốn đi ra biển nhưng không tìm được đường, bị chặn lại bởi 1 cái CIQ ngay cửa biển... 
+
+Phố cổ thấy gần như người Hoa đa số, đường đi cũng "bẩn bẩn" kiểu Việt Nam... Đi mệt, nằm ngủ trưa dưới gốc cây bên bờ sông luôn... tranh thủ vô mấy tiệm ở đây bán đồ lưu niệm khá rẻ... cái buồn cười là càng cuối đường càng rẻ, nên mua sớm sẽ bị hố. Nước ở đây không rẻ cho lắm 1.8RM ~ 10k cho 1 chai 600mL trong khi xăng là 1.7RM cho 1L... xăng rẻ hơn cả nước. Mình lại chọn món cá viên dễ ăn, mặc dù toàn bột là chính =)). Cuối cùng đi dạo một cái mall, hix, thấy chai nước hoa mùi thơm quá, nhưng mình hông có sang chảnh dzị. Ăn tối trong mall, nhiều món đến mức chả biết ăn gì. Một dĩa thức ăn (không có món phụ, canh, nước) dao động khoảng 5-7RM... rẻ hơn NowZone haha. Tối về tính đi dạo tiếp mà ngủ luôn tới 12 giờ, đi dạo chả còn hàng quán nào, khổ ghê gớm, ăn tạm đống bánh bắp, mình thích bánh bắp ở đây cực kỳ.
+
+Sáng hôm sau dọn đồ, check-out khách sạn. Những người Malaysia mà mình gặp khá thân thiện, họ nói chuyện rất vui vẻ, tiếng Anh ok. Haha, quê nhất là bạn tiếp tân hỏi mình từ đâu, nói Vietnam, nó bảo mày có coi đá banh không? Biết số 7 không? Ngơ ngác, nó nói đùa, mày có chắc mày đến từ Vietnam hông dzậy? Quê ơi là quê haha. Lần đi địa điểm cuối cùng, một cái pháo đài cũ. Đi bộ chết mồ cũng tới, nói chung là vị trí đẹp, có thể ngắm toàn cảnh thành phố Malacca. Tuy nhiên, đến lúc trở lại bến xe Malacca Sentral để đi tiếp mới là vấn đề... taxi. Taxi ở Malacca có thể coi là... xe ôm ở Việt Nam, trả giá, trả giá và trả giá. Trả xong vẫn thấy hố... Trên wikitravel ghi 1 quãng đường ngắn tấm 7RM ~ 42k... vậy mà nó toàn đòi 20-30RM... mà taxi cũng không có đồng hồ nên phải thỏa thuận trước. Lần sau sẽ trả gắt, không thương tiếc... taxi mà cũng chẳng có tổng đài, thấy thì ngoắc, hên xui. May sao lúc ra bến xe kiếm được 1 chiếc 12RM. Thôi kệ, 4 đứa đi cũng không nhiêu, 7km, rẻ hơn ở Việt Nam rồi... 
+
+Bến xe ở đây to nhưng cũng xô bồ chẳng kém Việt Nam, nói chung đỡ hơn cái Larkin ở JB một chút. Lấy vé xong kiếm gì đó bỏ bụng rồi đi. Đất nước này đi vệ sinh cũng tính tiền, đồng giá, 30sen ~ 1.8k. Mà giá xe cũng rẻ, 10RM từ Malacca đến TBS (trung tâm bus của KL). Lần đi từ JB đến Malacca là 20RM. Ngủ một giấc, rồi tới TBS. Đi đường cao tốc cũng khỏe. TBS to cứ như cái sân bay, mình chỉ biết là từ đây có metro đi tới tiếp KL Sentral nhưng chưa định vị ở đâu. Thôi đi đại theo bảng, cuối cùng cũng tới, 1RM ~ 6k cho chuyến đi từ TBS đến KL Sentral. Haha mém tí nữa bị quê, ở đây có toa dành riêng cho phụ nữ nữa, may mà thằng bạn kéo lại kịp. Mình hông để ý, hình như đường ray ở đây khổ có 1m hay sao á, tàu chạy chậm rì à. Đến KL Sentral lại mù đường tiếp, đi vòng vòng =)), cuối cùng cũng tới. Check-in được cái khách sạn ở chỗ hơi bị ghê ghê, chắc tại khu này toàn Ấn... Quăng đồ cái xong tìm đường đi tiếp đến Petronas, mục tiêu duy nhất đến KL. Đi monorail, hix, thấy ghê ghê, nghĩ rủi mình nghiêng qua 1 bên không biết nó có lật không :-ss. Đi bộ thêm cả cây tới được Petronas, chụp vài phát rồi kiếm vé vô. 80RM ~ 480k cho 10 phút trên Sky Bridge và 15 phút trên cái giống như Sky Deck ở Bitexco. Hix, chạy như con vịt mà còn bị soát đồ cứ như vô sân bay. Nói chung đi một lần cho biết thôi :D
+
+Xong đính đi KLCC để ăn, mua đồ, nhưng anh bạn dẫn đường lại lạc lối... thôi mệt quá, về nhà ngủ cho khỏe. Về tắm cái đi ra ăn toàn quán Ấn, hix. Đã vậy còn gặp bọn lừa đảo trên đường giống như ký tên từ thiện ở VN á. Mình hông bị, đuổi thẳng mặt. Nhưng trong nhóm có anh bị hix. Mình ghé qua shop mua thêm bánh bắp và mì gói chống đói. Tối tính tiền mà cả đám cũng chẳng nhớ được là chi gì, mặc gì là có log lại trên điện thoại. Nhưng nói chung là cũng hợp lý, đều trong dự toán của mình. Mình ngồi cân và note lại dự toán để lần sau làm chính xác hơn: như ăn uống thì rẻ, đi lại cũng rẻ... còn lên Petronas chơi nữa.
+
+Sáng cuối chỉ đi qua KL Sentral kiếm bus ra KLIA2. 10RM ~ 60k cho khoảng 60km, quá rẻ. Nếu đi tàu điện nhanh thì 35RM nhưng thôi, đâu dư tiền. Mua vài thứ rồi mình lại đổi tiền lại USD. Haha, mỗi lần đi chơi về mẹ lại hỏi, mày đi cầm theo USD mà không thấy xài còn cầm thêm về nữa là sao =)). Đi bus ra sân bay xa ghê gớm 60km, Long Thành 40km chắc không nhằm nhò gì. Cái sân bay giá rẻ KLIA2 nó còn to hơn TSN bao nhiêu lần. Gần như AirAsia (và các liên doanh của nó) chiếm gần hết cái sân bay, nhìn bảng thông tin toàn chuyến bay của nó. Không biết khi nào VietJet được như vậy cà :D. Ở đây check-in đông quá, bắt mình ra máy in boarding pass rồi vô check document lại sau. Qua hải quan cũng nhẹ nhàng, có cái chú ấy hơi nhíu mày vì thấy dấu xuất cảnh Malaysia lúc sang Singapore, nhưng sau đó cũng kiếm thấy dấu nhập cảnh lại ở trang sau. DO NGUYEN KHA hả? ok. Qua cái check an ninh chả biết để làm gì, máy cú hú mấy bác cứ mặc kệ... mình bảo sao quái lạ vậy... xong hóa ra còn 1 cái nữa, cái này demo thôi. Đến được cổng ra thấy được cái cầu nối giữa 2 phần nhà ga mà máy bay có thể chui bên dưới luôn. Xong kiếm gì đó ăn, chợt nhớ ra là không còn đủ RM để ăn... thôi đành liều cà thẻ vậy. 18.9RM ~ 112k cho tô hủ tiếu gà, tôm và cá viên, ăn luôn. 
+
+Đến đoạn ra phòng chờ ngồi, đúng là mùa lễ tết, người Việt về quê cũng nhiều. Hix, lại xô bồ. Đang đi ra máy bay thì gặp mấy "mẹ" văng tục kinh khủng, còn chen hàng nữa. Gì mà ĐM, V- b-, Đ--..., mà còn nói rất lơn nữa hix, nhục kinh, hình như hành nghề gì đó hay làm chui rồi bị hải quan tóm lại... Mà sân bay này làm chặt quá, quá nhiều bước an ninh hay sao á, ra tới cửa máy bay rồi vẫn còn có an ninh check lại giấy tờ, tổng cộng ít nhất 5 bước qua cổng này nọ. Trong khi ở Việt Nam là 3 còn ở Singapore có 2, thích Singapore nhất, gọn lẹ. Sau đó ngủ một giấc và về tới Tân Sơn Nhất. Trong đầu cũng chả nghĩ đến việc rớt máy bay nữa haha.
+
+Tổng kết lại:
+
+  - Chi tiêu: 3 triệu
+
+  - Vé máy bay: 1.1 triệu
+
+  - Đi máy bay: ~4000km
+
+  - Đi xe: ~570km
+
+  - Đi bộ: ~30km
+
+  - Xuất/nhập cảnh 8 lần, lấy 8 con dấu trên hộ chiếu. Trong đó 6 lần ngay ngày đầu tiên
+
+  - Lần đầu đi và về khác sân bay
+
+Một chuyến đi đáng nhớ, với những thành viên đã bỏ ngoài tai nỗi ám ảnh của tai nạn máy bay và vận đen của AirAsia hay Malaysia. Không biết khi nào mới có một chuyến đi nữa... năm nay mình chắc chắn là đi ít hơn, nhưng sẽ có những chuyến dài và thú vị hơn :)
