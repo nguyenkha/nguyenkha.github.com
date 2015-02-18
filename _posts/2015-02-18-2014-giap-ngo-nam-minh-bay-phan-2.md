@@ -51,7 +51,7 @@ Thế là đã note xong những chuyến đi bằng máy bay của mình trong 
 
   + 8 chuyến du lịch/công tác
 
-  + 23 chuyến bay, nhiều nhất là với Jetstar 11 chuyến
+  + 23 chuyến bay, nhiều nhất là với Jetstar Pacific 11 chuyến, sau đó là Emirates, TigerAir, VietJet, Vueling, AirAsia
 
   + Đặt chân tới 4 quốc gia: Singapore, UAE, Tây Ban Nha, Malaysia... lấy 16 dấu trên hộ chiếu và visa Schengen
 
