@@ -25,4 +25,4 @@ Cái cảm giác bức rức này gần giống như lần đầu tiên từ Hà
   Niềm hăng say còn chưa phai 
   Đường trường sông núi hẹn mai ta sum vầy"
 
-Tp. Hồ Chí Minh, Việt Nam 2015
+2015 - Tp. Hồ Chí Minh, Việt Nam 
