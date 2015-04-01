@@ -5,7 +5,7 @@ categories:
 - blog
 ---
 
-    [ '2007-05-10', '2009-09-05' ].push[ '2015-03-31' ];
+    [ '2007-05-10', '2009-09-05' ].push('2015-03-31');
 
 Đáng ra cần phải ngủ ngay lập tức, nhưng nếu không viết ra thì không thể nào chịu nổi và chắc cũng chẳng thể chợp mắt được. Thôi chỉ cần đặt vài dòng ở đây, rằng ta đã ghi lại, kẻo lại quên, sau này lại có dịp để đọc lại chắc là cũng khẽ cười.
 
