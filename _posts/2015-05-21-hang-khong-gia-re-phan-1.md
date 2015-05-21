@@ -37,7 +37,7 @@ Những vấn đề cần lưu ý khi đi máy bay giá rẻ và siêu rẻ:
 
   + Thỉnh thoảng vẫn hoãn chuyến đổi giờ có thể do chuyến bay có việc xảy ra khiến trễ hàng loạt hoặc nghe đồn là dồn khách
 
-  + Đừng ngu ngơ ở sân bay quá, nếu đi lần đầu nên có người dắt. Nào là trả tiền chọn chỗ, gây khó dễ hành lý xách tay, trễ giờ check-in, đổi chuyến không báo trước... blah blah, phải biết cách cương và nhu đúng lúc :3
+  + Đừng ngu ngơ ở sân bay quá, nếu đi lần đầu nên có người dắt. Nào là trả tiền chọn chỗ, gây khó dễ hành lý xách tay, trễ giờ check-in, đổi chuyến không báo trước, overbooking... blah blah, phải biết cách cương và nhu đúng lúc :3
 
   + Giờ đi thường không đẹp, có khi phải đi giữa tuần... nói chung nếu bạn có thể linh động sắp xếp được thời gian thì quá tốt
 
