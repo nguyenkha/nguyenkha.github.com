@@ -25,7 +25,7 @@ Vậy tính sơ ra nếu giá vé 0 đồng thì chi phí phải trả cho 1 vé
 
 Dĩ nhiên đi máy bay thì khỏe hơn đi xe hay tàu với những chặng dài như từ Sài gòn đi Quy nhơn trở ra miền Bắc thì đi xe tốn nhiều hơn gian hơn và nếu bạn để ý thì nếu bạn săn được vé rẻ 0đ thì chi phí bạn chi cho di chuyển còn rẻ hơn xe đò nữa. Haha mà vé 0 đồng thì thiệt... khó kiếm lắm các bạn à. Cung có hạn, cầu thì nhiều dĩ nhiên cuộc đời cũng chả công bằng nên chắc chắn là có người biết thủ thuật sẽ dễ có được vé hơn người mới bập bẹ tâp đặt vé... thậm chí không cẩn thận bạn còn dính thêm mấy thứ phí nhảm nhí khác.
 
-Nói chứ bạn yên tâm là dù bạn mua vé với giá bao nhiêu thì bạn cũng được một chỗ ngồi đàng quàng, ngang hàng với những người mua vé với giá thậm chí gấp 10 bạn, thật đó. Cách vận hành vé của hàng không giá rẻ là tung ra nhiều mức giá vé khác nhau... vừa đảm bảo lợi nhuận, vừa đảm bảo máy bay được đầy (khách thấy hãng làm ăn được, trả được phí thuế này nọ cho sân bay một phần).
+Nói chứ bạn yên tâm là dù bạn mua vé với giá bao nhiêu thì bạn cũng được một chỗ ngồi đàng quàng, ngang hàng với những người mua vé với giá thậm chí gấp 10 bạn, thật đó. Cách vận hành vé của hàng không giá rẻ là tung ra nhiều mức giá vé khác nhau... vừa đảm bảo lợi nhuận, vừa đảm bảo máy bay được đầy (khách thấy hãng làm ăn được, trả được phí thuế này nọ cho sân bay một phần). Mà đôi khi bạn sẽ cảm thấy đi hàng không giá rẻ bạn còn sướng hơn các hãng đầy đủ dịch vụ... bạn được quyền chọn mua những gì mình thích thay vì gộp tất cả vào vé trả một lần ;)
 
 Những vấn đề cần lưu ý khi đi máy bay giá rẻ và siêu rẻ:
 
