@@ -5,9 +5,9 @@ categories:
 - blog
 ---
 
-Post xong bài trước ai cũng hỏi mình vậy thì viết tút hay viết tool gì đó để mọi người book vé giá rẻ. Haha chắc chắc là mình sẽ không viết hoặc công khai các vấn đề đó, mà chắc bạn cũng tìm được ở đâu đó như baynhe.vn chẳng hạn ;). Nhưng mình chỉ muốn nói một điều là "Núi này cao có núi khác cao hơn", rốt cuộc thì chúng ta cũng vẫn tranh nhau nhiêu đó vé thôi. Bên cạnh đó mình có một số lời khuyên hay mẹo có thể áp dụng hoặc các thứ cần chuẩn bị trước khi bắt đầu vào cuộc chiến giành vé haha.
+Post xong bài trước ai cũng hỏi mình vậy thì viết tút hay viết tool gì đó để mọi người book vé giá rẻ. Haha chắc chắc là mình sẽ không viết hoặc công khai các vấn đề đó, mà chắc bạn cũng tìm được ở đâu đó như baynhe.vn [[1]] chẳng hạn ;). Nhưng mình chỉ muốn nói một điều là "Núi này cao có núi khác cao hơn", rốt cuộc thì chúng ta cũng vẫn tranh nhau nhiêu đó vé thôi. Bên cạnh đó mình có một số lời khuyên hay mẹo có thể áp dụng hoặc các thứ cần chuẩn bị trước khi bắt đầu vào cuộc chiến giành vé haha.
 
-Các hãng hàng không giá rẻ luôn tìm mọi cách lấp đầy khách trên các chuyến bay của họ? Vì sao? Vì họ mong muốn hành khách thấy rằng họ làm ăn kinh doanh được nên máy bay luôn đầy khách và giúp họ trả các chi phí khác (phí sân bay, phí thanh toán...) cũng như buôn bán đồ ăn, thức uống, đồ lưu niệm trên máy bay [[1]]. Do đó các đợt giảm giá luôn có từ 0 đồng đến 300.000 đồng (trên một số đường bay dài giá này cũng ok) tùy vào thời điểm bạn đặt vé cho đến ngày bay. Có nhiều bạn thắc mắc tại sao không có vé rẻ dịp hè? Ừ thì làm ăn lấy lời mà, dịp hè người ta đi du lịch thì bán giá cao hơn + mấy công ty du lịch bao sô hết máy bay thì bán rẻ cho bạn làm gì? Tương tự với các dịp lễ, Tết (trừ trường hợp hãng nước ngoài). Do đó bạn cũng đừng hy vọng mấy vào những dịp "nghỉ lễ toàn dân" có vé rẻ cho bạn đi, thậm chí giá bình thường còn không có nữa. Dĩ nhiên đây chỉ là một yếu tố, trong một số trường hợp như sát ngày mà chuyến bay vẫn còn trống nhiều thì hãng vẫn có thể bán cho bạn với một mức giá giảm một chút.
+Các hãng hàng không giá rẻ luôn tìm mọi cách lấp đầy khách trên các chuyến bay của họ? Vì sao? Vì họ mong muốn hành khách thấy rằng họ làm ăn kinh doanh được nên máy bay luôn đầy khách và giúp họ trả các chi phí khác (phí sân bay, phí thanh toán...) cũng như buôn bán đồ ăn, thức uống, đồ lưu niệm trên máy bay [[2]]. Do đó các đợt giảm giá luôn có từ 0 đồng đến 300.000 đồng (trên một số đường bay dài giá này cũng ok) tùy vào thời điểm bạn đặt vé cho đến ngày bay. Có nhiều bạn thắc mắc tại sao không có vé rẻ dịp hè? Ừ thì làm ăn lấy lời mà, dịp hè người ta đi du lịch thì bán giá cao hơn + mấy công ty du lịch bao sô hết máy bay thì bán rẻ cho bạn làm gì? Tương tự với các dịp lễ, Tết (trừ trường hợp hãng nước ngoài). Do đó bạn cũng đừng hy vọng mấy vào những dịp "nghỉ lễ toàn dân" có vé rẻ cho bạn đi, thậm chí giá bình thường còn không có nữa. Dĩ nhiên đây chỉ là một yếu tố, trong một số trường hợp như sát ngày mà chuyến bay vẫn còn trống nhiều thì hãng vẫn có thể bán cho bạn với một mức giá giảm một chút.
 
 Vậy những khoảng thời gian và yếu tố nào thì có vé giá rẻ:
 
@@ -39,6 +39,8 @@ Nói chung bạn nên chuẩn bị cho mình ít nhất 2 cái trong 3 cái trê
 
 Và cách cuối cùng để khắc phục tình trạng đơ là sử dụng một hệ thống đặt vé khác: App trên mobile hoặc website riêng dành cho mobile. Thường cách này bạn không xem được giá vé trong một tháng để chọn ngày, nhưng được cái nó chạy khá trơn tru kể cả khi website chính bị đơ trong giờ khuyến mãi và thường chỉ có thể thanh toán bẳng thẻ quốc tế thôi.
 
-Không biết khi nào mình mới viết phần 3 vì cũng chưa biết sẽ viết gì haha!
+Không biết khi nào mình mới viết phần 3 vì cũng chưa biết sẽ viết gì haha! Chỉ còn một cái nữa là khi đặt vé nhớ bỏ hành lý ký gửi, bảo hiểm (mua khi gần ngày đi và chắc chắn đi), chọn vé rẻ nhất có thể... nói chung là làm sao cho rẻ nhất, để có lỡ phải bỏ cũng không tiếc!
 
-[1]: http://kinhdoanh.vnexpress.net/tin-tuc/doanh-nghiep/vietjet-air-thu-289-ty-dong-tu-ban-my-tom-gau-bong-3138831.html "Vietjet Air thu 289 tỷ đồng từ bán mỳ tôm, gấu bông"
+[1]: http://baynhe.vn/huong-dan "Hướng dẫn đặt vé máy bay, cầm tay chỉ việc dễ như ăn cháo"
+
+[2]: http://kinhdoanh.vnexpress.net/tin-tuc/doanh-nghiep/vietjet-air-thu-289-ty-dong-tu-ban-my-tom-gau-bong-3138831.html "Vietjet Air thu 289 tỷ đồng từ bán mỳ tôm, gấu bông"
