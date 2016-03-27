@@ -18,4 +18,4 @@ Cho đến Lễ Vọng Phục Sinh năm nay, cuối lễ có tiết mục hợp 
 
 [Bản gốc tiếng Ba Lan](https://www.youtube.com/watch?v=eZRsoPmeZXk)
 
-[Bản tiếng Việt, chưa chính thức](https://www.youtube.com/watch?v=ouayYnvz8-U)
+[Bản tiếng Việt - chưa chính thức](https://www.youtube.com/watch?v=ouayYnvz8-U)
