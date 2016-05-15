@@ -8,7 +8,9 @@ categories:
 Mọi người thực hiện khảo sát tại [fb.khado.me](https://fb.khado.me), và xem kết quả dạng đồ họa tại [fb.khado.me/maps](https://fb.khado.me/maps).
 
 **Lưu ý:**
+  
   - Trường hợp bạn đang gặp khó khăn trong việc truy cập Facebook và có thể hoặc không thể vào Facebook bằng các cách khác: **TẮT** các công cụ hỗ trợ mạng riêng ảo (VPN, hide IP) hoặc Proxy, TorBrowser trên điện thoại cũng như máy tính.
+  
   - Trường hợp bạn đang truy cập Facebook được bình thường cũng giúp mình làm khảo sát này vì mình mong muốn có được số liệu đầy đủ.
 
 Con số hiển thị trong kết quả khảo sát là số lượng khảo sát thành công/hoặc thất bại trong khoảng thời gian 1 giờ trở lại.
