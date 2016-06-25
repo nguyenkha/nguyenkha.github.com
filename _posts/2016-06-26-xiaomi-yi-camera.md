@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Xiaomi Yi
+title: Xiaomi Yi Camera
 categories:
 - blog
 ---
