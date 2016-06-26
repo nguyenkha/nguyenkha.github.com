@@ -26,4 +26,4 @@ Bắt đầu mò mẫm, đọc thử [yi-hack](https://github.com/fritz-smh/yi-h
 
 Say khi suy nghĩ lại thì thấy, có thể do driver không tương thích phần cứng. Mấy cái firmware mình xài cũng cũng rồi mà. Ráng lục trí nhớ lại xem cái firmware mình xài trước khi update là gì? Cuối cùng cũng ra được 1.8.6.1B gì gì đó. Google cái ra ngay 1 trang tiếng Việt, chỉ qua một trang tiếng Nga nói anh Nga ngố đã mod bản này. Download về update ngay, thế là boot lên là thấy y chang như cũ rồi. Yeah yeah!!!
 
-Cài lại xong giờ coi lại bản mod này đã bao gồm sẵn các sửa chữa. Nhưng tốt nhất bạn vẫn nên set lại root password, kẻo rước họa vào nhà nhé ;). Con Yi này chắc còn nhiều trò để chơi đây haha :))
+Cài lại xong giờ coi lại bản mod này đã bao gồm sẵn các sửa chữa. Nhưng tốt nhất bạn vẫn nên set lại root password, kẻo rước họa vào nhà nhé ;). Con Yi này chắc còn nhiều trò để chơi đây haha :)). Nhiều khi mình cũng chả rảnh để mò nó, nhưng tình huống bắt buộc :))
