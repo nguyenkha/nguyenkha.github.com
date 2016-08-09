@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Tạm biệt mùa hè: Ngày 1 - Kuala Lumpur
+title: Tạm biệt mùa hè - Ngày 1 - Kuala Lumpur
 categories:
 - blog
 ---
