@@ -142,6 +142,10 @@ nav hr {
   border: none;
 }
 
+#post img {
+  max-width: 100%;
+}
+
 .sidebar {
   padding-top: 25px;
   font-family: sans-serif;
