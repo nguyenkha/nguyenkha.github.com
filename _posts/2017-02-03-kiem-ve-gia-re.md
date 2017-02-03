@@ -13,6 +13,7 @@ VÉ RẺ Ở ĐÂU RA?
 Thời buổi kinh tế thị trường, ai làm ăn kinh doanh chẳng muốn có lời (và nhiều nữa). Không ai cho không gì cả! Vậy tại sao người ta vẫn bán cho bạn giá rẻ? Câu trả lời đơn giản là vì doanh thu và lợi nhuận thôi:
 
 - Bán vé rẻ để thu hút một lượng tiền lớn trong tương lai trang trải chi phí đầu tư vận hành cho hiện tại
+- Cạnh tranh trên những thị trường khác nhau, đôi khi bạn sẽ thấy một đường bay dài hơn lại được bán rẻ hơn và nhiều hơn
 - Một chuyến bay mà đông khách người ta sẽ cảm thấy hãng hàng không làm ăn được hơn là một chuyến bay vắng khách
 - Quảng bá hình ảnh
 - Chưa chắc khách đã đi => bỏ vé ôm tiền
