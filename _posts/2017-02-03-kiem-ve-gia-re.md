@@ -23,18 +23,20 @@ Nên bạn cứ yên tâm, người ta bán rẻ cho bạn là có lý do cả, 
 LÀM SAO KIẾM ĐƯỢC VÉ RẺ?
 ========================
 
-Cách 1: Follow các trang Facebook, subscribe email của các hãng hàng không. Vé rẻ mà, sẽ mau hết lắm, nếu thấy quảng cáo thì coi coi chương trình khi nào bắt đầu? Áp dụng trên những đường bay nào? Thời gian bay thế nào? Nếu thấy ok thì vô web của hãng check thử xem có và còn vé không? Nếu còn thì cứ hốt nhanh nhé. Ngoài ra bạn có thể follow một số Facebook như baynhe.vn... hoặc mình để biết, nhưng nói chung thường mình chỉ post cho bạn bè thôi.
+**Cách 1:** Follow các trang Facebook, subscribe email của các hãng hàng không. Vé rẻ mà, sẽ mau hết lắm, nếu thấy quảng cáo thì coi coi chương trình khi nào bắt đầu? Áp dụng trên những đường bay nào? Thời gian bay thế nào? Nếu thấy ok thì vô web của hãng check thử xem có và còn vé không? Nếu còn thì cứ hốt nhanh nhé. Ngoài ra bạn có thể follow một số Facebook như baynhe.vn... hoặc mình để biết, nhưng nói chung thường mình chỉ post cho bạn bè thôi.
 
-Cách 2: Dùng các công cụ như atadi.vn, check vé khá là nhanh. Cứ chọn đường bay, nó sẽ hiện tháng có giá rẻ, thấy cái nào ngon thì vào check. Nhưng công cụ này chủ yếu áp dụng cho các hãng hàng không Việt Nam và các chuyến bay nội địa.
+**Cách 2:** Dùng các công cụ như atadi.vn, check vé khá là nhanh. Cứ chọn đường bay, nó sẽ hiện tháng có giá rẻ, thấy cái nào ngon thì vào check. Nhưng công cụ này chủ yếu áp dụng cho các hãng hàng không Việt Nam và các chuyến bay nội địa.
 
-Cách 3: Dùng Google Flight cho các chuyến bay quốc tế. Ôi thôi thì vô vàn hãng, vô số cách đi. Bạn cứ coi cái nào rẻ thì hốt.
+**Cách 3:** Dùng Google Flight cho các chuyến bay quốc tế. Ôi thôi thì vô vàn hãng, vô số cách đi. Bạn cứ coi cái nào rẻ thì hốt.
+
+Đừng hỏi mình tool mình viết, tiếc là không có hoặc nó cũng không tốt bằng các cách trên ;)
 
 LÀM SAO ĐỂ MUA VÉ?
 ==================
 
-Điều kiện cần: Tiền và thẻ. Dĩ nhiên, luôn luôn có sẵn thẻ ATM có thanh toán online hoặc thẻ tín dụng quốc tế. Nếu không có thì bạn phải giữ vé và nhờ bạn bè hoặc ra ngoài cửa hàng tiện lợi thanh toán. Nói chung là thủ sẵn là dễ nhất.
+**Điều kiện cần:** Tiền và thẻ. Dĩ nhiên, luôn luôn có sẵn thẻ ATM có thanh toán online hoặc thẻ tín dụng quốc tế. Nếu không có thì bạn phải giữ vé và nhờ bạn bè hoặc ra ngoài cửa hàng tiện lợi thanh toán. Nói chung là thủ sẵn là dễ nhất.
 
-Điều kiện đủ: Thử book vé, chuẩn bị trước các thông tin cần thiết, những ô nào sẽ điền gì. Khi nhìn thấy vé thì bạn có tối đa 100s để giật được vé đó nếu giá 0-99k vì giá rẻ mà, nhiều người sẽ vô giựt với bạn. Luôn luôn sẵn sàng, chuẩn bị trước đầy đủ thông tin. Lúc đó mà còn chạy đi hỏi bạn bè là đi được hay không thì chỉ có ở nhà nha.
+**Điều kiện đủ:** Thử book vé, chuẩn bị trước các thông tin cần thiết, những ô nào sẽ điền gì. Khi nhìn thấy vé thì bạn có tối đa ~100s để giật được vé đó nếu giá 0-99k vì giá rẻ mà, nhiều người sẽ vô giựt với bạn. Luôn luôn sẵn sàng, chuẩn bị trước đầy đủ thông tin. Lúc đó mà còn chạy đi hỏi bạn bè là đi được hay không thì chỉ có ở nhà nha.
 
 
 GIÁ THẾ NÀO GỌI LÀ RẺ?
