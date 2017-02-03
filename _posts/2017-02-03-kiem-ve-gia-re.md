@@ -42,7 +42,7 @@ LÀM SAO ĐỂ MUA VÉ?
 GIÁ THẾ NÀO GỌI LÀ RẺ?
 ======================
 
-Giá sàn cho một vé máy bay nội địa Việt Nam một chiều là 250k (thuế phí các kiểu đó), bạn nhân đôi nếu khứ hồi thì nhân đôi. Tuy nhiên tùy đường bay mà có thể gọi là rẻ hay không? Mình sẽ thử liệt kê giá một số chặng theo phân loại của mình (đã bao gồm thuế phí một chiều, chưa hành lý) mà mình chấp nhận được là giá rẻ:
+Giá sàn cho một vé máy bay nội địa Việt Nam một chiều là 250k (thuế phí các kiểu đó), bạn nhân đôi nếu khứ hồi. Tuy nhiên tùy đường bay mà có thể gọi là rẻ hay không? Mình sẽ thử liệt kê giá một số chặng theo phân loại của mình (đã bao gồm thuế phí một chiều, chưa hành lý) mà mình chấp nhận được là giá rẻ:
 
 - Sài gòn - Nha Trang, Buôn Mê Thuột, Tuy Hòa, Quy Nhơn, Phú Quốc: 250-350k
 - Sài gòn - Đà Nẵng, Huế: 250-450k
