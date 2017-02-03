@@ -20,7 +20,7 @@ Thời buổi kinh tế thị trường, ai làm ăn kinh doanh chẳng muốn c
 - Có khoảng vài chục mức giá khác nhau cho một chuyến bay, số vé rẻ và vé siêu rẻ chỉ chiếm một số lượng nhỏ
 - Bạn phải trả thêm tiền cho các dịch vụ hành lý, ăn uống, đổi vé...
 
-Nên bạn cứ yên tâm, người ta bán rẻ cho bạn là có lý do cả, bạn vẫn là khách hàng, chứ không có gì cho không đâu!
+Nên bạn cứ yên tâm, người ta bán rẻ cho bạn là có lý do cả, bạn vẫn là khách hàng, chứ không có gì cho không đâu! Giá vé cũng theo cung cầu thôi, ngày nhiều người muốn đi dù có vẻ rẻ cũng sẽ hết và lên giá, còn ngày ít người đi thì có thể còn, quan trọng bạn đi được không thôi.
 
 LÀM SAO KIẾM ĐƯỢC VÉ RẺ?
 ========================
@@ -36,7 +36,7 @@ LÀM SAO KIẾM ĐƯỢC VÉ RẺ?
 LÀM SAO ĐỂ MUA VÉ?
 ==================
 
-**Điều kiện cần:** Tiền và thẻ. Dĩ nhiên, luôn luôn có sẵn thẻ ATM có thanh toán online hoặc thẻ tín dụng quốc tế. Nếu không có thì bạn phải giữ vé và nhờ bạn bè hoặc ra ngoài cửa hàng tiện lợi thanh toán. Nói chung là thủ sẵn là dễ nhất.
+**Điều kiện cần:** Tiền và thẻ. Dĩ nhiên, luôn luôn có sẵn thẻ ATM có thanh toán online hoặc thẻ tín dụng/thanh toán quốc tế. Nếu không có thì bạn phải giữ vé và nhờ bạn bè hoặc ra ngoài cửa hàng tiện lợi thanh toán. Nói chung là thủ sẵn là dễ nhất.
 
 **Điều kiện đủ:** Thử book vé, chuẩn bị trước các thông tin cần thiết, những ô nào sẽ điền gì. Khi nhìn thấy vé thì bạn có tối đa ~100s để giật được vé đó nếu giá 0-99k vì giá rẻ mà, nhiều người sẽ vô giựt với bạn. Luôn luôn sẵn sàng, chuẩn bị trước đầy đủ thông tin. Lúc đó mà còn chạy đi hỏi bạn bè là đi được hay không thì chỉ có ở nhà nha.
 
