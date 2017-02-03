@@ -29,7 +29,7 @@ LÀM SAO KIẾM ĐƯỢC VÉ RẺ?
 
 **Cách 2:** Dùng các công cụ như atadi.vn, check vé khá là nhanh. Cứ chọn đường bay, nó sẽ hiện tháng có giá rẻ, thấy cái nào ngon thì vào check. Nhưng công cụ này chủ yếu áp dụng cho các hãng hàng không Việt Nam và các chuyến bay nội địa.
 
-**Cách 3:** Dùng Google Flight cho các chuyến bay quốc tế. Ôi thôi thì vô vàn hãng, vô số cách đi. Bạn cứ coi cái nào rẻ thì hốt.
+**Cách 3:** Dùng Google Flight cho các chuyến bay quốc tế. Ôi thôi thì vô vàn hãng, vô số cách đi. Bạn cứ coi cái nào rẻ thì hốt. Mình sẽ có vài bài nữa về các chuyến bay quốc tế.
 
 Đừng hỏi mình tool mình viết, tiếc là không có hoặc nó cũng không tốt bằng các cách trên ;)
 
