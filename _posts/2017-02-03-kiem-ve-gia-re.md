@@ -18,6 +18,7 @@ Thời buổi kinh tế thị trường, ai làm ăn kinh doanh chẳng muốn c
 - Quảng bá hình ảnh
 - Chưa chắc khách đã đi => bỏ vé ôm tiền
 - Có khoảng vài chục mức giá khác nhau cho một chuyến bay, số vé rẻ và vé siêu rẻ chỉ chiếm một số lượng nhỏ
+- Bạn phải trả thêm tiền cho các dịch vụ hành lý, ăn uống, đổi vé...
 
 Nên bạn cứ yên tâm, người ta bán rẻ cho bạn là có lý do cả, bạn vẫn là khách hàng, chứ không có gì cho không đâu!
 
