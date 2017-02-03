@@ -33,6 +33,8 @@ LÀM SAO KIẾM ĐƯỢC VÉ RẺ?
 
 Đừng hỏi mình tool mình viết, tiếc là không có hoặc nó cũng không tốt bằng các cách trên ;)
 
+**Cách quởn:** Canh vé dư của mấy hãng lữ hành, như Vietravel chẳng hạn. Đôi khi họ bán vé dư của các tour dư khách chỉ tầm 1tr cho vé khứ hồi đi Singapore, Malaysia hay Thái Lan mà gồm sẵn cả 20-30kg hành lý ký gửi. Vé chỉ cần mua trước khoảng 1 tuần đến 2-3 ngày trước ngày khởi hành, nên mình mới gọi là quởn. Nhưng giá hời thì thích cứ đi thôi.
+
 LÀM SAO ĐỂ MUA VÉ?
 ==================
 
@@ -53,7 +55,7 @@ Giá sàn cho một vé máy bay nội địa Việt Nam một chiều là 250k 
 - Sài gòn - Singapore: 500-700k
 - Sài gòn - Kuala Lumpur: 450-600k
 
-Dĩ nhiên là đi chơi thì mình có thể lựa chọn thoải mái, còn có việc cần thì nhiu cũng phải đi thôi.
+Dĩ nhiên là đi chơi thì mình có thể lựa chọn thoải mái, còn có việc cần thì nhiêu cũng phải đi thôi.
 
 CÓ THỂ RẺ HƠN NỮA KHÔNG?
 ========================
