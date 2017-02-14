@@ -58,6 +58,7 @@ Giá sàn cho một vé máy bay nội địa Việt Nam một chiều là 250k 
 - Sài gòn - Thái Lan: 600-700k
 - Sài gòn - Singapore: 500-700k
 - Sài gòn - Kuala Lumpur: 450-600k
+- Sài gòn - Seoul Incheon: 1200-1700k
 
 Dĩ nhiên là đi chơi thì mình có thể lựa chọn thoải mái, còn có việc cần thì nhiêu cũng phải đi thôi.
 
