@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Câu chuyện vé của Vietnam Airlines
+title: Câu chuyện vé Vietnam Airlines
 categories:
 - blog
 ---
