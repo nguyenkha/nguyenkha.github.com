@@ -41,6 +41,7 @@ Dĩ nhiên chọn cách bay vòng sẽ có những bất lợi như sau:
 - Hành lý ký gửi chỉ còn 30kg thay vì 40kg nếu bay thẳng
 - Có thể gặp rắc rối vì vi phạm điều lệ vận chuyển (nếu bạn tiết kiệm)
 - Tốn thêm chỗ cho 2 con dấu trong hộ chiếu do phải nhập cảnh Malaysia
+- Quá cảnh quốc tế tại nước bạn mang hộ chiếu buồn cười lắm, về nhà mà không phải về nhà =]]
 - Và bị bạn bè nghĩ là bị khùng bay đi rồi lại bay về ngay trong ngày =]]
 
 Ngoài ra thì bạn C được các tiêu chuẩn khác như A bao gồm suất ăn, ghế như nhau, thậm chí họ đi cùng nhau mà giá tiền chi ra hoàn toàn khác nhau. Ngoài ra bạn có thể tranh thủ thời gian ở Malaysia đi chơi hoặc đi tiếp đâu đó ;)
