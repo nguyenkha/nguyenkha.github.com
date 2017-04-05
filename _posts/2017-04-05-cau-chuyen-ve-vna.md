@@ -25,7 +25,7 @@ Bạn C đón chuyến bay từ KUL trở về SGN hoặc Hà nội sân bay N�
 
 Tổng cộng chi phí của bạn C là **$49 + $288 = $337**. Bạn C bay cùng A trên cả chuyến đi và chuyến về nhưng giá vé rẻ hơn khoảng $289. Chắc chắn bạn sẽ hỏi nếu vậy thì bạn C phải tính thêm vé về từ KUL đi SGN sau khi C từ Nhật về. Giá đó khoảng $20-$36 tùy hãng tuy nhiên bạn C thực hiện một hành động là khi đế Sài gòn bạn ấy nhập cảnh và không đi tiếp chặng tiếp theo. **Đây là một hành động không phù hợp với điều lệ vận chuyển của hãng hàng không, bạn cần cân nhắc trước các rủi ro.** Tuy nhiên nếu tính cả vé về đi nữa thì lịch trình của bạn C vẫn rẻ hơn ~$250.
 
-_(*) Giá các chuyến bay được ghi lại từ Google Flight vào thời điểm viết bài (có thể thay đổi vào thời điểm bạn đọc bài viết này)_
+_(*) Giá các chuyến bay được ghi lại từ Google Flights vào thời điểm viết bài (có thể thay đổi vào thời điểm bạn đọc bài viết này)_
 
 Đến đây bạn sẽ hiểu là mấu chốt của vấn đề là VNA bán vé đi Nhật từ Malaysia rẻ hơn từ Việt Nam. Mình không nói VNA bán mắc  cho người Việt Nam hơn là người Malaysia. Bạn có thể xem qua mức giá vé của các hãng từ Malaysia đi Nhật:
 
