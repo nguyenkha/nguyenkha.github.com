@@ -31,7 +31,7 @@ _(*) Giá các chuyến bay được ghi lại từ Google Flights vào thời �
 
 ![Giá vé VNA KUL-TYO-KUL](/assets/img/vna-4.png)
 
-Bạn có thể thấy giá vé của VNA chỉ cao hơn AirAsia X là LCC. Còn lại thấp hơn một cách đáng kể so với các hãng truyền thống khác kể cả Malaysia Airlines. Thậm chí có thời điểm chỉ tầm $180, nghĩa là thấp nhất trên thị trường Malaysia nếu so sánh với các hãng phải quá cảnh tương tự như Singapore Airlines, Thai Airways hay China Airlines của Đài Loan. Chỉ có một lời giải thích là (phá giá) THỊ TRƯỜNG thôi, cạnh tranh mà.
+Bạn có thể thấy giá vé của VNA chỉ cao hơn AirAsia X là LCC. Còn lại thấp hơn một cách đáng kể so với các hãng truyền thống khác kể cả Malaysia Airlines. Thậm chí có thời điểm chỉ tầm $180, nghĩa là thấp nhất trên thị trường Malaysia nếu so sánh với các hãng phải quá cảnh tương tự như Singapore Airlines, Thai Airways hay China Airlines của Đài Loan. Chỉ có một lời giải thích là (phá giá) THỊ TRƯỜNG thôi, cạnh tranh mà. Giá vé máy bay không chỉ phụ thuộc vào khoảng cách mà còn phụ thuộc rất lớn vào thị trường.
 
 ![Giá vé VNA KUL-TYO-KUL tiếp theo](/assets/img/vna-5.png)
 
