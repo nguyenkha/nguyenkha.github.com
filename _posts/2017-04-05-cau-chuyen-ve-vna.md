@@ -27,7 +27,7 @@ Tổng cộng chi phí của bạn C là **$49 + $288 = $337**. Bạn C bay cùn
 
 _(*) Giá các chuyến bay được ghi lại từ Google Flights vào thời điểm viết bài (có thể thay đổi vào thời điểm bạn đọc bài viết này)_
 
-Đến đây bạn sẽ hiểu là mấu chốt của vấn đề là VNA bán vé đi Nhật từ Malaysia rẻ hơn từ Việt Nam. Mình không nói VNA bán mắc  cho người Việt Nam hơn là người Malaysia. Bạn có thể xem qua mức giá vé của các hãng từ Malaysia đi Nhật:
+**Đến đây bạn sẽ hiểu là mấu chốt của vấn đề là VNA bán vé đi Nhật từ Malaysia rẻ hơn từ Việt Nam. Mình không nói VNA bán mắc  cho người Việt Nam hơn là người Malaysia.** Bạn có thể xem qua mức giá vé của các hãng từ Malaysia đi Nhật:
 
 ![Giá vé VNA KUL-TYO-KUL](/assets/img/vna-4.png)
 
@@ -43,6 +43,6 @@ Dĩ nhiên chọn cách bay vòng sẽ có những bất lợi như sau:
 - Tốn thêm chỗ cho 2 con dấu trong hộ chiếu do phải nhập cảnh Malaysia
 - Và bị bạn bè nghĩ là bị khùng bay đi rồi lại bay về ngay trong ngày =]]
 
-Ngoài ra thì bạn C được các tiêu chuẩn khác như A bao gồm suất ăn, ghế như nhau, thậm chí họ đi cùng nhau mà giá tiền chi ra hoàn toàn khác nhau.
+Ngoài ra thì bạn C được các tiêu chuẩn khác như A bao gồm suất ăn, ghế như nhau, thậm chí họ đi cùng nhau mà giá tiền chi ra hoàn toàn khác nhau. Ngoài ra bạn có thể tranh thủ thời gian ở Malaysia đi chơi hoặc đi tiếp đâu đó ;)
 
 Haha vậy là các bạn biết vì sao mình có thể đi Nhật với chi phí bằng bạn mua vé máy bay của VNA rồi phải không. Kết luận một câu không liên quan là nếu sàn vé máy bay nội địa mà thành 1.5tr chắc mình khỏi bay nội địa nữa, cứ bay đi Nhật cho khỏe =]]. Đùa chút vui thôi, mình tin là sẽ không xảy ra chuyện đó. Và cuối cùng cảm ơn bạn Kha Le đã chỉ mình cách này để bay và viết bài này.
