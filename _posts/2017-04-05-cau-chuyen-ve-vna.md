@@ -9,13 +9,13 @@ Mình chưa từng bao giờ viết hai bài blog trong cùng một ngày, nhưn
 
 Nếu ai đó hỏi  từ Việt Nam đi Nhật Bản thì rẻ nhất là đi hãng nào, chắc có bạn sẽ trả lời là Vanilla Air (hãng hàng không giá rẻ - LCC) mới mới vào Việt Nam năm ngoái hay một hãng Trung Quốc hay Malaysia Airlines aka MH (ế quá). Nhưng câu trả lời của mình sẽ là... biết chắc rồi Vietnam Airlines (VNA)! Chắc là bạn sẽ muốn táng ngay mình một phát cho tỉnh ngủ giữa ban ngày nhưng thật sự 2 chuyến Nhật mình đã đi đều là VNA cả đó, và giá nó còn rẻ hơn bất cứ LCC nào chưa cần so sánh với với các hãng hàng không truyền thống hay 4, 5 sao khác. Để dễ giải thích mình sẽ đặt ra tình huống hai bạn A, B và C muốn đi Nhật vào tháng 7/2017 này đi chẳng hạn. Kế hoạch của các bạn như sau:
 
-- Bạn A: Chọn bay VNA khởi hành từ Sài gòn sân bay Tân Sơn Nhất (SGN) đến sân bay Tokyo Narita (NRT) vào ngày 04/07/2017 và về sau 1 tuần vào ngày 10/07/2017. Giá vé máy bay là $626.
+- **Bạn A:** Chọn bay VNA khởi hành từ Sài gòn sân bay Tân Sơn Nhất (SGN) đến sân bay Tokyo Narita (NRT) vào ngày 04/07/2017 và về sau 1 tuần vào ngày 10/07/2017. Giá vé máy bay là $626.
 
-- Bạn B: Chọn bay một hành trình rẻ nhất cũng từ SGN đến NRT khứ hồi cũng vào ngày đi về như bạn A. Mình chọn được giá là $357 của Vanilla Air quá cảnh tại Taipei. Giá vé này CHƯA bao gồm hành lý ký gửi, khoảng $40/chiều và sẽ đến Tokyo trễ hơn A do phải quá cảnh.
+- **Bạn B:** Chọn bay một hành trình rẻ nhất cũng từ SGN đến NRT khứ hồi cũng vào ngày đi về như bạn A. Mình chọn được giá là $357 của Vanilla Air quá cảnh tại Taipei. Giá vé này CHƯA bao gồm hành lý ký gửi, khoảng $40/chiều và sẽ đến Tokyo trễ hơn A do phải quá cảnh.
 
 ![Giá vé VNA và Vanilla Air](/assets/img/vna-1.png)
 
-- Bạn C: Chọn một lịch trình bay phức tạp và tốn thời gian nhiều hơn như sau. Bạn sẽ rời khỏi trước A và B vào ngày 03/07/2017 và về cùng ngày 10/07/2017 giống 2 bạn kia, ngoài ra C sẽ đi chung với A trên cùng một chuyến bay của VNA. Bạn C dự định ngày 03/07/2017 sẽ bay từ SGN đến Kuala Lumpur (KUL) với hãng AirAsia ($45) hoặc Malindo Air ($49), khác nhau là Malindo có sẵn 30kg hành lý ký gửi. Bạn ở Kuala Lumpur chơi và tối hôm đó bạn trở lại sân bay để tiếp tục hành trình.
+- **Bạn C:** Chọn một lịch trình bay phức tạp và tốn thời gian nhiều hơn như sau. Bạn sẽ rời khỏi trước A và B vào ngày 03/07/2017 và về cùng ngày 10/07/2017 giống 2 bạn kia, ngoài ra C sẽ đi chung với A trên cùng một chuyến bay của VNA. Bạn C dự định ngày 03/07/2017 sẽ bay từ SGN đến Kuala Lumpur (KUL) với hãng AirAsia ($45) hoặc Malindo Air ($49), khác nhau là Malindo có sẵn 30kg hành lý ký gửi. Bạn ở Kuala Lumpur chơi và tối hôm đó bạn trở lại sân bay để tiếp tục hành trình.
 
 ![Giá vé AirAsia và Malindo Air SGN-KUL](/assets/img/vna-2.png)
 
