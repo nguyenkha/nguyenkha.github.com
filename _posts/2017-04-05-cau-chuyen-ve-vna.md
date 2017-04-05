@@ -45,4 +45,4 @@ Dĩ nhiên chọn cách bay vòng sẽ có những bất lợi như sau:
 
 Ngoài ra thì bạn C được các tiêu chuẩn khác như A bao gồm suất ăn, ghế như nhau, thậm chí họ đi cùng nhau mà giá tiền chi ra hoàn toàn khác nhau.
 
-Haha vậy là các bạn biết vì sao mình có thể đi Nhật với chi phí bằng bạn mua vé máy bay của VNA rồi phải không. Kết luận một câu không liên qua là nếu sàn vé máy bay nội địa mà thành 1.5tr chắc mình khỏi bay nội địa nữa, cứ bay đi Nhật cho khỏe =]]. Đùa chút vui thôi, mình tin là sẽ không xảy ra chuyện đó. Và cuối cùng cảm ơn bạn Kha Le đã chỉ mình cách này để bay và viết bài này.
+Haha vậy là các bạn biết vì sao mình có thể đi Nhật với chi phí bằng bạn mua vé máy bay của VNA rồi phải không. Kết luận một câu không liên quan là nếu sàn vé máy bay nội địa mà thành 1.5tr chắc mình khỏi bay nội địa nữa, cứ bay đi Nhật cho khỏe =]]. Đùa chút vui thôi, mình tin là sẽ không xảy ra chuyện đó. Và cuối cùng cảm ơn bạn Kha Le đã chỉ mình cách này để bay và viết bài này.
