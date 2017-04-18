@@ -5,7 +5,7 @@ categories:
 - blog
 ---
 
-_tl;dr Delay 2 tiếng có nước, 3 tiếng có bữa ăn, 6 tiếng (7AM-10PM) có chỗ nghỉ, 6 tiếng (22PM-7AM) có chỗ ngủ. Hoặc đổi chuyến + phương tiện di chuyển phù hợp trong khả năng của hãng. Cứ theo vậy mà làm, đừng gây sự với nhân viên hàng không làm gì. Còn nếu có việc thật sự gấp thì bạn chỉ có cách hoàn tiền mua vé hãng khác._
+_tl;dr Delay 2 tiếng có nước, 3 tiếng có bữa ăn, 6 tiếng (7AM-10PM) có chỗ nghỉ, 6 tiếng (22PM-7AM) có chỗ ngủ. Hoặc đổi chuyến + phương tiện di chuyển phù hợp trong khả năng của hãng. Hủy chuyến bồi thường 200k-400k (nội địa) và $25-$150 (quốc tế). Cứ theo vậy mà làm, đừng gây sự với nhân viên hàng không làm gì. Còn nếu có việc thật sự gấp thì bạn chỉ có cách hoàn tiền mua vé hãng khác._
 
 DELAY LÀ GÌ?
 ============
@@ -63,7 +63,7 @@ _Trường hợp hủy chuyến, chậm chuyến kéo dài_ [[5]]
 
 >  3. Người vận chuyển có thể quy định mức bồi thường ứng trước không hoàn lại nhưng không được thấp hơn mức quy định tại khoản 1 và khoản 2 Điều này.
 
-Dĩ nhiên ngoài ra thì phải sắp lại chuyến khác hoặc hoàn tiền theo hợp đồng (aka đặt chỗ) là hiển nhiên. Ngoài ra thì hãng vẫn được loại trừ vì các lý do bất khả kháng (... nhiều lắm, tùy trường hợp mà kiểm tra xem) và điều kiện sân bay.
+Dĩ nhiên ngoài ra thì phải sắp lại chuyến khác hoặc hoàn tiền theo hợp đồng (aka đặt chỗ) là hiển nhiên. Nếu bạn có hợp đồng bảo hiểm du lịch nữa thì check lại điều khoản xem bồi thường thế nào (đòi hãng bảo hiểm). Ngoài ra thì hãng vẫn được loại trừ vì các lý do bất khả kháng (... nhiều lắm, tùy trường hợp mà kiểm tra xem) và điều kiện sân bay.
 
 Trong trường hợp delay đã được thông báo sớm 12 đến 24 tiếng thì bạn có thể tham khảo [ở đây](/blog/2016/09/14/doi-lich-bay.html) gọi lên hãng sắp lại trước khi... hết chỗ!
 
