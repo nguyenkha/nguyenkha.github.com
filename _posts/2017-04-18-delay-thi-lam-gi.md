@@ -29,25 +29,39 @@ Nói chung điều lệ vận chuyển của các hãng đều có những đi�
 
 _Trường hợp chậm chuyến_ [[4]]
 > 3. Trường hợp hành khách đã được xác nhận chỗ trên chuyến bay nhưng việc vận chuyển bị chậm, gián đoạn, hủy chuyến, hãng hàng không có trách nhiệm phục vụ hành khách theo quy định như sau:
-> a) Thời gian chậm từ 02 giờ phải phục vụ nước uống nhẹ;
-> b) Thời gian chậm từ 03 giờ trở lên phải phục vụ ăn, uống với loại bữa ăn theo thời điểm: từ 06 giờ 00 đến 08 giờ 00 phục vụ bữa sáng; từ 12 giờ 00 đến 14 giờ 00 phục vụ bữa trưa; từ 19 giờ 00 đến 21 giờ 00 phục vụ bữa tối;
-> c) Thời gian chậm từ 06 giờ trở lên (từ 07 giờ đến trước 22 giờ) phải bố trí nơi nghỉ phù hợp với điều kiện thực tế của cảng hàng không;
-> d) Thời gian chậm 06 giờ trở lên (từ 22 giờ hôm trước đến trước 07 giờ ngày hôm sau) phải bố trí chỗ ngủ, nghỉ phù hợp với điều kiện thực tế của địa phương hoặc giải pháp thay thế nếu được sự đồng ý của hành khách;
-> đ) Chuyển đổi hành trình của hành khách trong phạm vi cung cấp dịch vụ của hãng hàng không để hành khách tới được điểm cuối của hành trình một cách nhanh chóng và thuận tiện nhất.
+
+>  a) Thời gian chậm từ 02 giờ phải phục vụ nước uống nhẹ;
+
+>  b) Thời gian chậm từ 03 giờ trở lên phải phục vụ ăn, uống với loại bữa ăn theo thời điểm: từ 06 giờ 00 đến 08 giờ 00 phục vụ bữa sáng; từ 12 giờ 00 đến 14 giờ 00 phục vụ bữa trưa; từ 19 giờ 00 đến 21 giờ 00 phục vụ bữa tối;
+
+>  c) Thời gian chậm từ 06 giờ trở lên (từ 07 giờ đến trước 22 giờ) phải bố trí nơi nghỉ phù hợp với điều kiện thực tế của cảng hàng không;
+
+>  d) Thời gian chậm 06 giờ trở lên (từ 22 giờ hôm trước đến trước 07 giờ ngày hôm sau) phải bố trí chỗ ngủ, nghỉ phù hợp với điều kiện thực tế của địa phương hoặc giải pháp thay thế nếu được sự đồng ý của hành khách;
+
+>  đ) Chuyển đổi hành trình của hành khách trong phạm vi cung cấp dịch vụ của hãng hàng không để hành khách tới được điểm cuối của hành trình một cách nhanh chóng và thuận tiện nhất.
 
 _Trường hợp hủy chuyến, chậm chuyến kéo dài_ [[5]]
 
 > Điều 8. Mức bồi thường ứng trước không hoàn lại
 > 1. Mức bồi thường cho mỗi hành khách đối với chuyến bay nội địa như sau:
-> a) Chuyến bay có độ dài đường bay dưới 500 km: 200.000 VNĐ;
-> b) Chuyến bay có độ dài đường bay từ 500 km đến dưới 1.000 km: 300.000 VNĐ;
-> c) Chuyến bay có độ dài đường bay từ 1.000 km trở lên: 400.000 VNĐ.
+
+>  a) Chuyến bay có độ dài đường bay dưới 500 km: 200.000 VNĐ;
+
+>  b) Chuyến bay có độ dài đường bay từ 500 km đến dưới 1.000 km: 300.000 VNĐ;
+
+>  c) Chuyến bay có độ dài đường bay từ 1.000 km trở lên: 400.000 VNĐ.
+
 > 2. Mức bồi thường cho mỗi hành khách đối với chuyến bay quốc tế như sau:
-> a) Chuyến bay có độ dài đường bay dưới 1.000 km: 25 USD;
-> b) Chuyến bay có độ dài đường bay từ 1.000 km đến dưới 2.500 km: 50 USD;
-> c) Chuyến bay có độ dài đường bay từ 2.500 km đến dưới 5.000 km: 80 USD;
-> d) Chuyến bay có độ dài đường bay từ 5.000 km trở lên: 150 USD.
-> 3. Người vận chuyển có thể quy định mức bồi thường ứng trước không hoàn lại nhưng không được thấp hơn mức quy định tại khoản 1 và khoản 2 Điều này.
+
+>  a) Chuyến bay có độ dài đường bay dưới 1.000 km: 25 USD;
+
+>  b) Chuyến bay có độ dài đường bay từ 1.000 km đến dưới 2.500 km: 50 USD;
+
+>  c) Chuyến bay có độ dài đường bay từ 2.500 km đến dưới 5.000 km: 80 USD;
+
+>  d) Chuyến bay có độ dài đường bay từ 5.000 km trở lên: 150 USD.
+
+>  3. Người vận chuyển có thể quy định mức bồi thường ứng trước không hoàn lại nhưng không được thấp hơn mức quy định tại khoản 1 và khoản 2 Điều này.
 
 Dĩ nhiên ngoài ra thì phải sắp lại chuyến khác hoặc hoàn tiền theo hợp đồng (aka đặt chỗ) là hiển nhiên. Ngoài ra thì hãng vẫn được loại trừ vì các lý do bất khả kháng (... nhiều lắm, tùy trường hợp mà kiểm tra xem) và điều kiện sân bay.
 
