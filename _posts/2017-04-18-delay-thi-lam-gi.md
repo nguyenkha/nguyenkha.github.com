@@ -5,7 +5,7 @@ categories:
 - blog
 ---
 
-_tl;dr Delay 2 tiếng có nước, 3 tiếng có bữa ăn, 6 tiếng (7AM-10PM) có chỗ nghỉ, 6 tiếng (22PM-7AM) có chỗ ngủ. Hoặc đổi chuyến + phương tiện di chuyển phù hợp trong khả năng của hãng. Hủy chuyến bồi thường 200k-400k (nội địa) và $25-$150 (quốc tế). Cứ theo vậy mà làm, đừng gây sự với nhân viên hàng không làm gì. Còn nếu có việc thật sự gấp thì bạn chỉ có cách hoàn tiền mua vé hãng khác._
+_tl;dr Delay 2 tiếng có nước, 3 tiếng có bữa ăn, 6 tiếng (7AM-10PM) có chỗ nghỉ, 6 tiếng (10PM-7AM) có chỗ ngủ. Hoặc đổi chuyến + phương tiện di chuyển phù hợp trong khả năng của hãng. Hủy chuyến bồi thường 200k-400k (nội địa) và $25-$150 (quốc tế). Cứ theo vậy mà làm, đừng gây sự với nhân viên hàng không làm gì. Còn nếu có việc thật sự gấp thì bạn chỉ có cách hoàn tiền mua vé hãng khác._
 
 DELAY LÀ GÌ?
 ============
