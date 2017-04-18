@@ -29,10 +29,15 @@ Nói chung điều lệ vận chuyển của các hãng đều có những đi�
 
 _Trường hợp chậm chuyến_ [[4]]
 > 3. Trường hợp hành khách đã được xác nhận chỗ trên chuyến bay nhưng việc vận chuyển bị chậm, gián đoạn, hủy chuyến, hãng hàng không có trách nhiệm phục vụ hành khách theo quy định như sau:
+
 > a) Thời gian chậm từ 02 giờ phải phục vụ nước uống nhẹ;
+
 > b) Thời gian chậm từ 03 giờ trở lên phải phục vụ ăn, uống với loại bữa ăn theo thời điểm: từ 06 giờ 00 đến 08 giờ 00 phục vụ bữa sáng; từ 12 giờ 00 đến 14 giờ 00 phục vụ bữa trưa; từ 19 giờ 00 đến 21 giờ 00 phục vụ bữa tối;
+
 > c) Thời gian chậm từ 06 giờ trở lên (từ 07 giờ đến trước 22 giờ) phải bố trí nơi nghỉ phù hợp với điều kiện thực tế của cảng hàng không;
+
 > d) Thời gian chậm 06 giờ trở lên (từ 22 giờ hôm trước đến trước 07 giờ ngày hôm sau) phải bố trí chỗ ngủ, nghỉ phù hợp với điều kiện thực tế của địa phương hoặc giải pháp thay thế nếu được sự đồng ý của hành khách;
+
 > đ) Chuyển đổi hành trình của hành khách trong phạm vi cung cấp dịch vụ của hãng hàng không để hành khách tới được điểm cuối của hành trình một cách nhanh chóng và thuận tiện nhất.
 
 _Trường hợp hủy chuyến, chậm chuyến kéo dài_ [[5]]
