@@ -153,6 +153,8 @@ nav hr {
 
 .sidebar p {
   font-weight: 200;
+  text-align: center;
+  font-size: 0.65em;
 }
 
 .sidebar a {
