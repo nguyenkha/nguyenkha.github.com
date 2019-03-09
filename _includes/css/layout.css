@@ -35,9 +35,9 @@
 	nav { position: relative; }
 	nav ul,
 	#logo { text-align: left; }
-	.sidebar {
+	/* .sidebar {
 		display: none;
-	}
+	} */
 	.content {
 		border: 0px;
 		padding-left: 0px;
@@ -76,4 +76,5 @@
 #logo {
 	width: 100px;
 	height: 100px;
+	border-radius: 5px;
 }
