@@ -33,7 +33,7 @@ Mình nghĩ quy định của Trung Quốc cũng xuất phát từ việc hạ t
 
 Còn nói về các trường hợp bị từ chối thì mình nghĩ là có thể rơi vào vài trường hợp:
 
-- Quá cảnh quá 24 tiếng
+- Quá cảnh quá 24 tiếng (họ tính từng phút theo lịch trình trên vé, không phải thời gian thực tế nha)
 
 - Đến sân bay không áp dụng quá cảnh 24 tiếng
 
