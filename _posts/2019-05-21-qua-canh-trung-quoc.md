@@ -15,11 +15,13 @@ Còn với trường hợp Trung Quốc thì sao? Mình đã nhiều lần bay n
 
 - **Quảng Châu:** Tại đây thì cũng tương tự Bắc Kinh, nhưng có thêm 1 lớp nhân viên hãng kiểm tra rồi mới tới an ninh. Chẳng hiểu làm phức tạp thêm để làm gì? Đây là đại bản doanh của China Southern nên quầy quá cảnh cũng không thấy hãng nào khác. Sau đó an ninh và pin sạc dự phòng như cũ, họ vẫn luôn miệng nói *"powerbank, powerbank"* với những ai quên lấy pin ra. À, có lần mình mang drone (của Xiaomi) và cũng KHÔNG gặp vấn đề gì luôn nha.
 
-- **Thượng Hải**: Trong các sân bay TQ thì mình thích Thượng Hải Phố Đông nhất, vì quy trình quá cảnh ở đây cực kỳ đơn giản, nếu bạn đã có thẻ lên tàu bay chặng tiếp theo thì chỉ cần qua một cái cửa tự động, không cần người và đi lên kiểm tra an ninh như bình thường. Dĩ nhiên vẫn là chuyện pin sạc dự phòng thôi, còn mình mang cả chục chai nước hoa xách tay họ cũng chẳng làm khó gì.
+- **Thượng Hải**: Trong các sân bay TQ thì mình thích Thượng Hải Phố Đông nhất, vì quy trình quá cảnh ở đây cực kỳ đơn giản, nếu bạn đã có thẻ lên tàu bay chặng tiếp theo thì chỉ cần qua một cái cửa tự động, không cần người và sau đó kiểm tra an ninh như bình thường. Dĩ nhiên vẫn là chuyện pin sạc dự phòng thôi, còn mình mang cả chục chai nước hoa xách tay họ cũng chẳng làm khó gì.
 
 - **Hạ Môn**: Đây là sân bay mà mình thấy kỳ cục nhất, khi bước xuống xong mình mới biết sân bay này không có lối đi dành cho hành khách quá cảnh. Đồng nghĩa là TẤT CẢ hành khách đều phải nhập cảnh vào TQ mặc dù chẳng có ý định rời khỏi sân bay. Đây là cái mình thật sự đã rất lo khi mình nghe bạn bè cảnh báo rất nhiều, có khả năng bị từ chối ngay từ lúc làm thủ tục ở Việt Nam chứ không nói gì ở đây. Thế là mình rảnh ngồi tìm kiếm đủ trò, nhưng thật sự thông tin không nhiều, không dẫn chứng rõ ràng về các trường hợp chưa kể nó phụ thuộc rất nhiều vào tấm hộ chiếu mà bạn đang cầm nữa. Cuối cùng mình cũng tìm được một trang, người viết bài phân tích rõ dựa trên quy định hàng không và kèm theo lý giải cũng như vài tổng hợp các trường hợp đã xảy ra [tại đây](https://www.flyertalk.com/forum/china/708095-china-24-72-144-hour-transit-without-visa-twov-rules-master-thread-6.html).
 
 Nhưng có thể tóm lại là thế này (quy định có thể thay đổi theo thời gian, nhưng thường theo hướng mở hơn):
+
+- Nước đi và nước đến phải khác nhau, không phải Trung Quốc (Hong Kong, Macau, Đài Loan được xem là khác với Trung Quốc do quản lý xuất nhập cảnh riêng biệt, họ gọi là "Regional flight" tương đương chuyến bay quốc tế, chắc chỉ là lý do chính trị)
 
 - Các sân bay lớn như Bắc Kinh/Air China (PEK), Quảng Châu/China Southern (CAN) hay Thượng Hải Phố Đông/China Eastern (PVG) có cơ sở vật chất cho việc quá cảnh thì dưới 24 tiếng không thành vấn đề gì nếu bạn không phải đổi nhà ga (thường bạn cũng chỉ bay cùng một hãng, nên họ sẽ lo)
 
