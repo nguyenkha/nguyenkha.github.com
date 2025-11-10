@@ -5,7 +5,7 @@ categories:
 - blog
 ---
 
-Clip ngắn trên TikTok [tại đây](https://www.tiktok.com/@khadilungtung/video/7570614835939937557)
+Clip ngắn trên [TikTok](https://www.tiktok.com/@khadilungtung/video/7570614835939937557) và [YouTube](https://www.youtube.com/shorts/I4EEGeXVfHE)
 
 Cũng phải bốn năm rồi Việt Nam mới lại có thêm một hãng hàng không mới, kể từ sau Vietravel Airlines. Vì cái tên Sun Air đã “chốt” cho hãng chuyên cơ nên lần này mới ra đời cái tên nghe khá thú vị: Sun Phu Quoc Airways (SPA/9G), với tên đăng ký dài dòng mà vui tai — “Hãng hàng không Mặt trời Phú Quốc”. Nếu không bận thì mình đã bay ngay chuyến đầu tiên ngày 1/11 rồi, thôi trễ chút cũng không sao, miễn là được thử cho biết.
 
