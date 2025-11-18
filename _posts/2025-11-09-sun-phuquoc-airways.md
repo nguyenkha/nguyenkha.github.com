@@ -31,6 +31,9 @@ Về nội thất máy bay, có thể nói SPA định vị cùng phân khúc v�
 
 Chuyến bay bị delay nửa tiếng do mưa lớn ở Tân Sơn Nhất, lại còn vòng vèo thêm một chút. Túm lại, cảm giác chung rất giống Bamboo hồi mới ra năm 2019 — mọi thứ đều mới, tươm tất và giá vé thì dễ thương.
 
+SUN PhuQuoc Airways
+===================
+
 It’s been about four years since Vietnam had a new airline, ever since Vietravel Airlines. Since the name “Sun Air” has already been used for a charter airline, this time the new name sounds quite fun: Sun Phu Quoc Airways (SPA/9G), with the full Vietnamese name that sounds cheerful — “Hãng hàng không Mặt trời Phú Quốc”. If I hadn’t been busy, I would’ve flown on the very first flight on November 1 — but a little delay is fine, as long as I get to experience it soon.
 
 Thanks to the experience accumulated from previous startups, SPA has done quite a good job. The booking and online check-in website works smoothly and responsively. Since it likely uses the same booking system provider as that “blue” or “green” airline, the interface looks very familiar 😀. Even though online check-in is available, the counters were still packed — probably because most people had checked baggage or were traveling with children. A big plus: it’s currently the only airline that allows at least one 23 kg checked bag even on the cheapest fare. Bamboo used to offer the same, but in Vietnam’s fierce airline market, it’s hard to say how long that policy will last. For now, SPA doesn’t charge for seat selection or sell onboard meals — while VNA has already tightened its baggage policies down to the kilogram.
