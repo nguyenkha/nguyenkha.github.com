@@ -1,6 +1,6 @@
 # General Jekyll Config
 highlighter: rouge
-url: http://n.khado.me
+url: https://kha.do
 lsi: false
 exclude: [LICENSE, CNAME, README.md, .gitignore]
 markdown: kramdown
