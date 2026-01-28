@@ -13,7 +13,7 @@ Nó Vietjet mà nó Chengdu 🐼
 ![Boarding](/assets/img/vietjet-x-chengdu-1.jpg)
 
 Vừa rồi có chuyến đi Côn Đảo với Vietjet. Không phải lần đầu đi Côn Đảo nhưng lần đầu bay chuyến bay “nội tỉnh” (xưa bị hụt Rạch Giá - Phú Quốc của Bamboo). Chắc mọi người cũng đều biết do các giới hạn của sân bay Côn Đảo nên chỉ có một số loại máy bay nhỏ có thể bay đến đây. Mình không phải là chuyên gia về hàng không, nhưng lý do đại loại là thế. Và lựa chọn của Vietjet là thuê ướt (+phi công+tiếp viên+bảo dưỡng) 2 chiếc của Chengdu Airlines và mẫu máy bay là Comac C909 hay ARJ27. Mình nghĩ VJ cũng đã lường trước được những phản ứng có thể xảy ra nên cũng đã cố gắng làm thêm vài thứ:
-- Thân máy bay và động cơ được sơn hỗn hợp VJ x Chengdu
+- Thân máy bay và động cơ được sơn hỗn hợp VJ × Chengdu
 - Phần nhạc được cài vào máy bay: Hello Vietnam, Biết ơn chị VTS, hay The Ballad of HCM… đồng bộ với nhận diện thương hiệu của hãng
 - Một tiếp viên người Việt đảm nhận phát thanh an toàn bằng tiếng Việt và tiếng Anh (không có tiếng Trung)
 - Tiếp viên Trung chuẩn bị sẵn mẫu câu đơn giản tiếng Việt để thông báo nhiễu động hay cảm ơn 
@@ -34,7 +34,7 @@ I just flew to Con Dao with Vietjet. Not my first time there, but my first “in
 
 ![Seatback](/assets/img/vietjet-x-chengdu-3.jpg)
 
-- The fuselage and engines got a Vietjet × Chengdu co-branded paint job.
+- The fuselage and engines got a Vietjet × Chengdu co-branded livery.
 - The cabin music includes “Hello Vietnam,” “Grateful to Ms. VTS,” and “The Ballad of HCM” — all in line with Vietjet’s branding.
 - One Vietnamese flight attendant handled all safety announcements in Vietnamese and English (no Chinese).
 - The Chinese crew were equipped with basic Vietnamese phrases to handle turbulence or say thank you.
@@ -46,4 +46,5 @@ I just flew to Con Dao with Vietjet. Not my first time there, but my first “in
 ![Safty Card](/assets/img/vietjet-x-chengdu-4.jpg)
 
 As for the flight experience: surprisingly smooth. Compared to the ATR72, it’s quieter and comfier. Spacious overhead bins, smoother ride — though maybe that’s just good weather luck. Compared to an Embraer 190? Slightly noisier and tighter in the 2–3 seating layout. CRJ? Probably similar — they kinda look alike anyway 🤣. I didn’t get to test the toilet — flight was under 30 minutes and the seatbelt sign never turned off. No food or drinks either; too short. There was a standard Vietjet menu in the seat pocket though, so I guess they serve on the Hanoi–Con Dao leg 😅. One drawback: as my taxi driver kindly warned, if the Con Dao runway gets wet, flights may turn right back — apparently an operational requirement from the manufacturer. So yeah, bad luck might mean an overnight delay.
+
 P.S. Just came back from China. A Chinese flight attendant helped me put my backpack in the overhead bin. Out of habit, I said “谢谢” (thank you), and he froze for a second before smiling 🫣!
