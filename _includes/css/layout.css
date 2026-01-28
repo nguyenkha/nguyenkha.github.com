@@ -72,6 +72,15 @@
 		border: 0px;
 		padding-left: 0px;
 	}
+
+	.container {
+		width: 96%;
+	}
+
+	.container .column,
+	.container .columns {
+		width: 100% !important;
+	}
 }
 
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
