@@ -1,16 +1,14 @@
 ---
 layout: post
-title: Vietjet × Chengdu
+title: Nó Vietjet mà nó Chengdu 🐼
 categories:
 - blog
 ---
 
-Nó Vietjet mà nó Chengdu 🐼
-===========================
+Vừa rồi có chuyến đi Côn Đảo với Vietjet. Không phải lần đầu đi Côn Đảo nhưng lần đầu bay chuyến bay “nội tỉnh” (xưa bị hụt Rạch Giá - Phú Quốc của Bamboo). Chắc mọi người cũng đều biết do các giới hạn của sân bay Côn Đảo nên chỉ có một số loại máy bay nhỏ có thể bay đến đây. Mình không phải là chuyên gia về hàng không, nhưng lý do đại loại là thế. Và lựa chọn của Vietjet là thuê ướt (+phi công+tiếp viên+bảo dưỡng) 2 chiếc của Chengdu Airlines và mẫu máy bay là Comac C909 hay ARJ27. Mình nghĩ VJ cũng đã lường trước được những phản ứng có thể xảy ra nên cũng đã cố gắng làm thêm vài thứ:
 
 ![Boarding](/assets/img/vietjet-x-chengdu-1.jpg)
 
-Vừa rồi có chuyến đi Côn Đảo với Vietjet. Không phải lần đầu đi Côn Đảo nhưng lần đầu bay chuyến bay “nội tỉnh” (xưa bị hụt Rạch Giá - Phú Quốc của Bamboo). Chắc mọi người cũng đều biết do các giới hạn của sân bay Côn Đảo nên chỉ có một số loại máy bay nhỏ có thể bay đến đây. Mình không phải là chuyên gia về hàng không, nhưng lý do đại loại là thế. Và lựa chọn của Vietjet là thuê ướt (+phi công+tiếp viên+bảo dưỡng) 2 chiếc của Chengdu Airlines và mẫu máy bay là Comac C909 hay ARJ27. Mình nghĩ VJ cũng đã lường trước được những phản ứng có thể xảy ra nên cũng đã cố gắng làm thêm vài thứ:
 - Thân máy bay và động cơ được sơn hỗn hợp VJ × Chengdu
 - Phần nhạc được cài vào máy bay: Hello Vietnam, Biết ơn chị VTS, hay The Ballad of HCM… đồng bộ với nhận diện thương hiệu của hãng
 - Một tiếp viên người Việt đảm nhận phát thanh an toàn bằng tiếng Việt và tiếng Anh (không có tiếng Trung)
