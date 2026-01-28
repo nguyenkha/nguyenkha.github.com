@@ -35,3 +35,7 @@ themee:
 
   # Toggle "Postings are my own" disclaimer in footer
   show_disclaimer: true
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap

@@ -5,8 +5,6 @@ categories:
 - blog
 ---
 
-(English below)
-
 Nó Vietjet mà nó Chengdu 🐼
 ===========================
 
