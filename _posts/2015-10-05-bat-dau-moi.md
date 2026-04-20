@@ -3,6 +3,8 @@ layout: post
 title: Bắt đầu mới
 categories:
 - blog
+noindex: true
+sitemap: false
 ---
 
 Cuối cùng thì những chuỗi ngày lo lắng cũng tạm thời chấm dứt khi mình biết được kết quả. Thật sự mấy ngày qua cảm giác cuộc sống sao mà ngắn ngủi quá, mình còn chưa làm được gì? Nhưng khi đã quyết định thì dù kết quả có thế nào thì mình cũng phải thay đổi! Bắt đầu lại, đến lúc F5 lại chính mình. Dù sao những ngày qua đã cho mình trải nghiệm mình vẫn quý giá cuộc sống này tới mức nào... còn nhiều thứ phải làm, còn nhiều mục tiêu phải hoàn thành. Dù có thế nào cũng phải sống thật tốt, đừng để tới lúc hối tiếc không còn kịp nữa. Dĩ nhiên vẫn còn đó những mối lo, nhưng cái gì đến sẽ đến, cũng phải đối mặt thôi... Lo làm gì nữa :)

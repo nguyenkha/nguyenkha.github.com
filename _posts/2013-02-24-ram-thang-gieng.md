@@ -3,6 +3,8 @@ layout: post
 title: Rằm tháng Giêng
 categories:
 - blog
+noindex: true
+sitemap: false
 ---
 Cũng chẳng để ý hôm nay là "mùng" 15 rồi, ra ngắm thấy trăng tròn nên xách máy ảnh chụp trăng sau đó coi lại ngày mới biết là Rằm Tháng Giêng. Thế là sắp thực sự bắt đầu vào guồng quay trở lại sau một tuần uể oải. Không biết sao mình có cảm giác tại năm nay mọi người ăn tết dài hơn hay sao nên sức ì nó cũng lớn hơn, mọi thứ có lẽ vẫn chưa trở lại bình thường suốt một tuần vừa qua. Tình hình là còn quá nhiều thứ cần được xử lý sau Tết, không biết có chịu nổi không. Mà có không nổi thì vẫn phải làm thôi =]]. Đã xác định được những mục tiêu tiếp theo, giờ thì cố gắng thực hiện thôi :)
 

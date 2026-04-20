@@ -220,7 +220,8 @@ img {
 }
 
 #privacy section + section,
-#contact section + section {
+#contact section + section,
+#editorial-policy section + section {
   margin-top: 1.3rem;
 }
 

@@ -7,7 +7,7 @@ lang: en
 timezone: Asia/Ho_Chi_Minh
 author:
   name: Kha Do
-  email: donguyenkha@gmail.com
+  email: me@kha.do
 logo: /logo.jpg
 lsi: false
 exclude: [LICENSE, CNAME, README.md, .gitignore]
@@ -35,7 +35,7 @@ themee:
 
   # "Hi, I'm _______"
   name: Kha Do
-  email: donguyenkha@gmail.com
+  email: me@kha.do
   tagline: "#webdeveloper #blockchainengineer #photographer #vlogger"
 
   # Google Analytics key, leave blank to ignore

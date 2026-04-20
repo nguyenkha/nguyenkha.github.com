@@ -3,6 +3,8 @@ layout: post
 title: Không biết sao nữa
 categories:
 - blog
+noindex: true
+sitemap: false
 ---
 
 Nói chung thì tâm trạng cũng đang lung tung lẫn lộn. Chả biết nên vui hay nên buồn, nên lo thì nên mệt... Cuộc đời là một chuỗi những BẤT NGỜ mà chẳng mấy khi lường trước được. Bạn tính plan A rồi plan B... thế mà cuộc đời nó đẩy bạn vào plan X, Y, Z nào đó... Than thì than thế thôi chứ giờ lực bất tòng tâm, mọi thứ không phải nằm trong tay mình nữa, thì đành chờ cái gì tới nó tới vậy...

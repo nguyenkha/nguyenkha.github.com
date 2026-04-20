@@ -31,8 +31,9 @@ layout: default
 
 <div id="related">
   <h3>Related Posts</h3>
+  {% assign visible_related_posts = site.related_posts | where_exp: "post", "post.noindex != true" %}
   <ul class="posts">
-    {% for post in site.related_posts limit:3 %}
+    {% for post in visible_related_posts limit:3 %}
     <li>
       <span class="post-date">
         <span class="year">{{ post.date | date: "%Y" }}</span><span class="sep">/</span><span class="month">{{ post.date | date: "%m" }}</span>
