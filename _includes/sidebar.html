@@ -1,19 +1,11 @@
 <nav>
-  <h1>Xin chào.</h1>
-  <a href="/">
+  <p class="eyebrow">Xin chào</p>
+  <h1>{{ site.themee.name }}</h1>
+  <a href="/" class="logo-link">
     <img src="/logo.jpg" id="logo" alt="Blog logo"/>
   </a>
-  <h2>I'm <a href="/">{{ site.themee.name }}</a>.</h2>
-  <hr/>
-  <ul>
-  <p>
-    <code>console.log('Aviation Lover');</code>
-  </p>
-  <hr/>
-  <div>
-    <div id="social">
-      {% include social.html %}
-    </div>
+  <h2>#webdeveloper #blockchainengineer #photographer #vlogger</h2>
+  <div id="social">
+    {% include social.html %}
   </div>
-  </ul>
 </nav>

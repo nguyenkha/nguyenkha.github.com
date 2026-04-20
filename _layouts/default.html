@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ site.themee.name }} - {{ page.title }}</title>
+  <title>{% if page.title %}{{ site.themee.name }} - {{ page.title }}{% else %}{{ site.themee.name }}{% endif %}</title>
   <meta name="author" content="{{ site.themee.name }}" />
   <meta name="description" content="The blog of {{ site.themee.name }}" />
   <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}" />
 
-  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" type="text/css">
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -24,22 +23,22 @@
   <link rel="alternate" type="application/rss+xml" title="{{ site.themee.name }}" href="{{site.url}}/atom.xml" />
 
   <link rel="stylesheet" href="/assets/css/all.css">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1460132164768330" crossorigin="anonymous"></script>
   {% seo %}
 </head>
 <body>
-  <div class="container">
-    <div class="four columns sidebar">
+  <div class="container site-grid">
+    <aside class="four columns sidebar">
       {% include sidebar.html %}
-    </div>
+    </aside>
 
-    <div class="eleven columns content">
+    <main class="eleven columns content">
       {{ content }}
+    </main>
 
-      <div class="footer">
-        {% include footer.html %}
-      </div>
+    <div class="outside-footer">
+      {% include footer.html %}
     </div>
   </div>
 

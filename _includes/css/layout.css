@@ -1,119 +1,158 @@
-/*
-* Skeleton V1.1
-* Copyright 2011, Dave Gamache
-* www.getskeleton.com
-* Free to use under the MIT license.
-* http://www.opensource.org/licenses/mit-license.php
-* 8/17/2011
-*/
-
-/* Smaller than standard 960 (devices and browsers) */
-@media only screen and (max-width: 959px) {
-	#logo {
-		font-size: 21px;
-		margin-bottom: 15px;
-	}
-
-	nav .button {
-		padding: 9px 20px 11px;
-	}
-}
-
-/* Large Desktop (VNExpress style) */
 @media only screen and (min-width: 1200px) {
-	.container {
-		width: 1200px;
-	}
-
-	.container .four.columns {
-		width: 280px;
-	}
-
-	.container .eleven.columns {
-		width: 830px;
-	}
+  .container {
+    width: 1240px;
+  }
 }
 
-/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (max-width: 959px) {
+  .site-grid {
+    margin-top: 2rem;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 0.9rem;
+  }
+
+  .sidebar nav {
+    top: 0.5rem;
+    padding: 1.3rem 1.15rem;
+  }
+
+  .content {
+    padding: 1.6rem 1.45rem 1.8rem;
+  }
+}
+
 @media only screen and (min-width: 768px) and (max-width: 959px) {
-	nav {
-		width: 160px;
-	}
-
-	.sidebar h2 {
-		font-size: 18px;
-	}
-
-	.sidebar ul {
-		font-size: 14px;
-	}
+  .container {
+    width: 750px;
+  }
 }
 
-/* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
-	header h1 {
-		font-size: 34px;
-		line-height: 37px;
-	}
+  .container {
+    width: min(94%, 680px);
+  }
 
-	nav {
-		position: relative;
-	}
+  .container .column,
+  .container .columns {
+    width: 100% !important;
+    margin: 0 !important;
+  }
 
-	nav ul,
-	#logo {
-		text-align: left;
-	}
+  .site-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
 
-	/* .sidebar {
-		display: none;
-	} */
-	.content {
-		border: 0px;
-		padding-left: 0px;
-	}
+  .outside-footer {
+    grid-column: 1;
+    margin-top: 0;
+  }
 
-	.container {
-		width: 96%;
-	}
+  .sidebar {
+    margin-bottom: 0;
+  }
 
-	.container .column,
-	.container .columns {
-		width: 100% !important;
-	}
-}
+  .sidebar nav {
+    position: relative;
+    top: 0;
+    margin-bottom: 0;
+    padding: 1.1rem;
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    grid-template-areas:
+      "logo title"
+      "logo tag"
+      "logo social";
+    column-gap: 0.75rem;
+    row-gap: 0.2rem;
+    align-items: center;
+  }
 
-/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-	/* .sidebar {
-		display: none;
-	} */
+  .logo-link {
+    display: block;
+    width: 72px;
+    grid-area: logo;
+  }
 
-	h1 {
-		font-size: 28px;
-		line-height: 36px;
-	}
-}
+  #logo {
+    width: 72px;
+    border-radius: 10px;
+  }
 
-/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-@media only screen and (max-width: 479px) {
-	/* .sidebar {
-		display: none;
-	} */
+  .eyebrow {
+    display: none;
+  }
 
-	h1 {
-		font-size: 24px;
-		line-height: 32px;
-	}
+  .sidebar h1 {
+    grid-area: title;
+    margin: 0;
+    font-size: 1.55rem;
+  }
 
-	h2 {
-		font-size: 22px;
-		line-height: 24px;
-	}
-}
+  .sidebar h2 {
+    grid-area: tag;
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
 
-#logo {
-	width: 100px;
-	height: 100px;
-	border-radius: 5px;
+  #social {
+    grid-area: social;
+    margin-top: 0.25rem;
+  }
+
+  .social-label {
+    display: none;
+  }
+
+  #stalker {
+    gap: 0.4rem;
+  }
+
+  #stalker a {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+
+  .content {
+    border-radius: 12px;
+    padding: 1.1rem;
+  }
+
+  .sidebar h1,
+  .sidebar h2,
+  .social-label,
+  #home > h2 {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #home > h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  #blog-posts {
+    margin: 0;
+  }
+
+  ul.posts li {
+    align-items: baseline;
+    flex-direction: row;
+    gap: 0.7rem;
+    padding: 0.7rem 0;
+  }
+
+  ul.posts span {
+    min-width: 2.6rem;
+  }
+
+  .hero-card {
+    padding: 1rem;
+  }
+
+  .meta {
+    flex-wrap: wrap;
+    gap: 0.4rem 0.65rem;
+  }
 }

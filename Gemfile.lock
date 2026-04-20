@@ -305,7 +305,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  github-pages
+  github-pages (~> 232.0)
   jekyll-seo-tag
   jekyll-sitemap
 
@@ -421,6 +421,9 @@ CHECKSUMS
   unicode-display_width (1.8.0) sha256=0292132d364d59fcdd83f144910c48b3c8332b28a14c5c04bb093dd165600488
   uri (1.1.1) sha256=379fa58d27ffb1387eaada68c749d1426738bd0f654d812fcc07e7568f5c57c6
   webrick (1.9.2) sha256=beb4a15fc474defed24a3bda4ffd88a490d517c9e4e6118c3edce59e45864131
+
+RUBY VERSION
+  ruby 3.3.11
 
 BUNDLED WITH
   4.0.4
