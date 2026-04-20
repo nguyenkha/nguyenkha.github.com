@@ -1,5 +1,6 @@
 ---
 ---
+/* Force CSS regeneration on GitHub Pages when include files change. */
 
 {% include css/base.css %}
 {% include css/skeleton.css %}
