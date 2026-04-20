@@ -219,6 +219,11 @@ img {
   margin-top: 1.5rem;
 }
 
+#privacy section + section,
+#contact section + section {
+  margin-top: 1.3rem;
+}
+
 .section-label {
   margin-bottom: 0.35rem;
   color: var(--muted);
