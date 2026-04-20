@@ -2,14 +2,27 @@
 layout: default
 ---
 
+{% assign words = content | strip_html | number_of_words %}
+{% assign reading_time = words | plus: 219 | divided_by: 220 %}
+
 <div class="post-header">
+  <a class="post-back" href="/posts/">&larr; Back to posts</a>
   <p class="meta">
-    {{ page.date | date: "%B %d, %Y" }}
-    <a href="/" aria-label="Back to all posts">
-      <i class="home fa-solid fa-house"></i>
-    </a>
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+    <span class="meta-dot">&bull;</span>
+    <span>{{ reading_time }} min read</span>
+    {% if page.lang == "vi" %}
+      <span class="lang-pill">&#127483;&#127475; Vietnamese</span>
+    {% endif %}
   </p>
   <h1 class="title">{{ page.title }}</h1>
+  {% if page.tags and page.tags.size > 0 %}
+    <ul class="post-tags">
+      {% for tag in page.tags %}
+        <li><span>#{{ tag }}</span></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
 </div>
 
 <div id="post">
@@ -29,3 +42,12 @@ layout: default
     {% endfor %}
   </ul>
 </div>
+
+<nav class="post-nav" aria-label="Post navigation">
+  {% if page.previous %}
+    <a class="post-nav-prev" href="{{ page.previous.url }}">&larr; {{ page.previous.title }}</a>
+  {% endif %}
+  {% if page.next %}
+    <a class="post-nav-next" href="{{ page.next.url }}">{{ page.next.title }} &rarr;</a>
+  {% endif %}
+</nav>

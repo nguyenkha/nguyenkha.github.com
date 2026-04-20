@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Background: rounded square -->
+  <rect width="512" height="512" rx="96" fill="#030712"/>
+  <!-- K lettermark styled as a key -->
+  <!-- Vertical stroke (key shaft) -->
+  <rect x="152" y="120" width="36" height="272" rx="18" fill="#3b82f6"/>
+  <!-- Upper diagonal (key tooth) -->
+  <path d="M188 256l120-120h48L212 280z" fill="#3b82f6"/>
+  <!-- Lower diagonal -->
+  <path d="M188 256l120 120h48L212 232z" fill="#3b82f6"/>
+  <!-- Key bow (circle at top of shaft) -->
+  <circle cx="170" cy="120" r="36" stroke="#3b82f6" stroke-width="20" fill="#030712"/>
+</svg>

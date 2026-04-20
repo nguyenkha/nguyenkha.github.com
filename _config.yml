@@ -1,6 +1,14 @@
 # General Jekyll Config
 highlighter: rouge
 url: https://kha.do
+title: Kha Do
+description: Personal website of Kha Do - web engineering, fintech, blockchain, and travel creator stories.
+lang: en
+timezone: Asia/Ho_Chi_Minh
+author:
+  name: Kha Do
+  email: donguyenkha@gmail.com
+logo: /logo.jpg
 lsi: false
 exclude: [LICENSE, CNAME, README.md, .gitignore]
 markdown: kramdown
@@ -39,3 +47,27 @@ themee:
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
+
+twitter:
+  username: donguyenkha
+  card: summary_large_image
+
+social:
+  name: Kha Do
+  links:
+    - https://github.com/nguyenkha
+    - https://www.linkedin.com/in/khado/
+    - https://www.youtube.com/@khadilungtung
+    - https://www.tiktok.com/@khadilungtung
+    - https://x.com/donguyenkha
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /logo.jpg
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      author: Kha Do

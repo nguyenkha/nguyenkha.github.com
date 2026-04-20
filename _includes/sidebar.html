@@ -5,6 +5,10 @@
     <img src="/logo.jpg" id="logo" alt="Blog logo"/>
   </a>
   <h2>#webdeveloper #blockchainengineer #photographer #vlogger</h2>
+  <div class="sidebar-links">
+    <a href="/" {% if page.url == "/" %}class="active"{% endif %}>About</a>
+    <a href="/posts/" {% if page.url == "/posts/" %}class="active"{% endif %}>Posts</a>
+  </div>
   <div id="social">
     {% include social.html %}
   </div>

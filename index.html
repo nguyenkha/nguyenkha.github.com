@@ -1,19 +1,86 @@
 ---
 layout: default
-title: Blog Posts
+title: About
+description: About Kha Do - web, fintech, blockchain projects, creator journey, and portfolio.
 ---
 
-<div id="home">
-  <h2>Blog Posts</h2>
+<div id="about">
+  <section class="intro-section">
+    <p class="section-label">About</p>
+    <h2>What I Build & Share</h2>
+    <p>
+      I build and ship digital products at the intersection of web engineering, fintech, and blockchain.
+      I teach, mentor, and practice vibe coding with a bias for speed, clarity, and real-world outcomes.
+      Between product sprints, I travel globally and turn the road into a creator studio.
+      On
+      <a href="https://www.youtube.com/@khadilungtung" target="_blank" rel="noreferrer">YouTube (@khadilungtung)</a>
+      and
+      <a href="https://www.tiktok.com/@khadilungtung" target="_blank" rel="noreferrer">TikTok (@khadilungtung)</a>,
+      I share creator-builder stories from airports, product trenches, and modern tech culture.
+    </p>
+  </section>
 
-  <ul id="blog-posts" class="posts">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-date">
-          <span class="year">{{ post.date | date: "%Y" }}</span><span class="sep">/</span><span class="month">{{ post.date | date: "%m" }}</span>
-        </span>
-        <a href="{{ post.url }}">{{ post.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
+  <section class="portfolio-section">
+    <p class="section-label">Professional</p>
+    <p>
+      For my career timeline and current work experience, please visit
+      <a href="https://www.linkedin.com/in/khado/" target="_blank" rel="noreferrer">LinkedIn</a>.
+    </p>
+  </section>
+
+  <section class="portfolio-section">
+    <p class="section-label">Portfolio</p>
+    <p class="portfolio-intro">
+      There are two sentences I say too often each year: <em>"this tool is almost right… but not quite"</em> and <em>"wait, I’m paying for this?"</em> 🤔
+      The apps below are my answer.
+      A "K" up front — same move Monty pulled when he named MySQL after My.
+      Free, forever.
+    </p>
+    <div class="portfolio-grid">
+      <a class="portfolio-card card-link" href="https://kexify.co/" target="_blank" rel="noreferrer">
+        <p class="brand-head">
+          <img class="brand-logo" src="/assets/img/brands/kexify.svg" alt="kexify logo" />
+          <span class="brand-mark brand-kexify">kexify</span>
+        </p>
+        <p class="project-summary">A self-custodial MPC wallet for secure digital asset management.</p>
+        <p class="project-reason">Built after years inside major virtual-asset exchanges, where one recurring thought kept showing up: security should feel effortless, not intimidating.</p>
+        <p class="card-url">kexify.co</p>
+      </a>
+      <a class="portfolio-card card-link" href="https://kanpay.app/" target="_blank" rel="noreferrer">
+        <p class="brand-head">
+          <img class="brand-logo" src="/assets/img/brands/kanpay.png" alt="KAN 杯 PAY logo" />
+          <span class="brand-mark brand-kanpay">KAN 杯 PAY</span>
+        </p>
+        <p class="project-summary">A clean, social-first app for splitting shared expenses.</p>
+        <p class="project-reason">This one started the moment our group looked at the Splitwise Pro bill and collectively said, “nope.” 💸</p>
+        <p class="card-url">kanpay.app</p>
+      </a>
+      <a class="portfolio-card card-link" href="https://kuant.kha.do/" target="_blank" rel="noreferrer">
+        <p class="brand-head">
+          <img class="brand-logo" src="/assets/img/brands/kuant.svg" alt="kuant logo" />
+          <span class="brand-mark brand-kuant">k<u>u</u>ant</span>
+        </p>
+        <p class="project-summary">A private command center for quant workflows and trading automation.</p>
+        <p class="project-reason">Part experiment, part trading cockpit, part midnight curiosity project with one honest KPI: fun + money. 📈😎</p>
+        <p class="card-url">kuant.kha.do</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="latest-section">
+    <div class="latest-header">
+      <p class="section-label">Latest Writing</p>
+      <a href="/posts">See all posts</a>
+    </div>
+    <ul id="latest-posts" class="posts">
+      {% for post in site.posts limit:5 %}
+        <li>
+          <span class="post-date">
+            <span class="year">{{ post.date | date: "%Y" }}</span><span class="sep">/</span><span class="month">{{ post.date | date: "%m" }}</span>
+          </span>
+          <a href="{{ post.url }}">{{ post.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
 </div>

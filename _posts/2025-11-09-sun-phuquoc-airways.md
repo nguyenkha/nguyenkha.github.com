@@ -1,8 +1,15 @@
 ---
 layout: post
 title: SUN PhuQuoc Airways
+description: Trải nghiệm bay thực tế cùng SUN PhuQuoc Airways từ góc nhìn hành khách và người mê hàng không.
+lang: vi
 categories:
 - blog
+tags:
+- travel
+- aviation
+- vietnam
+- review
 ---
 
 Cũng phải bốn năm rồi Việt Nam mới lại có thêm một hãng hàng không mới, kể từ sau Vietravel Airlines. Vì cái tên Sun Air đã “chốt” cho hãng chuyên cơ nên lần này mới ra đời cái tên nghe khá thú vị: Sun Phu Quoc Airways (SPA/9G), với tên đăng ký dài dòng mà vui tai — “Hãng hàng không Mặt trời Phú Quốc”. Nếu không bận thì mình đã bay ngay chuyến đầu tiên ngày 1/11 rồi, thôi trễ chút cũng không sao, miễn là được thử cho biết.

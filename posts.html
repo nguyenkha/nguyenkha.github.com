@@ -1,0 +1,22 @@
+---
+layout: default
+title: Posts
+permalink: /posts/
+description: Blog posts by Kha Do on technology, aviation, travel, and personal notes.
+---
+
+<div id="home">
+  <p class="section-label">Posts</p>
+  <h2>Latest Writing</h2>
+
+  <ul id="blog-posts" class="posts">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-date">
+          <span class="year">{{ post.date | date: "%Y" }}</span><span class="sep">/</span><span class="month">{{ post.date | date: "%m" }}</span>
+        </span>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
