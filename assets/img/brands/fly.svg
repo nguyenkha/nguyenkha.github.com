@@ -1,5 +1,43 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="112" fill="#0f172a"/>
-  <circle cx="256" cy="256" r="150" fill="#0ea5e9"/>
-  <path d="M256 150 L336 362 L256 312 L176 362 Z" fill="#ffffff"/>
+  <rect width="512" height="512" rx="112" fill="#0f172a" />
+
+  <!-- Camera/scanner corner brackets -->
+  <g fill="#ffffff">
+    <rect x="40" y="40" width="100" height="22" rx="8" />
+    <rect x="40" y="40" width="22" height="100" rx="8" />
+    <rect x="372" y="40" width="100" height="22" rx="8" />
+    <rect x="450" y="40" width="22" height="100" rx="8" />
+    <rect x="40" y="450" width="100" height="22" rx="8" />
+    <rect x="40" y="372" width="22" height="100" rx="8" />
+    <rect x="372" y="450" width="100" height="22" rx="8" />
+    <rect x="450" y="372" width="22" height="100" rx="8" />
+  </g>
+
+  <!-- Pixel-art airplane (climbing), barcode-like blocks -->
+  <g fill="#0ea5e9">
+    <rect x="244" y="160" width="22" height="22" rx="3" />
+    <rect x="244" y="184" width="22" height="22" rx="3" />
+    <rect x="220" y="208" width="22" height="22" rx="3" />
+    <rect x="244" y="208" width="22" height="22" rx="3" />
+    <rect x="268" y="208" width="22" height="22" rx="3" />
+    <rect x="148" y="232" width="22" height="22" rx="3" />
+    <rect x="172" y="232" width="22" height="22" rx="3" />
+    <rect x="196" y="232" width="22" height="22" rx="3" />
+    <rect x="220" y="232" width="22" height="22" rx="3" />
+    <rect x="244" y="232" width="22" height="22" rx="3" />
+    <rect x="268" y="232" width="22" height="22" rx="3" />
+    <rect x="292" y="232" width="22" height="22" rx="3" />
+    <rect x="316" y="232" width="22" height="22" rx="3" />
+    <rect x="340" y="232" width="22" height="22" rx="3" />
+    <rect x="220" y="256" width="22" height="22" rx="3" />
+    <rect x="244" y="256" width="22" height="22" rx="3" />
+    <rect x="268" y="256" width="22" height="22" rx="3" />
+    <rect x="244" y="280" width="22" height="22" rx="3" />
+    <rect x="196" y="304" width="22" height="22" rx="3" />
+    <rect x="220" y="304" width="22" height="22" rx="3" />
+    <rect x="244" y="304" width="22" height="22" rx="3" />
+    <rect x="268" y="304" width="22" height="22" rx="3" />
+    <rect x="292" y="304" width="22" height="22" rx="3" />
+    <rect x="244" y="328" width="22" height="22" rx="3" />
+  </g>
 </svg>
