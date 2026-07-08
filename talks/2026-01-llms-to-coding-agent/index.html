@@ -103,7 +103,7 @@
         <div class="kicker">A hands-on introduction</div>
         <h1>From LLMs to Your Own Coding Agent</h1>
         <h3 class="muted">LLM basics → coding agent → local demo</h3>
-        <p><span class="pill">LLM basics</span><span class="pill">Agent loop</span><span class="pill">Node.js</span><span class="pill">Claude / Gemini / GPT</span><span class="pill">Ollama + Qwen3</span></p>
+        <p><span class="pill">LLM basics</span><span class="pill">Agent loop</span><span class="pill">Node.js</span><span class="pill">Claude / Gemini / GPT</span><span class="pill">Ollama + Qwen3.5</span></p>
         <p class="muted"><small>← / → navigate · <strong>S</strong> notes · <strong>F</strong> fullscreen · <strong>ESC</strong> overview</small></p>
       </section>
 
@@ -832,7 +832,7 @@ console.log(reply.tool_calls);
 // → [{ name: "write_file",
 //      args: { path: "hello.js", content: "console.log('hi')" } }]</code></pre>
         <p><span class="accent">The model did not create the file</span>; it requested <code>write_file()</code>. Loop this → agent. ↓</p>
-        <aside class="notes">This is the single most important idea in the talk. The LLM never touches your machine — it returns a tool_calls array and stops; the client decides whether to execute it. Great spot for the live demo: run this once against Qwen3 4B and show the tool_calls output. Step 3 literally just loops this call and feeds each tool result back into messages.</aside>
+        <aside class="notes">This is the single most important idea in the talk. The LLM never touches your machine — it returns a tool_calls array and stops; the client decides whether to execute it. Great spot for the live demo: run this once against qwen3.5:4b and show the tool_calls output. Step 3 literally just loops this call and feeds each tool result back into messages.</aside>
       </section>
 
       <!-- 13. Step 3 the loop -->
@@ -961,7 +961,7 @@ Done:                      // ← when to stop calling tools
         <div class="cols3" style="margin-top:14px;">
           <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">☁️</span><h3 class="accent2">Best cloud</h3><p><small><b>Claude</b> / <b>GPT-5.5</b> — top coding &amp; agents · paid</small></p></div>
           <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">💸</span><h3 class="accent">Cheap cloud</h3><p><small><b>Gemini Flash</b> / <b>DeepSeek</b> — low cost · free tiers</small></p></div>
-          <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🖥️</span><h3 class="good">Local</h3><p><small><b>Ollama + Qwen3</b> — free · offline · private</small></p></div>
+          <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🖥️</span><h3 class="good">Local</h3><p><small><b>Ollama + Qwen3.5</b> — free · offline · private</small></p></div>
         </div>
         <p class="muted" style="margin-top:18px;">Same loop: swap SDK / <code>baseURL</code>, keep the agent logic.</p>
         <p class="muted"><small><span class="accent2">Note:</span> chat-only models without tool calling are poor agent choices. Price table next is reference only.</small></p>
@@ -975,7 +975,7 @@ Done:                      // ← when to stop calling tools
           <thead><tr><th>Provider</th><th>Model</th><th>Input&nbsp;$/1M</th><th>Output&nbsp;$/1M</th><th>Note</th></tr></thead>
           <tbody>
             <tr><td><b>Anthropic</b></td><td>Claude Opus 4.8</td><td>$5.00</td><td>$25.00</td><td>most capable</td></tr>
-            <tr><td><b>Anthropic</b></td><td>Claude Sonnet 5</td><td>$2.00</td><td>$10.00</td><td>balanced · now; → $3/$15 from Sep 1</td></tr>
+            <tr><td><b>Anthropic</b></td><td>Claude Sonnet 5</td><td>$3.00</td><td>$15.00</td><td>balanced</td></tr>
             <tr><td><b>Anthropic</b></td><td>Claude Haiku 4.5</td><td>$1.00</td><td>$5.00</td><td>fast &amp; cheap</td></tr>
             <tr><td><b>OpenAI</b></td><td>GPT-5.5</td><td>$5.00</td><td>$30.00</td><td>flagship</td></tr>
             <tr><td><b>OpenAI</b></td><td>GPT-5.4</td><td>$2.50</td><td>$15.00</td><td>balanced</td></tr>
@@ -984,7 +984,7 @@ Done:                      // ← when to stop calling tools
             <tr><td><b>xAI</b></td><td>Grok 4</td><td>~$2.00</td><td>~$6.00</td><td>—</td></tr>
             <tr><td><b>DeepSeek</b></td><td>DeepSeek V3</td><td>$0.27</td><td>$1.10</td><td>very cheap</td></tr>
             <tr><td><b>Mistral</b></td><td>Mistral Large</td><td>$2.00</td><td>$6.00</td><td>EU</td></tr>
-            <tr><td class="good"><b>Ollama + Qwen3</b></td><td>qwen3:4b (local)</td><td class="good">$0</td><td class="good">$0</td><td class="good"><b>free &amp; offline</b></td></tr>
+            <tr><td class="good"><b>Ollama + Qwen3.5</b></td><td>qwen3.5:4b (local)</td><td class="good">$0</td><td class="good">$0</td><td class="good"><b>free &amp; offline</b></td></tr>
           </tbody>
         </table>
         <p class="muted" style="margin-top:6px;"><small>Approx. list prices / 1M tokens — <b>verify on provider docs before class</b>.</small></p>
@@ -994,7 +994,7 @@ Done:                      // ← when to stop calling tools
       <!-- ===================== PART 3 ===================== -->
       <section class="title" data-background-color="#101820">
         <div class="kicker">Part 3</div>
-        <h1 class="good">Offline &amp; free with Ollama + Qwen3</h1>
+        <h1 class="good">Offline &amp; free with Ollama + Qwen3.5</h1>
         <p class="muted">Run a capable model locally: no API key, no bill, no data leaves your laptop.</p>
       </section>
 
@@ -1020,37 +1020,37 @@ Done:                      // ← when to stop calling tools
           <div class="card"><span class="ico">📉</span><h3 class="accent2">Capability</h3><p>Small models trail frontier cloud models.</p></div>
           <div class="card"><span class="ico">🔧</span><h3 class="accent2">Maintenance</h3><p>You manage models and updates.</p></div>
         </div>
-        <blockquote style="margin-top:22px;">For <b>learning</b> and everyday coding tasks, local <b>Qwen3</b> is enough. Use cloud APIs for harder jobs.</blockquote>
+        <blockquote style="margin-top:22px;">For <b>learning</b> and everyday coding tasks, a small local <b>Qwen3</b> is enough. Use cloud APIs or coder models for harder jobs.</blockquote>
       </section>
 
       <!-- 16b. Free models compared + why Qwen3 -->
       <section>
-        <h2>Free local models — and why Qwen3</h2>
+        <h2>Free local models — what to demo</h2>
         <div class="cols">
           <div>
             <table style="font-size:0.52em;">
-              <thead><tr><th>Model</th><th>Tools</th><th>Code</th><th>Sizes</th><th>Best for</th></tr></thead>
+              <thead><tr><th>Model</th><th>Tools</th><th>Code</th><th>Size</th><th>Best for</th></tr></thead>
               <tbody>
-                <tr><td class="accent2"><b>Qwen3</b></td><td>★★★</td><td>★★★</td><td>0.6–32B</td><td><b>best demo pick</b></td></tr>
-                <tr><td><b>gpt-oss</b></td><td>★★★</td><td>★★★</td><td>20–120B</td><td>alternative — needs RAM</td></tr>
-                <tr><td><b>Devstral</b></td><td>★★★</td><td>★★★</td><td>24B</td><td>alternative — coding</td></tr>
-                <tr><td><b>DeepSeek-R1</b></td><td>★★☆</td><td>★★★</td><td>1.5–70B</td><td>alternative — reasoning</td></tr>
-                <tr><td><b>Gemma 3</b></td><td>✗ none</td><td>★★☆</td><td>1–27B</td><td>chat-only, <b>avoid</b></td></tr>
+                <tr><td class="accent2"><b>Qwen3.5 4B</b></td><td>★★★</td><td>★★★</td><td>~3.4 GB</td><td><b>M4 / 16 GB demo</b></td></tr>
+                <tr><td><b>Qwen3 4B</b></td><td>★★★</td><td>★★☆</td><td>~2.5 GB</td><td>backup — lighter</td></tr>
+                <tr><td><b>Qwen3 Coder 30B</b></td><td>★★★</td><td>★★★</td><td>~19 GB</td><td>32 GB+ only</td></tr>
+                <tr><td><b>Devstral / gpt-oss</b></td><td>★★★</td><td>★★★</td><td>20B+</td><td>needs RAM</td></tr>
+                <tr><td><b>Gemma 3</b></td><td>★☆☆</td><td>★★☆</td><td>1–27B</td><td>weak tools · <b>not agents</b></td></tr>
               </tbody>
             </table>
             <p class="muted"><small>★ = relative strength · "Tools" = tool-calling reliability.</small></p>
           </div>
           <div class="card">
-            <h3 class="good">Why Qwen3 for this demo</h3>
+            <h3 class="good">Why this pick</h3>
             <ul style="font-size:0.72em;">
-              <li><b>Reliable tool calling</b> for a local model</li>
-              <li><b>Fits modest laptops</b> — 4B ≈ ~3 GB RAM</li>
-              <li>Solid at <b>code + reasoning</b>; many sizes</li>
-              <li><b>OpenAI-compatible</b> endpoint → <span class="accent">minimal code change</span></li>
+              <li><b>Qwen3.5 4B</b>: best default for M4 / 16 GB</li>
+              <li><b>Qwen3 4B</b>: safer backup if RAM is tight</li>
+              <li><b>Coder</b> models are better at code, but too heavy for class demo</li>
+              <li><b>OpenAI-compatible</b> endpoint → <span class="accent">same agent loop</span></li>
             </ul>
           </div>
         </div>
-        <p class="muted" style="text-align:center; margin-top:14px;"><small>Qwen3 = best fit on a laptop. <b>More RAM?</b> gpt-oss 20B · Devstral 24B · Qwen3 32B give higher quality.</small></p>
+        <p class="muted" style="text-align:center; margin-top:14px;"><small>Use <b>qwen3.5:4b</b> live. Keep <b>qwen3:4b</b> ready as backup.</small></p>
       </section>
 
       <!-- 16c. Hardware requirements -->
@@ -1060,16 +1060,16 @@ Done:                      // ← when to stop calling tools
         <table style="font-size:0.6em; margin-top:14px;">
           <thead><tr><th>Model</th><th>RAM / VRAM (Q4)</th><th>Runs comfortably on</th><th>Feel</th></tr></thead>
           <tbody>
-            <tr><td class="accent2"><b>Qwen3 4B</b></td><td>~3–4 GB</td><td>any modern laptop</td><td>snappy ← demo</td></tr>
-            <tr><td class="good"><b>Qwen3 8B</b></td><td>~6–8 GB</td><td>16 GB laptop / M1–M3</td><td>comfortable, higher quality</td></tr>
-            <tr><td><b>Qwen3 14B</b></td><td>~10–12 GB</td><td>32 GB RAM / 12 GB GPU</td><td>usable</td></tr>
-            <tr><td><b>Qwen3 32B</b></td><td>~20–24 GB</td><td>32 GB+ / 24 GB GPU</td><td>slower, higher quality</td></tr>
+            <tr><td class="accent2"><b>qwen3.5:4b</b></td><td>~4–6 GB</td><td>M-series / 16 GB laptop</td><td>best demo default</td></tr>
+            <tr><td class="good"><b>qwen3:4b</b></td><td>~3–4 GB</td><td>8 GB+ laptop</td><td>lighter backup</td></tr>
+            <tr><td><b>qwen3:8b</b></td><td>~6–8 GB</td><td>16 GB laptop</td><td>better, slower</td></tr>
+            <tr><td><b>qwen3-coder:30b</b></td><td>~20+ GB</td><td>32 GB+ / GPU</td><td>real coding work</td></tr>
           </tbody>
         </table>
         <div class="cols3" style="margin-top:18px;">
           <div class="card"><h3>GPU = speed</h3><p><small>CPU works, just fewer tokens/sec.</small></p></div>
           <div class="card"><h3 class="accent2">Apple Silicon shines</h3><p><small>Unified memory helps 8–14B models run smoothly.</small></p></div>
-          <div class="card"><h3 class="good">Start small</h3><p><small>Begin at 4B; size up only if needed.</small></p></div>
+          <div class="card"><h3 class="good">Start small</h3><p><small>Demo with 4B; size up after class.</small></p></div>
         </div>
         <aside class="notes">Numbers are approximate for Q4_K_M. Context length also eats RAM (the KV cache) — long contexts add up.</aside>
       </section>
@@ -1105,27 +1105,26 @@ brew install ollama</code></pre>
 
       <!-- 18. pull qwen3 -->
       <section>
-        <h2>Step 2 — Download &amp; run Qwen3</h2>
-        <pre><code data-trim data-noescape class="language-bash"># download the model (one-time; ~2.5 GB for the 4B demo model)
-ollama pull qwen3:4b
+        <h2>Step 2 — Download &amp; run Qwen3.5</h2>
+        <pre><code data-trim data-noescape class="language-bash"># M4 / 16 GB demo pick
+ollama pull qwen3.5:4b
 
 # chat with it right in your terminal
-ollama run qwen3:4b
+ollama run qwen3.5:4b
 >>> Write a Python function that reverses a string.
 
-# pick a size that fits your hardware:
-ollama pull qwen3:1.7b     # tiny  — old laptops / 8 GB RAM
-ollama pull qwen3:4b       # light  — great on a laptop (~2.5 GB)  ← demo
-ollama pull qwen3:8b       # default sweet spot (~5 GB)
-ollama pull qwen3:14b      # stronger, needs ~16 GB
-ollama pull qwen3:32b      # best quality, needs ~32 GB / good GPU</code></pre>
+# keep a lighter backup ready:
+ollama pull qwen3:4b
+
+# strong coding model, but not for 16 GB demo:
+ollama pull qwen3-coder:30b   # needs 32 GB+ / GPU</code></pre>
         <table>
           <thead><tr><th>Model</th><th>~Size on disk</th><th>Min RAM</th><th>Best for</th></tr></thead>
           <tbody>
-            <tr><td>qwen3:1.7b</td><td>~1.4 GB</td><td>8 GB</td><td>Quick tasks, old laptops</td></tr>
-            <tr><td>qwen3:4b</td><td>~2.5 GB</td><td>8 GB</td><td>Light &amp; snappy on a laptop</td></tr>
-            <tr><td>qwen3:8b</td><td>~5 GB</td><td>16 GB</td><td>Great all-round default</td></tr>
-            <tr><td>qwen3:14b / 32b</td><td>~9–20 GB</td><td>16–32 GB</td><td>Best local coding quality</td></tr>
+            <tr><td class="accent2">qwen3.5:4b</td><td>~3.4 GB</td><td>16 GB</td><td>M4 / 16 GB live demo</td></tr>
+            <tr><td>qwen3:4b</td><td>~2.5 GB</td><td>8 GB</td><td>Backup, lighter</td></tr>
+            <tr><td>qwen3:8b</td><td>~5 GB</td><td>16 GB</td><td>Better quality, slower</td></tr>
+            <tr><td>qwen3-coder:30b</td><td>~19 GB</td><td>32 GB+</td><td>Coding quality, not class demo</td></tr>
           </tbody>
         </table>
       </section>
@@ -1136,7 +1135,7 @@ ollama pull qwen3:32b      # best quality, needs ~32 GB / good GPU</code></pre>
         <p>Ollama exposes an <b class="accent">OpenAI-compatible API</b>. Change <code>baseURL</code>; keep the loop.</p>
         <pre><code data-trim data-noescape class="language-bash"># quick test with plain curl:
 curl http://localhost:11434/v1/chat/completions -d '{
-  "model": "qwen3:4b",
+  "model": "qwen3.5:4b",
   "messages": [{ "role": "user", "content": "Say hi in 3 words" }]
 }'</code></pre>
         <p class="muted"><small>Same request shape → same SDK → same agent loop.</small></p>
@@ -1144,7 +1143,7 @@ curl http://localhost:11434/v1/chat/completions -d '{
 
       <!-- 20. point agent at ollama -->
       <section>
-        <h2>Step 4 — Point your agent at Qwen3</h2>
+        <h2>Step 4 — Point your agent at Qwen3.5</h2>
         <p>Change <span class="accent2">two lines</span> and the Part 2 agent runs locally:</p>
         <pre><code data-trim data-noescape class="language-javascript">import OpenAI from "openai";
 
@@ -1155,12 +1154,12 @@ const openai = new OpenAI({
 
 // ...the ENTIRE agent loop is unchanged — just switch the model:
 const res = await openai.chat.completions.create({
-  model: "qwen3:4b",                     // ← your local model
+  model: "qwen3.5:4b",                   // ← M4 / 16 GB demo pick
   messages,
-  tools,                                 // Qwen3 supports tool calling
+  tools,                                 // Qwen3.5 supports tool calling
 });</code></pre>
         <p class="good">Same 80-line agent. Local, free per token, private.</p>
-        <aside class="notes">Demo runs on Qwen3 4B: light, fast, and good enough for this small agent. If tool-calling feels flaky, use a recent Ollama version, bump to 8B+, and keep tools few with crisp descriptions.</aside>
+        <aside class="notes">Demo runs on qwen3.5:4b for M4 / 16 GB. Keep qwen3:4b pulled as a backup if the laptop is under memory pressure from browser, OBS, Zoom, or IDE. qwen3-coder is better for coding quality, but too heavy for a reliable 16 GB live demo.</aside>
       </section>
 
       <!-- 20b. What agents are great at -->
@@ -1189,13 +1188,13 @@ const res = await openai.chat.completions.create({
         <h2>A workflow that actually works</h2>
         <p class="muted">Short leash: small steps, verify every turn.</p>
         <div class="loop" style="line-height:1.85;">
-          <span class="step">1.</span> State the goal clearly<br/>
-          <span class="step">2.</span> Make it <b>read the files first</b><br/>
-          <span class="step">3.</span> Ask for a <b>short plan</b><br/>
-          <span class="step">4.</span> Let it make a <b>small change</b><br/>
-          <span class="step">5.</span> Make it <b>run the tests</b><br/>
-          <span class="step">6.</span> <b>Review the diff</b><br/>
-          <span class="step">7.</span> Commit when it's green
+          <span class="step">1.</span> <span style="margin:0 6px;">🎯</span>State the goal clearly<br/>
+          <span class="step">2.</span> <span style="margin:0 6px;">📖</span>Make it <b>read the files first</b><br/>
+          <span class="step">3.</span> <span style="margin:0 6px;">🗺️</span>Ask for a <b>short plan</b><br/>
+          <span class="step">4.</span> <span style="margin:0 6px;">✏️</span>Let it make a <b>small change</b><br/>
+          <span class="step">5.</span> <span style="margin:0 6px;">🧪</span>Make it <b>run the tests</b><br/>
+          <span class="step">6.</span> <span style="margin:0 6px;">👀</span><b>Review the diff</b><br/>
+          <span class="step">7.</span> <span style="margin:0 6px;">✅</span>Commit when it's green
         </div>
         <p class="muted"><small>Handy prompt: <code>Read first, don't edit yet. Make the smallest change. Run tests after.</code></small></p>
         <aside class="notes">Small steps + verification each turn = fewer surprises. Reading first grounds the model in real code; a short plan surfaces wrong assumptions before any edit; running tests turns "looks right" into "is right." Reviewing the diff keeps you in control — you commit, not the agent.</aside>
@@ -1226,7 +1225,7 @@ const res = await openai.chat.completions.create({
           <li><span style="margin-right:10px;">🔁</span>Loop: <span class="muted">think → tool → act → observe → repeat → answer.</span></li>
           <li><span style="margin-right:10px;">💻</span>Node.js MVP: tools + loop + tool results.</li>
           <li><span style="margin-right:10px;">🔀</span>Cloud ↔ local: change <code>baseURL</code> and <code>model</code>.</li>
-          <li><span style="margin-right:10px;">🖥️</span><b class="good">Ollama + Qwen3</b> = the same agent, free, private, offline.</li>
+          <li><span style="margin-right:10px;">🖥️</span><b class="good">Ollama + Qwen3.5</b> = the same agent, free, private, offline.</li>
         </ul>
       </section>
 
@@ -1291,7 +1290,7 @@ const res = await openai.chat.completions.create({
             <h3 class="good">Core requirements</h3>
             <ul style="font-size:0.82em;">
               <li><b>CLI tool</b> — chat in the terminal</li>
-              <li>Powered by <b>Ollama + Qwen3</b> (local)</li>
+              <li>Powered by <b>Ollama + Qwen3</b> (local; Qwen3.5 if your laptop can)</li>
               <li>Switch model via <b><code>config.json</code></b></li>
               <li><b>Run &amp; demo</b> locally</li>
             </ul>
@@ -1390,7 +1389,7 @@ const res = await openai.chat.completions.create({
       <section class="title" data-background-color="#0f1319">
         <div class="kicker">That's a wrap</div>
         <h1>Now go build one <span style="-webkit-text-fill-color: initial; background: none;">🚀</span></h1>
-        <p class="muted">LLM → Agent → Node.js → Ollama + Qwen3.</p>
+        <p class="muted">LLM → Agent → Node.js → Ollama + Qwen3.5.</p>
         <p><span class="pill">Questions?</span></p>
         <div class="author">
           <strong>Kha Do</strong> · FIT-HCMUS · <span class="accent">dnkha@fit.hcmus.edu.vn</span>
