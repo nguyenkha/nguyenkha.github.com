@@ -469,6 +469,31 @@
         <aside class="notes">Confidently wrong = states false things as fact (e.g. a JS method that doesn't exist). Cutoff = knowledge frozen at training time. No memory = stateless between calls; you resend the whole history. Can't act = outputs text only → agents add the "hands" (tools).</aside>
       </section>
 
+      <!-- 6c. Language is (mostly) fungible -->
+      <section>
+        <h2>Language matters less than you'd think</h2>
+        <p class="muted">To an LLM, human and code languages are just <b class="accent">tokens it has seen</b> — learned one, it can work in it.</p>
+        <div class="cols3" style="margin-top:14px;">
+          <div class="card">
+            <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🗣️</span>
+            <h3>Human language</h3>
+            <p><small>Vietnamese or English — same model. English usually strongest.</small></p>
+          </div>
+          <div class="card">
+            <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">💻</span>
+            <h3 class="accent2">Programming language</h3>
+            <p><small>Python, JS, Go, Rust… popular → better; niche/new → weaker.</small></p>
+          </div>
+          <div class="card">
+            <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">📥</span>
+            <h3 class="good">Fill the gaps</h3>
+            <p><small>New API? <b>Feed it the docs</b> — <code>fetch</code>/<code>curl</code>, MCP, or web search.</small></p>
+          </div>
+        </div>
+        <blockquote style="margin-top:14px;"><small>Lowers the <b>language barrier</b>, not <b class="accent">engineering judgment</b> — you still pick the right stack.</small></blockquote>
+        <aside class="notes">Model quality in a language tracks how much of it was in training — English &amp; popular languages (Python/JS) are strongest; low-resource human languages and niche/new programming languages are weaker. The knowledge-cutoff gap is fixable at run time: pipe fresh API docs into context via fetch/curl, an MCP docs server, or web search. Key caveat: an LLM being *fluent* in a language ≠ that language being the *right* choice — stack selection stays an engineering decision (team skills, libraries, performance, ops, maintainability).</aside>
+      </section>
+
       <!-- 7. LLM vs Agent -->
       <section>
         <h2>From LLM → Coding Agent</h2>
