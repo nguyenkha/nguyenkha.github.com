@@ -112,7 +112,7 @@
         <div class="kicker">About me</div>
         <h1>Kha Do</h1>
         <h3 class="muted">Đỗ Nguyên Kha · Teaching Assistant @ FIT-HCMUS</h3>
-        <p><span class="pill">Former Blockchain Engineer</span><span class="pill">FTX JP</span><span class="pill">Liquid</span><span class="pill">QUOINE</span><span class="pill">Custodiem</span></p>
+        <p><span class="pill">Former Blockchain Engineer</span><span class="pill">FTX JP</span><span class="pill">Liquid</span><span class="pill">QUOINE</span><span class="pill">Custodiem</span><span class="pill">DK Bank</span></p>
         <div class="author">
           <span class="accent">dnkha@fit.hcmus.edu.vn</span> · <span class="accent">kha.do</span>
         </div>
@@ -747,6 +747,8 @@ console.log(r.text);
           </div>
         </div>
         <p class="muted"><small>Keys come from env vars (<code>OPENAI_API_KEY</code>, …). We'll build the full agent with the <b>OpenAI SDK</b> — the same code drives <b>Ollama / Qwen3</b> locally later.</small></p>
+        <blockquote style="margin-top:12px;"><small>💡 The <b class="accent">OpenAI SDK is a de-facto standard</b>: most services expose an <b>OpenAI-compatible</b> endpoint — Ollama, Groq, DeepSeek, Mistral, xAI, OpenRouter, even Gemini &amp; Claude via a compat layer. Change the <code>baseURL</code>, keep the code. <span class="muted">(Mostly for chat completions — some advanced features still differ.)</span></small></blockquote>
+        <aside class="notes">This is why we standardize on the OpenAI SDK for the rest of the talk: one code path reaches almost every provider — cloud or local. Compatibility is strongest for the chat-completions endpoint; provider-specific extras (fine-grained tool-calling, structured outputs) can vary, so check each provider's docs for the edges.</aside>
       </section>
 
       <!-- 11. Step 2 define tools -->
@@ -1137,13 +1139,13 @@ const res = await openai.chat.completions.create({
       <!-- 21. recap -->
       <section>
         <h2>Recap — the mental model</h2>
-        <ul>
-          <li><b class="accent">LLM</b> = a next-token predictor trained at massive scale.</li>
-          <li><b class="accent">Agent</b> = LLM + <b>tools</b> + a <b>loop</b> + a <b>goal</b>.</li>
-          <li>The loop: <span class="muted">think → (tool call) → act → observe → repeat → answer.</span></li>
-          <li>In Node.js it's ~80 lines: define tools, run the loop, feed results back.</li>
-          <li>Swap cloud ↔ local by changing the <code>baseURL</code> and <code>model</code> — the logic never changes.</li>
-          <li><b class="good">Ollama + Qwen3</b> = the same agent, free, private, offline.</li>
+        <ul style="list-style:none; margin-left:0; padding-left:0;">
+          <li><span style="margin-right:10px;">🧠</span><b class="accent">LLM</b> = a next-token predictor trained at massive scale.</li>
+          <li><span style="margin-right:10px;">🤖</span><b class="accent">Agent</b> = LLM + <b>tools</b> + a <b>loop</b> + a <b>goal</b>.</li>
+          <li><span style="margin-right:10px;">🔁</span>The loop: <span class="muted">think → (tool call) → act → observe → repeat → answer.</span></li>
+          <li><span style="margin-right:10px;">💻</span>In Node.js it's ~80 lines: define tools, run the loop, feed results back.</li>
+          <li><span style="margin-right:10px;">🔀</span>Swap cloud ↔ local by changing the <code>baseURL</code> and <code>model</code> — the logic never changes.</li>
+          <li><span style="margin-right:10px;">🖥️</span><b class="good">Ollama + Qwen3</b> = the same agent, free, private, offline.</li>
         </ul>
       </section>
 
@@ -1168,11 +1170,11 @@ const res = await openai.chat.completions.create({
         <h2>Roadmap — from mini-agent to "Claude Code"</h2>
         <p class="muted">Level up the same loop one layer at a time:</p>
         <div class="loop" style="font-family: Inter, system-ui, sans-serif; line-height: 2.05;">
-          <span class="step">1.</span> <b>MVP loop</b> — read · write · run · the while-loop&nbsp;&nbsp;<span class="good">← you built this</span><br/>
-          <span class="step">2.</span> <b>Better tools</b> — edit (str-replace) · grep · glob · git · <b class="accent">MCP servers</b><br/>
-          <span class="step">3.</span> <b>Safety</b> — approval prompts · sandbox · command allow-list<br/>
-          <span class="step">4.</span> <b>Context</b> — system reminders · <b class="accent">compaction</b> · sub-agents<br/>
-          <span class="step">5.</span> <b>UX</b> — streaming · TUI with diffs · sessions &amp; memory<br/>
+          <span class="step">1.</span> <span style="margin:0 6px;">🏗️</span><b>MVP loop</b> — read · write · run · the while-loop&nbsp;&nbsp;<span class="good">← you built this</span><br/>
+          <span class="step">2.</span> <span style="margin:0 6px;">🔧</span><b>Better tools</b> — edit (str-replace) · grep · glob · git · <b class="accent">MCP servers</b><br/>
+          <span class="step">3.</span> <span style="margin:0 6px;">🛡️</span><b>Safety</b> — approval prompts · sandbox · command allow-list<br/>
+          <span class="step">4.</span> <span style="margin:0 6px;">🧭</span><b>Context</b> — system reminders · <b class="accent">compaction</b> · sub-agents<br/>
+          <span class="step">5.</span> <span style="margin:0 6px;">🎨</span><b>UX</b> — streaming · TUI with diffs · <b class="accent">Markdown render</b> · sessions &amp; memory<br/>
           <span class="accent2" style="font-size:1.2em;">➜</span> <b class="good">A Claude Code–class agent</b> 🎉
         </div>
         <p class="muted"><small>Every layer is optional and additive — the core loop never changes. Study real ones: <b>Claude Code</b>, Aider, Cline.</small></p>
@@ -1222,7 +1224,7 @@ const res = await openai.chat.completions.create({
           <div class="card">
             <h3 class="accent">Tools to implement</h3>
             <ul style="font-size:0.74em;">
-              <li><b>File (main):</b> <code>read_file</code> · <code>write_file</code> · <code>list_files</code> · <code>edit_file</code> · <code>create_dir</code> / <code>delete_file</code><br/>
+              <li><b>File (main):</b> <code>read_file</code> · <code>write_file</code> · <code>list_files</code> · <code>edit_file</code> · <code>create_dir</code> · <code>delete_file</code><br/>
                 <span class="muted" style="font-size:0.9em;">↳ must stay <b>inside the workspace folder</b> — block <code>..</code> / paths that escape it</span></li>
               <li><b><code>run_command</code></b> — run a shell command<br/>
                 <span class="muted" style="font-size:0.9em;">↳ <b>ask the user to approve</b> before running</span></li>
@@ -1265,6 +1267,42 @@ const res = await openai.chat.completions.create({
             </table>
           </div>
         </div>
+      </section>
+
+      <!-- 22d. REFERENCES -->
+      <section>
+        <h2>References &amp; resources</h2>
+        <div class="cols3" style="gap:14px; margin-top:6px;">
+          <div class="card" style="padding:12px 14px;">
+            <h3 class="accent" style="font-size:0.8em; margin:0 0 6px;"><span style="margin-right:6px;">🧰</span>Build stack</h3>
+            <ul style="font-size:0.52em; line-height:1.5; padding-left:1em; margin:0;">
+              <li><b>Node.js</b> — nodejs.org</li>
+              <li><b>reveal.js</b> — revealjs.com</li>
+              <li><b>Ollama</b> — ollama.com/library</li>
+            </ul>
+          </div>
+          <div class="card" style="padding:12px 14px;">
+            <h3 class="accent2" style="font-size:0.8em; margin:0 0 6px;"><span style="margin-right:6px;">🤖</span>Models &amp; SDKs</h3>
+            <ul style="font-size:0.52em; line-height:1.5; padding-left:1em; margin:0;">
+              <li><b>Claude</b> — docs.claude.com</li>
+              <li><b>OpenAI</b> — platform.openai.com/docs</li>
+              <li><b>Gemini</b> — ai.google.dev</li>
+              <li><b>Qwen3</b> — github.com/QwenLM/Qwen3</li>
+            </ul>
+          </div>
+          <div class="card" style="padding:12px 14px;">
+            <h3 class="good" style="font-size:0.8em; margin:0 0 6px;"><span style="margin-right:6px;">📚</span>Concepts</h3>
+            <ul style="font-size:0.52em; line-height:1.5; padding-left:1em; margin:0;">
+              <li><b>MCP</b> — modelcontextprotocol.io</li>
+              <li><b>Stanford CS146S</b> — themodernsoftware.dev</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="margin-top:12px; padding:10px 14px;">
+          <h3 class="accent" style="font-size:0.8em; margin:0 0 4px;"><span style="margin-right:6px;">🔍</span>Real agents to study</h3>
+          <p style="font-size:0.52em; margin:0;"><b>Claude Code</b> · claude.com/claude-code &nbsp;·&nbsp; <b>Aider</b> · aider.chat &nbsp;·&nbsp; <b>Cline</b> · github.com/cline/cline &nbsp;·&nbsp; <b>OpenCode</b> · opencode.ai</p>
+        </div>
+        <p class="muted" style="text-align:center; margin-top:10px;"><small>Model names &amp; prices are approximate (~mid-2026) — verify on each provider's official docs.</small></p>
       </section>
 
       <!-- 23. THANK YOU -->
