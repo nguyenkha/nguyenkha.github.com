@@ -472,25 +472,25 @@
       <!-- 6c. Language is (mostly) fungible -->
       <section>
         <h2>Language matters less than you'd think</h2>
-        <p class="muted">To an LLM, human and code languages are just <b class="accent">tokens it has seen</b> — learned one, it can work in it.</p>
+        <p class="muted">To an LLM, language is mostly <b class="accent">tokens + examples</b>. If it has seen enough, it can help.</p>
         <div class="cols3" style="margin-top:14px;">
           <div class="card">
             <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🗣️</span>
             <h3>Human language</h3>
-            <p><small>Vietnamese or English — same model. English usually strongest.</small></p>
+            <p><small>Vietnamese or English: same model. English is usually strongest.</small></p>
           </div>
           <div class="card">
             <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">💻</span>
             <h3 class="accent2">Programming language</h3>
-            <p><small>Python, JS, Go, Rust… popular → better; niche/new → weaker.</small></p>
+            <p><small>Popular stacks work better; niche or new stacks need more context.</small></p>
           </div>
           <div class="card">
             <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">📥</span>
             <h3 class="good">Fill the gaps</h3>
-            <p><small>New API? <b>Feed it the docs</b> — <code>fetch</code>/<code>curl</code>, MCP, or web search.</small></p>
+            <p><small>New API? <b>Feed it docs</b>: <code>fetch</code>/<code>curl</code>, MCP, or search.</small></p>
           </div>
         </div>
-        <blockquote style="margin-top:14px;"><small>Lowers the <b>language barrier</b>, not <b class="accent">engineering judgment</b> — you still pick the right stack.</small></blockquote>
+        <blockquote style="margin-top:14px;"><small>LLMs lower the <b>language barrier</b>, not the need for <b class="accent">engineering judgment</b>.</small></blockquote>
         <aside class="notes">Model quality in a language tracks how much of it was in training — English &amp; popular languages (Python/JS) are strongest; low-resource human languages and niche/new programming languages are weaker. The knowledge-cutoff gap is fixable at run time: pipe fresh API docs into context via fetch/curl, an MCP docs server, or web search. Key caveat: an LLM being *fluent* in a language ≠ that language being the *right* choice — stack selection stays an engineering decision (team skills, libraries, performance, ops, maintainability).</aside>
       </section>
 
@@ -1161,6 +1161,60 @@ const res = await openai.chat.completions.create({
 });</code></pre>
         <p class="good">Same 80-line agent. Local, free per token, private.</p>
         <aside class="notes">Demo runs on Qwen3 4B: light, fast, and good enough for this small agent. If tool-calling feels flaky, use a recent Ollama version, bump to 8B+, and keep tools few with crisp descriptions.</aside>
+      </section>
+
+      <!-- 20b. What agents are great at -->
+      <section>
+        <h2>What agents are great at</h2>
+        <p class="muted">A fast junior dev — best on well-scoped, <b>verifiable</b> tasks.</p>
+        <div class="cols" style="margin-top:12px;">
+          <ul style="list-style:none; margin:0; padding:0; line-height:1.95;">
+            <li><span style="margin-right:10px;">📖</span>Read an unfamiliar codebase</li>
+            <li><span style="margin-right:10px;">🧪</span>Write tests</li>
+            <li><span style="margin-right:10px;">🧹</span>Small refactors</li>
+            <li><span style="margin-right:10px;">🛠️</span>Internal scripts &amp; tools</li>
+          </ul>
+          <ul style="list-style:none; margin:0; padding:0; line-height:1.95;">
+            <li><span style="margin-right:10px;">🐞</span>Debug errors that have logs</li>
+            <li><span style="margin-right:10px;">📝</span>Update docs / README</li>
+            <li><span style="margin-right:10px;">🔍</span>First-pass PR review</li>
+          </ul>
+        </div>
+        <blockquote style="margin-top:14px;"><small>Not a replacement for a senior engineer — a <b class="accent">very fast junior dev</b>.</small></blockquote>
+        <aside class="notes">The sweet spot: scoped, checkable, low blast radius. The common thread is a clear goal and a way to verify — tests, logs, a diff. Vague, high-stakes, or unverifiable work is where it struggles, which sets up the next two slides.</aside>
+      </section>
+
+      <!-- 20c. A workflow that works -->
+      <section>
+        <h2>A workflow that actually works</h2>
+        <p class="muted">Short leash: small steps, verify every turn.</p>
+        <div class="loop" style="line-height:1.85;">
+          <span class="step">1.</span> State the goal clearly<br/>
+          <span class="step">2.</span> Make it <b>read the files first</b><br/>
+          <span class="step">3.</span> Ask for a <b>short plan</b><br/>
+          <span class="step">4.</span> Let it make a <b>small change</b><br/>
+          <span class="step">5.</span> Make it <b>run the tests</b><br/>
+          <span class="step">6.</span> <b>Review the diff</b><br/>
+          <span class="step">7.</span> Commit when it's green
+        </div>
+        <p class="muted"><small>Handy prompt: <code>Read first, don't edit yet. Make the smallest change. Run tests after.</code></small></p>
+        <aside class="notes">Small steps + verification each turn = fewer surprises. Reading first grounds the model in real code; a short plan surfaces wrong assumptions before any edit; running tests turns "looks right" into "is right." Reviewing the diff keeps you in control — you commit, not the agent.</aside>
+      </section>
+
+      <!-- 20d. Industry guardrails -->
+      <section>
+        <h2>Guardrails you'll see in industry</h2>
+        <p class="muted">The riskier the action, the more of these you add.</p>
+        <div class="anat" style="grid-template-columns: repeat(3, 1fr); margin-top:10px;">
+          <div class="card"><span class="ico">🧱</span><h3>Workspace boundary</h3></div>
+          <div class="card"><span class="ico">✅</span><h3 class="accent2">Command approval</h3></div>
+          <div class="card"><span class="ico">🕵️</span><h3>Secret redaction</h3></div>
+          <div class="card"><span class="ico">🧪</span><h3 class="good">Tests before final</h3></div>
+          <div class="card"><span class="ico">👀</span><h3 class="accent2">Human reviews the diff</h3></div>
+          <div class="card"><span class="ico">🚫</span><h3>No blind deploy</h3></div>
+        </div>
+        <blockquote style="margin-top:16px;"><small>More risk → more <b>sandbox</b>, <b>approval</b>, and <b>review</b>. Never let an agent touch prod unwatched.</small></blockquote>
+        <aside class="notes">These map straight to the homework's workspace boundary + approval requirements. Secret redaction keeps keys out of prompts/logs. "Tests before final" and "human reviews the diff" are the last line of defense. No blind deploy: a human ships, always.</aside>
       </section>
 
       <!-- 21. recap -->
