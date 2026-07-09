@@ -151,7 +151,7 @@
             <h3 class="good" style="margin:2px 0 0;">Offline &amp; free</h3>
           </div>
         </div>
-        <aside class="notes">Goal: by the end, everyone understands the mental model and has a working agent they can point at either a cloud API or a local model. Rough timing for 150 minutes: 45 minutes foundations, 60 minutes Node.js build/demo, 35 minutes Ollama/Qwen3 + homework, 10 minutes Q&amp;A/buffer.</aside>
+        <aside class="notes">Goal: by the end, everyone understands the mental model and has a working agent they can point at either a cloud API or a local model. Rough timing for 150 minutes: 45 minutes foundations, 60 minutes Node.js build/demo, 35 minutes Ollama/Qwen3.5 + homework, 10 minutes Q&amp;A/buffer.</aside>
       </section>
 
       <!-- ===================== PART 1 ===================== -->
@@ -771,7 +771,7 @@ console.log(r.text);
 </code></pre>
           </div>
         </div>
-        <p class="muted"><small>Keys come from env vars. We'll use the <b>OpenAI SDK</b>; the same code drives <b>Ollama / Qwen3</b> later.</small></p>
+        <p class="muted"><small>Keys come from env vars. We'll use the <b>OpenAI SDK</b>; the same code drives <b>Ollama / Qwen3.5</b> later.</small></p>
         <blockquote style="margin-top:12px;"><small><b class="accent">OpenAI-compatible</b> endpoints are common. Change <code>baseURL</code>, keep the agent loop. <span class="muted">Advanced features can still differ.</span></small></blockquote>
         <aside class="notes">This is why we standardize on the OpenAI SDK for the rest of the talk: one code path reaches almost every provider — cloud or local. Compatibility is strongest for the chat-completions endpoint; provider-specific extras (fine-grained tool-calling, structured outputs) can vary, so check each provider's docs for the edges.</aside>
       </section>
@@ -1008,7 +1008,7 @@ Done:                      // ← when to stop calling tools
           <div class="card"><span class="ico">✈️</span><h3 class="good">Offline</h3><p>Works on a plane or air-gapped.</p></div>
           <div class="card"><span class="ico">♾️</span><h3 class="good">Unlimited</h3><p>Experiment as much as you want.</p></div>
         </div>
-        <p class="muted" style="text-align:center; margin-top:22px;"><small><b>Ollama</b> runs open models locally. <b>Qwen3</b> is strong at <b>tool calling</b>, which agents need.</small></p>
+        <p class="muted" style="text-align:center; margin-top:22px;"><small><b>Ollama</b> runs open models locally. <b>Qwen3.5</b> is strong at <b>tool calling</b>, which agents need.</small></p>
       </section>
 
       <!-- 16-tradeoffs. Local trade-offs -->
@@ -1020,7 +1020,7 @@ Done:                      // ← when to stop calling tools
           <div class="card"><span class="ico">📉</span><h3 class="accent2">Capability</h3><p>Small models trail frontier cloud models.</p></div>
           <div class="card"><span class="ico">🔧</span><h3 class="accent2">Maintenance</h3><p>You manage models and updates.</p></div>
         </div>
-        <blockquote style="margin-top:22px;">For <b>learning</b> and everyday coding tasks, a small local <b>Qwen3</b> is enough. Use cloud APIs or coder models for harder jobs.</blockquote>
+        <blockquote style="margin-top:22px;">For <b>learning</b> and everyday coding tasks, a small local <b>Qwen3.5</b> is enough. Use cloud APIs or coder models for harder jobs.</blockquote>
       </section>
 
       <!-- 16b. Free models compared + why Qwen3 -->
@@ -1205,12 +1205,12 @@ const res = await openai.chat.completions.create({
         <h2>Guardrails you'll see in industry</h2>
         <p class="muted">The riskier the action, the more of these you add.</p>
         <div class="anat" style="grid-template-columns: repeat(3, 1fr); margin-top:10px;">
-          <div class="card"><span class="ico">🧱</span><h3>Workspace boundary</h3></div>
-          <div class="card"><span class="ico">✅</span><h3 class="accent2">Command approval</h3></div>
-          <div class="card"><span class="ico">🕵️</span><h3>Secret redaction</h3></div>
-          <div class="card"><span class="ico">🧪</span><h3 class="good">Tests before final</h3></div>
-          <div class="card"><span class="ico">👀</span><h3 class="accent2">Human reviews the diff</h3></div>
-          <div class="card"><span class="ico">🚫</span><h3>No blind deploy</h3></div>
+          <div class="card"><span class="ico">🧱</span><h3>Workspace boundary</h3><p>Confine it to one folder; block <code>..</code> escapes.</p></div>
+          <div class="card"><span class="ico">✅</span><h3 class="accent2">Command approval</h3><p>Ask a human before running shell commands.</p></div>
+          <div class="card"><span class="ico">🕵️</span><h3>Secret redaction</h3><p>Strip keys &amp; tokens from prompts and logs.</p></div>
+          <div class="card"><span class="ico">🧪</span><h3 class="good">Tests before final</h3><p>Must pass tests before claiming done.</p></div>
+          <div class="card"><span class="ico">👀</span><h3 class="accent2">Human reviews the diff</h3><p>Read every change before it lands.</p></div>
+          <div class="card"><span class="ico">🚫</span><h3>No blind deploy</h3><p>A person ships to prod, never the agent.</p></div>
         </div>
         <blockquote style="margin-top:16px;"><small>More risk → more <b>sandbox</b>, <b>approval</b>, and <b>review</b>. Never let an agent touch prod unwatched.</small></blockquote>
         <aside class="notes">These map straight to the homework's workspace boundary + approval requirements. Secret redaction keeps keys out of prompts/logs. "Tests before final" and "human reviews the diff" are the last line of defense. No blind deploy: a human ships, always.</aside>
@@ -1232,32 +1232,103 @@ const res = await openai.chat.completions.create({
       <!-- 21b. secret sauce (techniques) -->
       <section>
         <h2>The "secret sauce" of great agents</h2>
-        <p class="muted">Our loop works. Production agents add reliability layers:</p>
-        <div class="anat" style="grid-template-columns: repeat(3, 1fr); margin-top:8px;">
-          <div class="card"><span class="ico">🧭</span><h3 class="accent">Context engineering</h3></div>
-          <div class="card"><span class="ico">🧩</span><h3 class="accent">MCP tools</h3></div>
-          <div class="card"><span class="ico">🌿</span><h3 class="accent">Sub-agents</h3></div>
-          <div class="card"><span class="ico">🛡️</span><h3 class="accent">Permissions</h3></div>
-          <div class="card"><span class="ico">🗜️</span><h3 class="accent">Compaction</h3></div>
-          <div class="card"><span class="ico">🔧</span><h3 class="accent">Sharp tools</h3></div>
+        <p class="muted">Our loop works. Production agents add three layers — <b>details next</b> ↓</p>
+        <div class="cols3" style="margin-top:10px;">
+          <div class="card">
+            <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🧭</span>
+            <h3 class="accent">Context</h3>
+            <p><small>Engineering + compaction — keep the right info in a finite window.</small></p>
+          </div>
+          <div class="card">
+            <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🧩</span>
+            <h3 class="accent2">Tools</h3>
+            <p><small>Sharp tools · MCP · sub-agents — extend and delegate.</small></p>
+          </div>
+          <div class="card">
+            <span class="ico" style="font-size:1.6em; display:block; margin-bottom:6px;">🖥️</span>
+            <h3 class="good">Surfaces</h3>
+            <p><small>UI · IDE · CLI · remote — how you actually use it.</small></p>
+          </div>
         </div>
-        <p class="muted" style="text-align:center;"><small>Inspired by Stanford <b>CS146S — The Modern Software Developer</b> · themodernsoftware.dev</small></p>
+        <p class="muted" style="text-align:center; margin-top:14px;"><small>🛡️ <b>Safety</b> (permissions, sandbox) → the <b>Guardrails</b> slide. Inspired by Stanford <b>CS146S</b> · themodernsoftware.dev</small></p>
         <aside class="notes">Context engineering — front-load the right info; re-inject rules via system reminders to fight context drift. MCP (Model Context Protocol) — a standard plug for external tools &amp; data (GitHub, DBs, Slack…); next session's topic. Sub-agents — spawn helpers for parallel work so one context doesn't overload. Permissions — parse command prefixes, allow-list, ask before risky actions. Compaction — trim/summarize history to stay within the window on long runs. Sharp tools — a few well-described tools beat many fuzzy ones.</aside>
       </section>
 
-      <!-- 21c. roadmap to Claude Code -->
+      <!-- 21c. Detail 1 — Context -->
       <section>
-        <h2>Roadmap — from mini-agent to "Claude Code"</h2>
-        <p class="muted">Level up the same loop, one layer at a time:</p>
-        <div class="loop" style="font-family: Inter, system-ui, sans-serif; line-height: 2.05;">
-          <span class="step">1.</span> <span style="margin:0 6px;">🏗️</span><b>MVP loop</b> — read · write · run · the while-loop&nbsp;&nbsp;<span class="good">← you built this</span><br/>
-          <span class="step">2.</span> <span style="margin:0 6px;">🔧</span><b>Better tools</b> — edit (str-replace) · grep · glob · git · <b class="accent">MCP servers</b><br/>
-          <span class="step">3.</span> <span style="margin:0 6px;">🛡️</span><b>Safety</b> — approval prompts · sandbox · command allow-list<br/>
-          <span class="step">4.</span> <span style="margin:0 6px;">🧭</span><b>Context</b> — system reminders · <b class="accent">compaction</b> · sub-agents<br/>
-          <span class="step">5.</span> <span style="margin:0 6px;">🎨</span><b>UX</b> — streaming · TUI with diffs · <b class="accent">Markdown render</b> · sessions &amp; memory<br/>
-          <span class="accent2" style="font-size:1.2em;">➜</span> <b class="good">A Claude Code–class agent</b> 🎉
+        <h2>🧭 Context — a finite, filling window</h2>
+        <p class="muted">Every turn appends history + tool output → context <b class="accent2">balloons</b>. Two levers keep it healthy:</p>
+        <div style="display:grid; grid-template-columns: 5fr 7fr; gap:26px; align-items:center; margin-top:6px;">
+          <div>
+            <div class="card" style="margin-bottom:10px;">
+              <h3 class="accent" style="margin-top:0;"><span style="margin-right:8px;">🎯</span>Context engineering</h3>
+              <p><small>Front-load the <b>right</b> info; re-inject rules via <b>system reminders</b> to fight drift.</small></p>
+            </div>
+            <div class="card">
+              <h3 class="accent2" style="margin-top:0;"><span style="margin-right:8px;">🗜️</span>Compaction</h3>
+              <p><small>Near the limit? <b>Summarize</b> old turns — keep decisions &amp; state, drop the noise.</small></p>
+            </div>
+          </div>
+          <div>
+            <svg viewBox="0 0 520 300" style="width:100%; max-width:560px; height:auto; display:block;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Context grows each turn until compaction">
+              <defs>
+                <marker id="ahC" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" fill="#7bd88f"/></marker>
+              </defs>
+              <line x1="30" y1="60" x2="500" y2="60" stroke="#f0a35e" stroke-width="1.5" stroke-dasharray="6 4"/>
+              <text x="498" y="52" text-anchor="end" fill="#f0a35e" font-size="13">context limit</text>
+              <line x1="30" y1="250" x2="500" y2="250" stroke="#3a4a5a" stroke-width="1.5"/>
+              <g fill="#f0a35e">
+                <rect x="45"  y="216" width="34" height="34"  rx="3"/>
+                <rect x="92"  y="188" width="34" height="62"  rx="3"/>
+                <rect x="139" y="152" width="34" height="98"  rx="3"/>
+                <rect x="186" y="110" width="34" height="140" rx="3"/>
+                <rect x="233" y="68"  width="34" height="182" rx="3"/>
+              </g>
+              <text x="300" y="120" text-anchor="middle" font-size="20">✂️</text>
+              <text x="300" y="142" text-anchor="middle" fill="#7bd88f" font-size="13">compaction</text>
+              <path d="M 272 80 C 300 150, 318 175, 330 184" fill="none" stroke="#7bd88f" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ahC)"/>
+              <g fill="#7bd88f">
+                <rect x="330" y="190" width="34" height="60"  rx="3"/>
+                <rect x="377" y="154" width="34" height="96"  rx="3"/>
+                <rect x="424" y="120" width="34" height="130" rx="3"/>
+              </g>
+              <text x="265" y="278" text-anchor="middle" fill="#8b97a7" font-size="13">each turn appends history + tool output  →  time</text>
+            </svg>
+          </div>
         </div>
-        <p class="muted"><small>Layers are additive; the core loop stays the same. Study: <b>Claude Code</b>, Aider, Cline.</small></p>
+        <aside class="notes">The context window is the agent's whole working memory, and it fills fast: system prompt + every user/assistant turn + every tool result (file dumps, logs) pile up. Two fixes: context engineering puts the right things in at the right time and re-injects rules so the model doesn't drift; compaction summarizes older turns when you near the limit — keep the decisions and current state, discard verbose tool output — so a long task never falls off the end of the window.</aside>
+      </section>
+
+      <!-- 21d. Detail 2 — Tools -->
+      <section>
+        <h2>🧩 Tools — extend and delegate</h2>
+        <p class="muted">More capability without a bigger prompt:</p>
+        <div class="cols" style="margin-top:12px;">
+          <div class="card">
+            <h3 class="accent" style="margin-top:0;"><span style="margin-right:8px;">🔧</span>Good tools</h3>
+            <p><small>A few <b>sharp</b>, one-job tools the model picks correctly — extended via <b>MCP</b>, a standard plug for external tools &amp; data (GitHub, DBs, Slack, a browser). Write once, reuse everywhere.</small></p>
+            <span class="eg">Sharp tools + MCP = do more, reliably.</span>
+          </div>
+          <div class="card">
+            <h3 class="accent2" style="margin-top:0;"><span style="margin-right:8px;">🌿</span>Sub-agents</h3>
+            <p><small>Spawn focused helpers for parallel or isolated work, so the main context doesn't overload. <b>Fan out → synthesize.</b></small></p>
+            <span class="eg">A search sub-agent reads 20 files, returns 1 answer.</span>
+          </div>
+        </div>
+        <blockquote style="margin-top:14px;"><small>Sharp tools + standard plugs + delegation = scale the same loop.</small></blockquote>
+      </section>
+
+      <!-- 21e. Detail 3 — Surfaces -->
+      <section>
+        <h2>🖥️ Surfaces — how you actually use it</h2>
+        <p class="muted">The same agent loop, many front doors:</p>
+        <div class="anat" style="grid-template-columns: repeat(4, 1fr); margin-top:10px;">
+          <div class="card"><span class="ico">💬</span><h3 class="accent">UI</h3><p>Chat / web app — approachable, visual diffs.</p></div>
+          <div class="card"><span class="ico">🔌</span><h3 class="accent2">IDE integration</h3><p>Inside VS Code / JetBrains, on your code.</p></div>
+          <div class="card"><span class="ico">⌨️</span><h3 class="good">CLI</h3><p>Terminal-native, scriptable, runs in CI.</p></div>
+          <div class="card"><span class="ico">📡</span><h3>Remote control</h3><p>Trigger from web / mobile; runs in the cloud.</p></div>
+        </div>
+        <blockquote style="margin-top:14px;"><small>Same 80-line loop underneath — stack these and you get a <b class="good">Claude Code–class agent</b> 🎉</small></blockquote>
       </section>
 
       <!-- 22. next steps + resources -->
@@ -1266,7 +1337,7 @@ const res = await openai.chat.completions.create({
         <p class="muted">You have the mental model. Try three things tonight:</p>
         <div class="anat" style="grid-template-columns: repeat(3, 1fr); margin-top:8px;">
           <div class="card"><span class="ico">🔑</span><h3 class="good">Build it</h3><p>Run the agent with your own API key.</p></div>
-          <div class="card"><span class="ico">🔌</span><h3 class="good">Go offline</h3><p>Point <code>baseURL</code> at Qwen3 on Ollama.</p></div>
+          <div class="card"><span class="ico">🔌</span><h3 class="good">Go offline</h3><p>Point <code>baseURL</code> at Qwen3.5 on Ollama.</p></div>
           <div class="card"><span class="ico">🛠️</span><h3 class="good">Extend it</h3><p>Add one tool: <code>git</code>, search, or line edit.</p></div>
         </div>
         <div class="cols" style="margin-top:20px; gap:22px;">
