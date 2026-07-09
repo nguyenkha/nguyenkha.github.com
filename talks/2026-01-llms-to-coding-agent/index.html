@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css" id="hljs" />
 
   <style>
     :root {
@@ -78,6 +78,42 @@
     .reveal .anat .ico { font-size: 1.6em; display: block; margin-bottom: 6px; }
     .reveal .anat h3 { font-size: 0.7em; margin: 0 0 4px; }
     .reveal .anat p { font-size: 0.5em; margin: 0; color: #8b97a7; }
+
+    /* ---- Light mode (footer toggle) ---- */
+    html.light .reveal .backgrounds .slide-background { background: #ffffff !important; }
+    html.light .reveal { color: #1b2430; --accent: #1c86a8; --accent2: #c2691b; --good: #2f9e57; }
+    html.light .reveal .muted { color: #5b6675; }
+    html.light .reveal .card { background: #f2f5f9; border-color: #d3dce6; }
+    html.light .reveal blockquote { background: #eef3f8; color: #1b2430; }
+    html.light .reveal .loop { background: #f2f5f9; border-color: #d3dce6; color: #1b2430; }
+    html.light .reveal .pill { background: #e2edf5; }
+    html.light .reveal .footer { color: #7a8694; }
+    html.light .reveal .anat p { color: #5b6675; }
+    html.light .reveal .msg.user { background: #e9f1f8; }
+    html.light .reveal .msg.bot  { background: #f2f5f9; }
+    html.light .reveal .msg.tool { background: #edf4e9; }
+    html.light .reveal .msg.done { background: #e7f4ec; border-color: #bfe3cc; }
+    html.light .reveal .msg em { color: #5b6675; }
+    html.light .reveal .chatwin { background: #ffffff; border-color: #d3dce6; }
+    html.light .reveal .chatbar { background: #eef2f6; border-color: #d3dce6; }
+    html.light .reveal .chatbody .b.ai { background: #f2f5f9; border-color: #d3dce6; }
+    html.light .reveal .composer { background: #eef2f6; border-color: #d3dce6; }
+    /* light: code blocks get a subtle frame on white */
+    html.light .reveal pre code { border: 1px solid #d3dce6; }
+    /* light: SVG illustration surfaces (CSS fill overrides the fill="" attribute) */
+    html.light .reveal svg [fill="#182430"],
+    html.light .reveal svg [fill="#16202b"] { fill: #eef3f8; }
+    html.light .reveal svg [fill="#1b212b"] { fill: #f2f5f9; }
+    html.light .reveal svg [fill="#16201a"],
+    html.light .reveal svg [fill="#172a1e"] { fill: #e7f4ec; }
+    html.light .reveal svg [fill="#231c14"] { fill: #fbeede; }
+    html.light .reveal svg [fill="#222b36"] { fill: #e2e8ef; }
+    html.light .reveal svg [fill="#2a3340"] { fill: #cdd6df; }
+    html.light .reveal svg [fill="#dfe6ee"] { fill: #1b2430; }
+    html.light .reveal svg [stroke="#3a4a5a"] { stroke: #c2ccd6; }
+    /* light: inline token tags */
+    html.light .reveal span[style*="background:#182430"] { background: #eef3f8 !important; border-color: #c9d4de !important; color: #1b2430 !important; }
+    html.light .reveal span[style*="background:#231c14"] { background: #fbeede !important; border-color: #e8b782 !important; color: #b5651d !important; }
   </style>
 
   <!-- Google Analytics (matches site key UA-53247198-1) -->
@@ -95,7 +131,7 @@
 </head>
 <body>
   <div class="reveal">
-    <div class="footer">From LLMs to Your Own Coding Agent · Kha Do · dnkha@fit.hcmus.edu.vn · <a href="?print-pdf" title="Open print layout, then use your browser's Print → Save as PDF" style="color:#58c4dc; text-decoration:none;">⤓&nbsp;PDF</a></div>
+    <div class="footer">From LLMs to Your Own Coding Agent · Kha Do · dnkha@fit.hcmus.edu.vn · <a href="?print-pdf" title="Open print layout, then use your browser's Print → Save as PDF" style="color:#58c4dc; text-decoration:none;">⤓&nbsp;PDF</a> · <a href="#" id="themeToggle" title="Toggle light / dark mode" style="color:#58c4dc; text-decoration:none; cursor:pointer;">◐&nbsp;Light</a></div>
     <div class="slides">
 
       <!-- 1. TITLE -->
@@ -1483,6 +1519,25 @@ const res = await openai.chat.completions.create({
       margin: 0.06,
       plugins: [RevealHighlight, RevealNotes],
     });
+
+    // Dark / light mode toggle (footer button)
+    (function () {
+      var btn = document.getElementById('themeToggle');
+      var link = document.getElementById('theme');
+      var hljs = document.getElementById('hljs');
+      var base = 'https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/';
+      var codeDark = 'https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css';
+      var codeLight = 'https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css';
+      var light = false;
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        light = !light;
+        link.href = base + (light ? 'white.css' : 'black.css');
+        hljs.href = light ? codeLight : codeDark;
+        document.documentElement.classList.toggle('light', light);
+        btn.innerHTML = light ? '◑&nbsp;Dark' : '◐&nbsp;Light';
+      });
+    })();
   </script>
 </body>
 </html>
