@@ -1044,7 +1044,7 @@ Done:                      // ← when to stop calling tools
           <div class="card"><span class="ico">✈️</span><h3 class="good">Offline</h3><p>Works on a plane or air-gapped.</p></div>
           <div class="card"><span class="ico">♾️</span><h3 class="good">Unlimited</h3><p>Experiment as much as you want.</p></div>
         </div>
-        <p class="muted" style="text-align:center; margin-top:22px;"><small><b>Ollama</b> runs open models locally. <b>Qwen3.5</b> is strong at <b>tool calling</b>, which agents need.</small></p>
+        <p class="muted" style="text-align:center; margin-top:22px;"><small><b>Ollama</b> runs open models locally. <b>Qwen3.5</b> <span class="muted">(Alibaba)</span> is strong at <b>tool calling</b>, which agents need.</small></p>
       </section>
 
       <!-- 16-tradeoffs. Local trade-offs -->
@@ -1528,14 +1528,20 @@ const res = await openai.chat.completions.create({
       var base = 'https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/';
       var codeDark = 'https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css';
       var codeLight = 'https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css';
-      var light = false;
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        light = !light;
+      function apply(light) {
         link.href = base + (light ? 'white.css' : 'black.css');
         hljs.href = light ? codeLight : codeDark;
         document.documentElement.classList.toggle('light', light);
         btn.innerHTML = light ? '◑&nbsp;Dark' : '◐&nbsp;Light';
+      }
+      var light = false;
+      try { light = localStorage.getItem('deck-theme') === 'light'; } catch (e) {}
+      if (light) apply(true);
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        light = !light;
+        apply(light);
+        try { localStorage.setItem('deck-theme', light ? 'light' : 'dark'); } catch (e) {}
       });
     })();
   </script>
