@@ -1397,7 +1397,7 @@ const res = await openai.chat.completions.create({
             <h3 class="good">Core requirements</h3>
             <ul style="font-size:0.82em;">
               <li><b>CLI tool</b> — chat in the terminal</li>
-              <li>Powered by <b>Ollama + Qwen3</b> (local; Qwen3.5 if your laptop can)</li>
+              <li>Powered by <b>any offline model</b> — recommended: <b>Ollama + Qwen / gpt-oss</b></li>
               <li>Switch model via <b><code>config.json</code></b></li>
               <li><b>Run &amp; demo</b> locally</li>
             </ul>
@@ -1438,14 +1438,14 @@ const res = await openai.chat.completions.create({
             <ul style="font-size:0.82em;">
               <li><b>Any</b> programming language</li>
               <li>AI coding assistants <b>allowed</b></li>
-              <li>Free tiers / <b>local models</b> allowed</li>
+              <li><b>Any offline model</b> — Ollama + Qwen / gpt-oss recommended</li>
             </ul>
           </div>
           <div class="card">
             <h3 class="good">Grading (100%)</h3>
             <table style="font-size:0.5em; margin:0;">
               <tbody>
-                <tr><td>Core agent loop (Ollama + Qwen3)</td><td class="accent2"><b>35%</b></td></tr>
+                <tr><td>Core agent loop (any offline model)</td><td class="accent2"><b>35%</b></td></tr>
                 <tr><td>File tools working &amp; confined to workspace</td><td class="accent2"><b>25%</b></td></tr>
                 <tr><td>Session (in-memory) + <code>run_command</code> approval</td><td class="accent2"><b>15%</b></td></tr>
                 <tr><td>Model switch via <code>config.json</code></td><td class="accent2"><b>10%</b></td></tr>
