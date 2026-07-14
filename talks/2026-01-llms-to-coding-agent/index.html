@@ -1198,6 +1198,39 @@ const res = await openai.chat.completions.create({
         <aside class="notes">Demo runs on qwen3.5:4b for M4 / 16 GB. Keep qwen3:4b pulled as a backup if the laptop is under memory pressure from browser, OBS, Zoom, or IDE. qwen3-coder is better for coding quality, but too heavy for a reliable 16 GB live demo.</aside>
       </section>
 
+      <!-- 20a2. FIT AI service -->
+      <section>
+        <h2>🎓 No GPU? Use FIT's free LLM service</h2>
+        <p class="muted">The faculty hosts <b class="accent">open-source LLMs</b> on its own GPU servers — free for FIT lecturers &amp; students.</p>
+        <div class="cols" style="gap:22px;">
+          <div>
+            <pre style="font-size:0.42em;"><code data-trim data-noescape class="language-javascript">const openai = new OpenAI({
+  baseURL: "https://api-fit.hcmus.edu.vn/v1", // ← FIT GPU servers
+  apiKey: process.env.FIT_API_KEY,            // ← key from the faculty
+});
+
+// same agent loop — just switch the model:
+const res = await openai.chat.completions.create({
+  model: "Qwen3.6-27B",   // 64K context · tool calling ✓
+  messages,
+  tools,
+});</code></pre>
+            <p class="muted"><small>Same <b>OpenAI-compatible</b> API → the Part 2 agent works unchanged.</small></p>
+          </div>
+          <div class="card" style="font-size:0.72em;">
+            <ul style="list-style:none; margin:0; padding:0; line-height:1.8;">
+              <li><span style="margin-right:8px;">💬</span><b>Chat UI</b> — <span class="accent">ai-fit.hcmus.edu.vn</span> (Open WebUI)</li>
+              <li><span style="margin-right:8px;">🔌</span><b>API</b> — <span class="accent">api-fit.hcmus.edu.vn/v1</span></li>
+              <li><span style="margin-right:8px;">🧠</span><b>Models</b> — Qwen3.6-27B <span class="muted">(64K)</span> · CTX-256K <span class="muted">(long docs)</span></li>
+              <li><span style="margin-right:8px;">🔑</span><b>API key</b> — <span class="accent">link.hcmus.edu.vn/llm-api-key</span></li>
+              <li><span style="margin-right:8px;">📏</span><b>Limits</b> — daily quota · key lasts 90 days <span class="muted">(students: per semester)</span></li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted" style="text-align:center; margin-top:10px;"><small>Docs: <span class="accent">fit.hcmus.edu.vn/llm-services</span> · for <b>research &amp; teaching</b> · tool calling + streaming ✓ · no vision</small></p>
+        <aside class="notes">FIT runs Qwen3.6-27B on the faculty's GPU servers, free for lecturers (@fit.hcmus.edu.vn / @fitus.edu.vn) and students via class integration. Self-service chat at ai-fit.hcmus.edu.vn; API keys for coursework/research come via the Google form (processed automatically, emailed within hours). Endpoints are OpenAI-compatible (/v1/chat/completions, /v1/models) and there's even an Anthropic-style /v1/messages. Output is capped (~2K tokens on the 64K tier, ~5K on the 256K tier), so it's for learning and prototyping, not production. Note the homework still requires an offline model — this service is for experimenting in class.</aside>
+      </section>
+
       <!-- 20b. What agents are great at -->
       <section>
         <h2>What agents are great at</h2>
