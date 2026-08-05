@@ -315,26 +315,29 @@
       <!-- 7b. Ship the plug with the product -->
       <section>
         <h2>Shipping a product? Ship its MCP server too</h2>
-        <p class="muted" style="margin:4px 0 10px;">Whatever system you build next, your users' <b>agents</b> are users now — don't make humans hand-wrap your API.</p>
-        <div class="cols">
-          <div class="card">
-            <h3 class="accent2">😩 "We have an API — good luck"</h3>
-            <ul style="font-size:0.7em;">
-              <li>Every user wraps your API into MCP <b>themselves</b></li>
-              <li>N wrappers — flaky, half-maintained, abandoned</li>
-              <li>Wrong auth, missed rate limits → <b>your</b> support tickets</li>
-            </ul>
+        <p class="muted" style="margin:4px 0 12px;">Your users' <b>agents</b> are users now.</p>
+        <div style="display:grid; grid-template-columns: 1fr 96px 1fr; gap:22px; align-items:center; margin-top:8px;">
+          <div class="card" style="text-align:center; min-height:250px;">
+            <span class="ico" style="font-size:2.2em;">😩</span>
+            <h3 class="accent2">API only</h3>
+            <div class="mini-flow" style="flex-direction:column; gap:8px; margin:10px 0 0;">
+              <span>user wraps API</span>
+              <span>N wrappers</span>
+              <span>support pain</span>
+            </div>
           </div>
-          <div class="card">
-            <h3 class="good">✅ You ship the official MCP server</h3>
-            <ul style="font-size:0.7em;">
-              <li>Written <b>once</b>, by the team that knows the API best</li>
-              <li>MCP-compatible hosts — Claude Code, IDEs, agents — can connect <b>day one</b></li>
-              <li>Auth, rate limits, safe defaults — handled <b>by you</b></li>
-            </ul>
+          <div style="text-align:center; font-size:2.2em; color:var(--good);">→</div>
+          <div class="card" style="text-align:center; min-height:250px;">
+            <span class="ico" style="font-size:2.2em;">✅</span>
+            <h3 class="good">Official MCP server</h3>
+            <div class="mini-flow" style="flex-direction:column; gap:8px; margin:10px 0 0;">
+              <span>one connector</span>
+              <span>safe defaults</span>
+              <span>hosts connect</span>
+            </div>
           </div>
         </div>
-        <blockquote style="margin-top:14px;"><small>The product checklist grew: API · docs · SDK · <b class="accent">MCP server</b>. GitHub, Notion, Stripe, Sentry already ship theirs — <b>"we have an API" is no longer the finish line</b>.</small></blockquote>
+        <div class="mini-flow"><span>API</span><span>docs</span><span>SDK</span><span><b>MCP server</b></span></div>
         <aside class="notes">This is the M+N logic pointed at *them as builders*, not just agent users: the vendor is the natural owner of the connector, exactly like vendors own their SDKs and CLIs today. Evidence: GitHub, Notion, Stripe, Sentry, Linear, Atlassian and others publish MCP servers or MCP-compatible endpoints; meanwhile registries are full of third-party wrappers for products that don't — and those unofficial wrappers are precisely the supply-chain risk we'll flag in the security slide. Practical note for their future products: with the SDK this is small work — they'll build a full server in under an hour in Part 3 — and even a read-only tools-only server (search, fetch, status) already makes a product agent-friendly. If your product has an API, budget its MCP server next to it.</aside>
       </section>
 
@@ -419,6 +422,75 @@
         <aside class="notes">The key design idea is *who controls what*: tools are model-controlled (the LLM decides to call them mid-loop), resources are app-controlled (the host decides what to load into context), prompts are user-controlled (explicitly invoked, e.g. as slash commands in Claude Code). Servers can also request things from the client — sampling (ask the host's LLM to complete something) and elicitation (ask the user a question) — advanced features we'll skip today.</aside>
       </section>
 
+      <!-- 9b. Tool design -->
+      <section>
+        <h2>Design sharp tools</h2>
+        <p class="muted">MCP gives the plug. Tool design decides whether the agent uses it well.</p>
+        <div class="tiles" style="grid-template-columns: repeat(4, 1fr); gap:14px; margin-top:18px;">
+          <div class="tile" style="min-height:150px;"><span class="ico">🏷️</span><h3>Name</h3><p><b>Verb + object</b><br/><code>create_issue</code><br/><code>list_open_tasks</code></p></div>
+          <div class="tile" style="min-height:150px;"><span class="ico">🎯</span><h3>Trigger</h3><p>Description says<br/><b>when to call</b><br/>not just what it is</p></div>
+          <div class="tile" style="min-height:150px;"><span class="ico">{ }</span><h3>Schema</h3><p>Few required fields<br/>tight types<br/>no mystery blob</p></div>
+          <div class="tile" style="min-height:150px;"><span class="ico">↩</span><h3>Result</h3><p>Short · structured<br/><code>isError</code> for<br/>recoverable failure</p></div>
+        </div>
+        <div class="cols" style="gap:18px; margin-top:18px;">
+          <div class="card" style="text-align:center; padding:14px 16px;">
+            <h3 class="accent2" style="margin:0 0 6px;">😬 Fuzzy</h3>
+            <p style="font-size:0.62em; margin:0;"><code>do_everything(inputBlob)</code></p>
+          </div>
+          <div class="card" style="text-align:center; padding:14px 16px;">
+            <h3 class="good" style="margin:0 0 6px;">✅ Sharp</h3>
+            <p style="font-size:0.62em; margin:0;"><code>create_issue({ title, body })</code></p>
+          </div>
+        </div>
+        <blockquote style="margin-top:12px;"><small>A few sharp tools beat one giant magic tool.</small></blockquote>
+        <aside class="notes">This is the design lesson students need before writing their own server. MCP standardizes how tools are exposed, but it does not make a bad tool good. Name tools with verbs and domain objects; write descriptions as routing hints ("Use when..."); keep schemas small and explicit; return short structured results; use isError for recoverable failures. Avoid one generic do_everything tool, huge JSON blobs, or dumping pages of raw output. This also connects to the context/choice-overload slide later.</aside>
+      </section>
+
+      <!-- 9c. Tool or resource quiz -->
+      <section>
+        <h2>Quick check — tool or resource?</h2>
+        <p class="muted">Ask: does the model <b>act</b>, or does the app <b>read context</b>?</p>
+        <div class="tiles" style="grid-template-columns: repeat(4, 1fr); gap:14px; margin-top:22px;">
+          <div class="tile" style="min-height:165px; text-align:center;"><span class="ico">📄</span><h3>Current todo list</h3><p class="good"><b>Resource</b></p><p><code>todo://list</code></p></div>
+          <div class="tile" style="min-height:165px; text-align:center;"><span class="ico">🐙</span><h3>Create issue</h3><p class="accent"><b>Tool</b></p><p><code>create_issue</code></p></div>
+          <div class="tile" style="min-height:165px; text-align:center;"><span class="ico">🧾</span><h3>README text</h3><p class="good"><b>Resource</b></p><p><code>file://README.md</code></p></div>
+          <div class="tile" style="min-height:165px; text-align:center;"><span class="ico">🗄️</span><h3>Run UPDATE</h3><p class="accent"><b>Tool</b></p><p><code>run_query</code></p></div>
+        </div>
+        <blockquote style="margin-top:18px;"><small>Side effects? Usually a <b class="accent">tool</b>. Read-only context? Usually a <b class="good">resource</b>.</small></blockquote>
+        <aside class="notes">Use this as an audience check. Todo list and README are read-only context: resources. Creating a GitHub issue and running an UPDATE query change the world: tools. Some operations can be modeled both ways depending on UX, but the rule of thumb is side effects vs context. This helps students choose the right primitive in their own homework server.</aside>
+      </section>
+
+      <!-- 9d. Bad tool to good tools -->
+      <section>
+        <h2>Bad tool → good tools</h2>
+        <svg viewBox="0 0 1060 430" style="width:100%; max-width:1020px; height:auto; display:block; margin:0 auto;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Refactor a generic API tool into focused tools">
+          <defs>
+            <marker id="ahT" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#9aa7b6"/>
+            </marker>
+          </defs>
+          <rect x="30" y="110" width="310" height="170" rx="14" fill="#231c14" stroke="#f0a35e" stroke-width="2.5"/>
+          <text x="185" y="152" text-anchor="middle" fill="#f0a35e" font-size="22" font-weight="700">😬 One magic tool</text>
+          <text x="185" y="198" text-anchor="middle" fill="#dfe6ee" font-size="18" font-family="ui-monospace, Menlo, monospace">run_api(inputBlob)</text>
+          <text x="185" y="236" text-anchor="middle" fill="#8b97a7" font-size="14">model guesses endpoint · method · body</text>
+          <line x1="360" y1="195" x2="690" y2="195" stroke="#9aa7b6" stroke-width="3" marker-end="url(#ahT)"/>
+          <text x="525" y="170" text-anchor="middle" fill="#7bd88f" font-size="17" font-weight="700">split by intent</text>
+          <g>
+            <rect x="720" y="54" width="300" height="82" rx="12" fill="#16201a" stroke="#7bd88f" stroke-width="2"/>
+            <text x="870" y="88" text-anchor="middle" fill="#7bd88f" font-size="18" font-weight="700">list_issues</text>
+            <text x="870" y="114" text-anchor="middle" fill="#8b97a7" font-size="13">filters · pagination · no side effect</text>
+            <rect x="720" y="164" width="300" height="82" rx="12" fill="#16201a" stroke="#7bd88f" stroke-width="2"/>
+            <text x="870" y="198" text-anchor="middle" fill="#7bd88f" font-size="18" font-weight="700">create_issue</text>
+            <text x="870" y="224" text-anchor="middle" fill="#8b97a7" font-size="13">title · body · labels</text>
+            <rect x="720" y="274" width="300" height="82" rx="12" fill="#16201a" stroke="#7bd88f" stroke-width="2"/>
+            <text x="870" y="308" text-anchor="middle" fill="#7bd88f" font-size="18" font-weight="700">close_issue</text>
+            <text x="870" y="334" text-anchor="middle" fill="#8b97a7" font-size="13">issue_id · reason</text>
+          </g>
+          <text x="530" y="405" text-anchor="middle" fill="#8b97a7" font-size="15">Focused tools give the model fewer hidden decisions.</text>
+        </svg>
+        <aside class="notes">This is a visual refactor. A generic API wrapper looks flexible to us, but it pushes endpoint selection, auth assumptions, request shape, and error handling into the model. Focused tools carry intent in the name and schema, so the model chooses more reliably and the host can place better approval boundaries around writes.</aside>
+      </section>
+
       <!-- 10. Under the hood: JSON-RPC -->
       <section>
         <h2>Under the hood — a session on the wire</h2>
@@ -443,21 +515,15 @@
           <div class="card">
             <span class="ico" style="font-size:1.5em; display:block; margin-bottom:4px;">🖥️</span>
             <h3 class="accent">stdio — local</h3>
-            <ul style="font-size:0.72em;">
-              <li>Host <b>spawns the server</b> as a child process</li>
-              <li>Messages over <b>stdin / stdout</b>, one JSON per line</li>
-              <li>No network, no auth — great for files, DBs, dev tools</li>
-            </ul>
+            <div class="mini-flow" style="font-size:0.56em;"><span>host</span><span>→</span><span>child process</span></div>
+            <div class="mini-flow" style="font-size:0.52em;"><span>stdin/stdout</span><span>JSON-RPC</span><span>no network</span></div>
             <span class="eg"><code>claude mcp add todo -- node server.js</code></span>
           </div>
           <div class="card">
             <span class="ico" style="font-size:1.5em; display:block; margin-bottom:4px;">🌐</span>
             <h3 class="accent2">Streamable HTTP — remote</h3>
-            <ul style="font-size:0.72em;">
-              <li>Server runs <b>anywhere</b>; HTTP POST for requests</li>
-              <li>Optional GET/SSE stream for server messages</li>
-              <li>How hosted servers work (GitHub, Notion, Stripe…)</li>
-            </ul>
+            <div class="mini-flow" style="font-size:0.56em;"><span>host</span><span>→</span><span>HTTP endpoint</span></div>
+            <div class="mini-flow" style="font-size:0.52em;"><span>POST requests</span><span>optional GET/SSE</span><span>OAuth</span></div>
             <span class="eg"><code>claude mcp add --transport http github https://api.githubcopilot.com/mcp/</code></span>
           </div>
         </div>
@@ -561,37 +627,12 @@
       <!-- 15. Add to Claude Code -->
       <section>
         <h2>Plug one into Claude Code</h2>
-        <div class="cols" style="gap:22px;">
-          <div>
-            <p class="step">CLI — one line per server</p>
-            <pre style="font-size:0.42em;"><code data-trim data-noescape class="language-bash"># local stdio server (our todo server, later)
-claude mcp add todo -- node server.js
-
-# remote HTTP server (GitHub official)
-claude mcp add --transport http github \
-  https://api.githubcopilot.com/mcp/
-
-# inspect
-claude mcp list
-claude mcp get github</code></pre>
-          </div>
-          <div>
-            <p class="step">…or a checked-in <code>.mcp.json</code></p>
-            <pre style="font-size:0.42em;"><code data-trim data-noescape class="language-json">{
-  "mcpServers": {
-    "todo": {
-      "command": "node",
-      "args": ["server.js"]
-    },
-    "github": {
-      "type": "http",
-      "url": "https://api.githubcopilot.com/mcp/"
-    }
-  }
-}</code></pre>
-          </div>
+        <div class="tiles" style="grid-template-columns: repeat(3, 1fr); gap:18px; margin-top:18px;">
+          <div class="tile" style="min-height:185px; text-align:center;"><span class="ico">🖥️</span><h3>Local stdio</h3><p><code>claude mcp add todo -- node server.js</code></p></div>
+          <div class="tile" style="min-height:185px; text-align:center;"><span class="ico">🌐</span><h3>Remote HTTP</h3><p><code>claude mcp add --transport http github URL</code></p></div>
+          <div class="tile" style="min-height:185px; text-align:center;"><span class="ico">📦</span><h3>Project config</h3><p><code>.mcp.json</code><br/>shared with the team</p></div>
         </div>
-        <p class="muted"><small><b>Scopes:</b> <code>local</code> (just you, this project) · <code>project</code> (<code>.mcp.json</code>, shared with the team) · <code>user</code> (all your projects). In-app: <code>/mcp</code> shows status &amp; login.</small></p>
+        <div class="mini-flow"><span>add</span><span>→</span><span><code>/mcp</code></span><span>→</span><span>login/check status</span></div>
         <aside class="notes">Live demo: add the filesystem server, run /mcp to show it connected, then ask Claude Code to list files through it. The project scope is the interesting one for teams — commit .mcp.json and every teammate gets the same servers. Remote servers may pop an OAuth browser flow on first use; /mcp is where you re-authenticate.</aside>
       </section>
 
@@ -636,6 +677,60 @@ claude mcp get github</code></pre>
         </div>
         <blockquote style="margin-top:14px;"><small>Guardrails: install from <b>trusted sources</b> · <b class="accent">least-privilege</b> tokens (read-only when possible) · keep <b>approval prompts on</b> for writes &amp; shell · review what each server exposes with <code>/mcp</code>.</small></blockquote>
         <aside class="notes">Same lesson as run_command in session 1, at ecosystem scale. Prompt injection: any text a tool returns (web page, issue, email) can try to steer the model — hosts mitigate but can't eliminate; that's why approval prompts for side-effecting actions matter. Tool poisoning: the model reads tool descriptions, so a hostile description is injected on every turn. Practical rules for students: prefer official servers, read the source of small community ones, scope tokens tightly, never point a write-capable DB server at anything that matters.</aside>
+      </section>
+
+      <!-- 17b. Permission ladder -->
+      <section>
+        <h2>Permission ladder</h2>
+        <p class="muted">Higher impact → stronger human confirmation.</p>
+        <svg viewBox="0 0 1060 430" style="width:100%; max-width:1020px; height:auto; display:block; margin:0 auto;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Permission ladder for agent tool calls">
+          <defs>
+            <marker id="ahP" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#f0a35e"/>
+            </marker>
+          </defs>
+          <text x="56" y="52" fill="#8b97a7" font-size="13" letter-spacing="2">LOW RISK</text>
+          <text x="954" y="52" text-anchor="middle" fill="#f0a35e" font-size="13" letter-spacing="2">HIGH RISK</text>
+          <line x1="94" y1="72" x2="960" y2="72" stroke="#f0a35e" stroke-width="2.5" marker-end="url(#ahP)"/>
+          <g>
+            <rect x="56" y="250" width="210" height="92" rx="14" fill="#16201a" stroke="#7bd88f" stroke-width="2.5"/>
+            <text x="86" y="286" fill="#7bd88f" font-size="25">👀</text>
+            <text x="161" y="282" text-anchor="middle" fill="#7bd88f" font-size="20" font-weight="700">Read</text>
+            <text x="161" y="307" text-anchor="middle" fill="#dfe6ee" font-size="14">list · search · fetch</text>
+            <text x="161" y="328" text-anchor="middle" fill="#8b97a7" font-size="12.5">auto-run is usually OK</text>
+
+            <rect x="296" y="210" width="210" height="132" rx="14" fill="#1b212b" stroke="#58c4dc" stroke-width="2.5"/>
+            <text x="326" y="250" fill="#58c4dc" font-size="25">📝</text>
+            <text x="401" y="246" text-anchor="middle" fill="#58c4dc" font-size="20" font-weight="700">Draft</text>
+            <text x="401" y="272" text-anchor="middle" fill="#dfe6ee" font-size="14">prepare PR · email</text>
+            <text x="401" y="294" text-anchor="middle" fill="#8b97a7" font-size="12.5">show preview first</text>
+            <rect x="344" y="312" width="114" height="20" rx="10" fill="#24303d"/>
+            <text x="401" y="326" text-anchor="middle" fill="#58c4dc" font-size="11.5" font-weight="700">user reviews</text>
+
+            <rect x="536" y="160" width="210" height="182" rx="14" fill="#231c14" stroke="#f0a35e" stroke-width="2.5"/>
+            <text x="566" y="204" fill="#f0a35e" font-size="25">✍️</text>
+            <text x="641" y="200" text-anchor="middle" fill="#f0a35e" font-size="20" font-weight="700">Write</text>
+            <text x="641" y="228" text-anchor="middle" fill="#dfe6ee" font-size="14">create · update · send</text>
+            <text x="641" y="252" text-anchor="middle" fill="#8b97a7" font-size="12.5">approval prompt</text>
+            <rect x="576" y="280" width="130" height="34" rx="10" fill="#332618" stroke="#f0a35e"/>
+            <text x="641" y="302" text-anchor="middle" fill="#f0a35e" font-size="14" font-weight="700">Approve?</text>
+
+            <rect x="776" y="108" width="228" height="234" rx="14" fill="#2a1717" stroke="#ff6b6b" stroke-width="2.5"/>
+            <text x="812" y="154" fill="#ff8a8a" font-size="26">🚨</text>
+            <text x="890" y="150" text-anchor="middle" fill="#ff8a8a" font-size="20" font-weight="700">Dangerous</text>
+            <text x="890" y="178" text-anchor="middle" fill="#dfe6ee" font-size="14">delete · shell · pay</text>
+            <text x="890" y="202" text-anchor="middle" fill="#8b97a7" font-size="12.5">explicit confirmation</text>
+            <rect x="824" y="230" width="132" height="42" rx="10" fill="#3a1d1d" stroke="#ff6b6b"/>
+            <text x="890" y="256" text-anchor="middle" fill="#ff8a8a" font-size="15" font-weight="700">type YES</text>
+          </g>
+          <g stroke="#9aa7b6" stroke-width="2.5" marker-end="url(#ahP)" opacity="0.9">
+            <line x1="266" y1="296" x2="292" y2="282"/>
+            <line x1="506" y1="276" x2="532" y2="252"/>
+            <line x1="746" y1="250" x2="772" y2="226"/>
+          </g>
+          <text x="530" y="392" text-anchor="middle" fill="#8b97a7" font-size="15">Default rule: read freely, write carefully, destroy only with explicit consent.</text>
+        </svg>
+        <aside class="notes">This gives a concrete approval policy. Read-only operations can often auto-run. Drafting is safe if the user reviews before the final action. Writes and sends need approval. Deletions, shell, payments, credential access, and production mutations need explicit confirmation and least-privilege tokens. Good tool design helps because a focused create_issue tool is easier to approve than a generic run_api blob.</aside>
       </section>
 
       <!-- ===================== PART 3 ===================== -->
@@ -797,6 +892,23 @@ server.registerTool(
         <aside class="notes">The Inspector is MCP's Postman. Live demo: call add_task twice, list_tasks, read the todo://list resource — all without any model. When something breaks later inside Claude Code, reproduce it in the Inspector to learn whether the bug is in the server or in the wiring.</aside>
       </section>
 
+      <!-- 23b. Debugging flow -->
+      <section>
+        <h2>Debug from the bottom up</h2>
+        <p class="muted">Do not start by blaming the model.</p>
+        <div class="mini-flow" style="font-size:0.62em; margin-top:20px;">
+          <span>server logs</span><span>→</span><span>Inspector</span><span>→</span><span><code>/mcp</code></span><span>→</span><span>agent loop</span>
+        </div>
+        <div class="tiles" style="grid-template-columns: repeat(4, 1fr); gap:14px; margin-top:22px;">
+          <div class="tile" style="min-height:150px;"><span class="ico">🧾</span><h3>1 · Logs</h3><p>stdio: stderr<br/>startup errors<br/>bad env vars</p></div>
+          <div class="tile" style="min-height:150px;"><span class="ico">🔍</span><h3>2 · Inspector</h3><p>list tools<br/>call directly<br/>read raw JSON</p></div>
+          <div class="tile" style="min-height:150px;"><span class="ico">🔌</span><h3>3 · Host</h3><p><code>/mcp</code> status<br/>auth<br/>tool names</p></div>
+          <div class="tile" style="min-height:150px;"><span class="ico">🧠</span><h3>4 · Model</h3><p>small prompt<br/>one server<br/>one tool call</p></div>
+        </div>
+        <blockquote style="margin-top:18px;"><small>Two moving parts first. Then three.</small></blockquote>
+        <aside class="notes">Students will often jump straight into "the model is dumb". Teach them to isolate layers: does the server start; does the Inspector list/call the tool; does Claude Code show the server in /mcp; only then test the model. Also remind them stdout corruption is visible here: Inspector fails handshake or raw JSON looks broken.</aside>
+      </section>
+
       <!-- 24. Step 5 plug into Claude Code -->
       <section>
         <h2>Step 5 — Plug it into Claude Code 🎬</h2>
@@ -841,6 +953,60 @@ for (const call of reply.tool_calls) {
 }</code></pre>
         <p class="good" style="margin:8px 0 0;">The loop is untouched — only the tool list and the dispatch grew. Your agent is now a host.</p>
         <aside class="notes">This slide closes the circle with session 1 and is the heart of the homework. Walk it slowly: listTools feeds the model's tool list (MCP inputSchema is already JSON Schema, exactly what the OpenAI-style API wants); the dispatch picks local handler vs mcp.callTool. With multiple servers, keep one Client per server and route by which server the tool name came from — that's what the homework's config.json asks for.</aside>
+      </section>
+
+      <!-- 25a. Host checklist -->
+      <section>
+        <h2>How your agent becomes a host</h2>
+        <p class="muted" style="margin:0 0 6px;">A host does three jobs: <b>plug in servers</b>, <b>show tools to the model</b>, then <b>route each call</b>.</p>
+        <svg viewBox="0 0 1060 400" style="width:100%; max-width:1020px; height:auto; display:block; margin:0 auto;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="An MCP host is a router between the model's tool menu and connected servers">
+          <defs>
+            <marker id="ahH" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#57cc99"/>
+            </marker>
+          </defs>
+
+          <rect x="390" y="54" width="280" height="120" rx="22" fill="#16201a" stroke="#57cc99" stroke-width="3"></rect>
+          <text x="530" y="96" text-anchor="middle" font-size="40">🏠</text>
+          <text x="530" y="130" text-anchor="middle" fill="#57cc99" font-size="27" font-weight="800">Your agent host</text>
+          <text x="530" y="156" text-anchor="middle" fill="#d6e4ff" font-size="17">router + tool menu</text>
+
+          <rect x="62" y="58" width="250" height="112" rx="18" fill="#182430" stroke="#4dabf7" stroke-width="2.5"></rect>
+          <text x="187" y="98" text-anchor="middle" font-size="34">🧠</text>
+          <text x="187" y="130" text-anchor="middle" fill="#4dabf7" font-size="24" font-weight="800">Model</text>
+          <text x="187" y="154" text-anchor="middle" fill="#9aa7b6" font-size="15">picks from one menu</text>
+
+          <rect x="748" y="58" width="250" height="112" rx="18" fill="#231c14" stroke="#ffd166" stroke-width="2.5"></rect>
+          <text x="873" y="98" text-anchor="middle" font-size="34">📋</text>
+          <text x="873" y="130" text-anchor="middle" fill="#ffd166" font-size="24" font-weight="800">Tool menu</text>
+          <text x="873" y="154" text-anchor="middle" fill="#9aa7b6" font-size="15">local + MCP tools</text>
+
+          <line x1="316" y1="114" x2="382" y2="114" stroke="#57cc99" stroke-width="5" marker-end="url(#ahH)"></line>
+          <line x1="674" y1="114" x2="740" y2="114" stroke="#57cc99" stroke-width="5" marker-end="url(#ahH)"></line>
+
+          <rect x="70" y="250" width="250" height="104" rx="18" fill="#111b2e" stroke="#3a557a" stroke-width="2.5"></rect>
+          <text x="195" y="289" text-anchor="middle" font-size="34">🖥️</text>
+          <text x="195" y="320" text-anchor="middle" fill="#d6e4ff" font-size="22" font-weight="800">todo server</text>
+          <text x="195" y="344" text-anchor="middle" fill="#9aa7b6" font-size="14">add_task · list_tasks</text>
+
+          <rect x="405" y="250" width="250" height="104" rx="18" fill="#111b2e" stroke="#3a557a" stroke-width="2.5"></rect>
+          <text x="530" y="289" text-anchor="middle" font-size="34">🐙</text>
+          <text x="530" y="320" text-anchor="middle" fill="#d6e4ff" font-size="22" font-weight="800">GitHub server</text>
+          <text x="530" y="344" text-anchor="middle" fill="#9aa7b6" font-size="14">issues · pull requests</text>
+
+          <rect x="740" y="250" width="250" height="104" rx="18" fill="#111b2e" stroke="#3a557a" stroke-width="2.5"></rect>
+          <text x="865" y="289" text-anchor="middle" font-size="34">🗄️</text>
+          <text x="865" y="320" text-anchor="middle" fill="#d6e4ff" font-size="22" font-weight="800">DB server</text>
+          <text x="865" y="344" text-anchor="middle" fill="#9aa7b6" font-size="14">search · read · write</text>
+
+          <g stroke="#57cc99" stroke-width="4.5" marker-end="url(#ahH)">
+            <line x1="470" y1="178" x2="225" y2="244"></line>
+            <line x1="530" y1="178" x2="530" y2="244"></line>
+            <line x1="590" y1="178" x2="835" y2="244"></line>
+          </g>
+          <text x="530" y="392" text-anchor="middle" fill="#9aa7b6" font-size="16">When the model says “call GitHub”, the host knows which plug to use.</text>
+        </svg>
+        <aside class="notes">Keep this simple: a host is not a new kind of model. It is your old agent loop plus a router. At startup it asks every server what tools it has and builds one menu for the model. At runtime the model chooses a tool name; the host looks up which server owns that name and forwards the call. The implementation detail is ownership metadata during merge; without it, routing breaks or name collisions happen.</aside>
       </section>
 
       <!-- 25b. Step 7 — same server over HTTP -->
@@ -969,6 +1135,64 @@ claude mcp add --transport http todo https://todo.example.com/mcp \
         <aside class="notes">This is homework-grade auth: one middleware, one env var, done — and it's honest about its limits (one shared identity, no scopes). Points to make: it runs before handleRequest, so unauthenticated requests never touch MCP code; the key lives in an env var, never in git; bearer means "whoever holds it is in", which is why HTTPS is non-negotiable. For production add a timing-safe compare (crypto.timingSafeEqual) instead of !== — mention, don't dwell. Demo idea: call it from the Inspector twice — once without the header (watch the 401), once with it (tools appear). In a checked-in .mcp.json the header value can reference an env var, so the key still stays out of the repo.</aside>
       </section>
 
+      <!-- 25f. Deployment checklist -->
+      <section>
+        <h2>Public server = front door on the internet</h2>
+        <svg viewBox="0 0 1060 430" style="width:100%; max-width:1020px; height:auto; display:block; margin:4px auto 0;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Public MCP server request passes through HTTPS, auth, limits, logs, health and key rotation">
+          <defs>
+            <marker id="ahPublic" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#57cc99"></path>
+            </marker>
+          </defs>
+          <text x="75" y="78" font-size="54">🌍</text>
+          <text x="75" y="118" text-anchor="middle" font-size="20" fill="#d6e4ff" font-weight="800">Internet</text>
+          <line x1="135" y1="92" x2="910" y2="92" stroke="#57cc99" stroke-width="8" stroke-linecap="round" marker-end="url(#ahPublic)"></line>
+
+          <g>
+            <rect x="185" y="38" width="130" height="108" rx="16" fill="#111b2e" stroke="#4dabf7" stroke-width="2.5"></rect>
+            <text x="250" y="75" text-anchor="middle" font-size="30">🔒</text>
+            <text x="250" y="106" text-anchor="middle" font-size="22" fill="#4dabf7" font-weight="800">HTTPS</text>
+            <text x="250" y="130" text-anchor="middle" font-size="14" fill="#9aa7b6">encrypt</text>
+          </g>
+          <g>
+            <rect x="335" y="38" width="130" height="108" rx="16" fill="#111b2e" stroke="#ffd166" stroke-width="2.5"></rect>
+            <text x="400" y="75" text-anchor="middle" font-size="30">🔑</text>
+            <text x="400" y="106" text-anchor="middle" font-size="22" fill="#ffd166" font-weight="800">Auth</text>
+            <text x="400" y="130" text-anchor="middle" font-size="14" fill="#9aa7b6">who are you?</text>
+          </g>
+          <g>
+            <rect x="485" y="38" width="130" height="108" rx="16" fill="#111b2e" stroke="#ff6b6b" stroke-width="2.5"></rect>
+            <text x="550" y="75" text-anchor="middle" font-size="30">🚦</text>
+            <text x="550" y="106" text-anchor="middle" font-size="22" fill="#ff6b6b" font-weight="800">Limits</text>
+            <text x="550" y="130" text-anchor="middle" font-size="14" fill="#9aa7b6">how much?</text>
+          </g>
+          <g>
+            <rect x="635" y="38" width="130" height="108" rx="16" fill="#111b2e" stroke="#57cc99" stroke-width="2.5"></rect>
+            <text x="700" y="75" text-anchor="middle" font-size="30">📜</text>
+            <text x="700" y="106" text-anchor="middle" font-size="22" fill="#57cc99" font-weight="800">Logs</text>
+            <text x="700" y="130" text-anchor="middle" font-size="14" fill="#9aa7b6">what happened?</text>
+          </g>
+
+          <rect x="835" y="40" width="165" height="104" rx="18" fill="#16201a" stroke="#57cc99" stroke-width="3"></rect>
+          <text x="918" y="78" text-anchor="middle" font-size="32">🔌</text>
+          <text x="918" y="111" text-anchor="middle" font-size="22" fill="#57cc99" font-weight="800">MCP server</text>
+          <text x="918" y="134" text-anchor="middle" font-size="14" fill="#9aa7b6">after checks</text>
+
+          <rect x="122" y="210" width="360" height="104" rx="18" fill="#0b1220" stroke="#3a557a" stroke-width="2"></rect>
+          <text x="158" y="252" font-size="32">🩺</text>
+          <text x="205" y="250" font-size="24" fill="#d6e4ff" font-weight="800">Health endpoint</text>
+          <text x="205" y="282" font-size="18" fill="#9aa7b6"><tspan font-family="monospace">GET /health</tspan> says “alive”</text>
+
+          <rect x="578" y="210" width="360" height="104" rx="18" fill="#0b1220" stroke="#3a557a" stroke-width="2"></rect>
+          <text x="614" y="252" font-size="32">🔁</text>
+          <text x="661" y="250" font-size="24" fill="#d6e4ff" font-weight="800">Key rotation</text>
+          <text x="661" y="282" font-size="18" fill="#9aa7b6">leaked key? replace it fast</text>
+
+          <text x="530" y="375" text-anchor="middle" font-size="24" fill="#d6e4ff">Share the URL only after the front door is ready.</text>
+        </svg>
+        <aside class="notes">This is intentionally practical for the homework. Render/Fly/etc. give HTTPS; add a small health endpoint outside MCP; never log Authorization headers; add request size limits and timeouts; keep the API key in environment variables; document how to rotate the grader key. This also distinguishes demo auth from production OAuth.</aside>
+      </section>
+
       <!-- 25f. Real examples — GitHub & Google Drive -->
       <section>
         <h2>Real servers — where does the auth live?</h2>
@@ -1027,19 +1251,13 @@ claude mcp add --transport http todo https://todo.example.com/mcp \
         <div class="cols" style="gap:22px;">
           <div class="card">
             <h3 class="good">🖥️ Ollama + Qwen3.5 — local</h3>
-            <ul style="font-size:0.72em;">
-              <li>Same agent + MCP host code, <code>baseURL</code> → <code>localhost:11434/v1</code></li>
-              <li><b>qwen3.5:4b</b> handles tool calling well</li>
-              <li>Free · private · offline — homework-ready</li>
-            </ul>
+            <div class="mini-flow" style="font-size:0.56em;"><span>same code</span><span><code>localhost:11434</code></span><span>private</span></div>
+            <p class="muted" style="font-size:0.62em; margin-top:12px;"><code>qwen3.5:4b</code> is homework-ready.</p>
           </div>
           <div class="card">
             <h3 class="accent">🎓 FIT LLM service — free GPU</h3>
-            <ul style="font-size:0.72em;">
-              <li><code>baseURL</code> → <code>api-fit.hcmus.edu.vn/v1</code></li>
-              <li><b>Current FIT model list</b> · tool calling ✓</li>
-              <li>Check model ID + key before class</li>
-            </ul>
+            <div class="mini-flow" style="font-size:0.56em;"><span><code>api-fit</code></span><span>tool calling</span><span>verify ID</span></div>
+            <p class="muted" style="font-size:0.62em; margin-top:12px;">Check model list + key before class.</p>
           </div>
         </div>
         <blockquote style="margin-top:16px;"><small>⚠️ Small models get <b>confused by big tool lists</b>. Connect <b class="accent2">one or two servers</b>, not ten — curate what the model sees.</small></blockquote>
@@ -1164,40 +1382,85 @@ description: Write my morning standup update.
 
       <!-- 27c3. A skill for building software -->
       <section>
-        <h2>Same trick for building software 🎬</h2>
-        <p class="muted" style="margin:0 0 8px;">Encode your team's dev process — <b class="accent2">plan → code → review → test</b> — and every feature ships the same way:</p>
+        <h2>For coding: skills remember team rules</h2>
+        <p class="muted">The user says “add feature”. The skill says “do it our way”.</p>
+        <svg viewBox="0 0 1060 390" style="width:100%; max-width:1020px; height:auto; display:block; margin:0 auto;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="A feature development skill applies team conventions to a coding request">
+          <defs>
+            <marker id="ahDev" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#9aa7b6"/>
+            </marker>
+          </defs>
+          <rect x="48" y="118" width="250" height="124" rx="18" fill="#182430" stroke="#58c4dc" stroke-width="2.5"/>
+          <text x="173" y="158" text-anchor="middle" fill="#58c4dc" font-size="21" font-weight="700">User ask</text>
+          <text x="173" y="194" text-anchor="middle" fill="#dfe6ee" font-size="18">"Add dark mode"</text>
+          <text x="173" y="220" text-anchor="middle" fill="#8b97a7" font-size="13">does not mention PR rules</text>
+
+          <rect x="382" y="58" width="296" height="246" rx="18" fill="#231c14" stroke="#f0a35e" stroke-width="2.5"/>
+          <text x="530" y="98" text-anchor="middle" fill="#f0a35e" font-size="22" font-weight="700">feature-dev skill</text>
+          <text x="530" y="132" text-anchor="middle" fill="#dfe6ee" font-size="17">🌿 branch: <tspan font-family="monospace">feat/...</tspan></text>
+          <text x="530" y="166" text-anchor="middle" fill="#dfe6ee" font-size="17">🧭 plan before edit</text>
+          <text x="530" y="200" text-anchor="middle" fill="#dfe6ee" font-size="17">🔍 self-review diff</text>
+          <text x="530" y="234" text-anchor="middle" fill="#dfe6ee" font-size="17">✅ unit tests green</text>
+          <text x="530" y="268" text-anchor="middle" fill="#dfe6ee" font-size="17">📬 PR format followed</text>
+
+          <rect x="762" y="118" width="250" height="124" rx="18" fill="#16201a" stroke="#7bd88f" stroke-width="2.5"/>
+          <text x="887" y="158" text-anchor="middle" fill="#7bd88f" font-size="21" font-weight="700">PR ready</text>
+          <text x="887" y="194" text-anchor="middle" fill="#dfe6ee" font-size="18">same convention</text>
+          <text x="887" y="220" text-anchor="middle" fill="#8b97a7" font-size="13">even if user forgot to ask</text>
+
+          <g stroke="#9aa7b6" stroke-width="2.5" marker-end="url(#ahDev)">
+            <line x1="310" y1="185" x2="396" y2="185"/>
+            <line x1="660" y1="185" x2="746" y2="185"/>
+          </g>
+          <text x="530" y="350" text-anchor="middle" fill="#8b97a7" font-size="15">The skill turns tribal knowledge into a repeatable dev path.</text>
+        </svg>
+        <aside class="notes">This slide is the conceptual bridge before the detailed trace. A normal user request names the desired outcome, not the team's process. The skill fills in the team's rules: branch naming, planning, code style, self-review, unit tests, and PR shape. This is how skills make an agent's definition of "done" match the team's definition of done.</aside>
+      </section>
+
+      <section>
+        <h2>Example: team rules inside SKILL.md</h2>
+        <p class="muted">These are the tiny conventions humans forget to repeat.</p>
+        <div class="tiles" style="grid-template-columns: repeat(4, 1fr); gap:14px; margin-top:18px;">
+          <div class="tile" style="min-height:170px; text-align:center;"><span class="ico">🌿</span><h3>Branch</h3><p><code>feat/&lt;ticket&gt;-slug</code><br/>one feature only</p></div>
+          <div class="tile" style="min-height:170px; text-align:center;"><span class="ico">🔍</span><h3>Review</h3><p>small diff<br/>edge cases<br/>no dead code</p></div>
+          <div class="tile" style="min-height:170px; text-align:center;"><span class="ico">✅</span><h3>Test</h3><p>unit tests<br/>lint/typecheck<br/>fix failures</p></div>
+          <div class="tile" style="min-height:170px; text-align:center;"><span class="ico">📬</span><h3>PR</h3><p>summary<br/>test evidence<br/>risk notes</p></div>
+        </div>
+        <div class="mini-flow"><span>repo convention</span><span>→</span><span>agent behavior</span><span>→</span><span><b>reviewable PR</b></span></div>
+        <aside class="notes">This is the "why it matters" slide. Agents often stop after they make a plausible edit. The skill can encode the boring but valuable team rules: branch naming, small PRs, self-review, unit tests, lint/typecheck, and a PR template. For a team, the skill is a lightweight process policy. It is not a hard security boundary, but it strongly shapes behavior.</aside>
+      </section>
+
+      <section>
+        <h2>Same trick: one feature request → PR-ready</h2>
+        <p class="muted" style="margin:0 0 8px;">The skill fills in the branch, review, tests, and PR checklist.</p>
         <div class="cols" style="gap:20px;">
           <div>
-            <pre style="font-size:0.4em; margin:0;"><code data-trim data-noescape class="language-markdown">---
+            <pre style="font-size:0.46em; margin:0;"><code data-trim data-noescape class="language-markdown">---
 name: feature-dev
-description: Build a feature end-to-end.
-  Use when asked to add or change
-  functionality in this repo.
+description: Build a feature using our PR rules.
+  Use when asked to add or change functionality.
 ---
 
-# Feature workflow
+# Team conventions
 
-1. **Plan** — restate the ask; list the
-   files you'll touch, then proceed.
-2. **Code** — smallest diff that works;
-   follow STYLE.md.
-3. **Review** — self-review the diff:
-   naming, edge cases, dead code.
-4. **Test** — run `npm test`; fix
-   failures before saying "done".</code></pre>
+1. Create branch: feat/&lt;ticket&gt;-slug
+2. Keep diff small
+3. Self-review before final
+4. Run unit tests
+5. Open PR with test evidence</code></pre>
           </div>
           <div class="trace" style="font-size:0.5em;">
             <div class="msg user"><span class="who">USER</span> Add a dark-mode toggle to the settings page.</div>
             <div class="msg bot"><span class="who">AGENT</span> <em>matches <code>feature-dev</code> → SKILL.md loaded</em></div>
-            <div class="msg bot"><span class="who">AGENT</span> ① <b>Plan</b> — touch <code>settings.js</code> + <code>theme.css</code>, persist choice in localStorage</div>
-            <div class="msg bot"><span class="who">AGENT</span> ② <b>Code</b> — <em>→ edits both files, minimal diff</em></div>
-            <div class="msg bot"><span class="who">AGENT</span> ③ <b>Review</b> — found a hard-coded label → fixed; no dead code</div>
+            <div class="msg bot"><span class="who">AGENT</span> ① branch <code>feat/123-dark-mode-toggle</code></div>
+            <div class="msg bot"><span class="who">AGENT</span> ② edit <code>settings.js</code> + <code>theme.css</code>; small diff</div>
+            <div class="msg bot"><span class="who">AGENT</span> ③ self-review — fixed missing aria label</div>
             <div class="msg tool"><span class="who">TOOL</span> npm test → 14 passed, 0 failed</div>
-            <div class="msg done"><span class="who">AGENT</span> ✅ Toggle shipped — planned, reviewed, tests green</div>
+            <div class="msg done"><span class="who">AGENT</span> ✅ PR ready — summary + tests + risk notes included</div>
           </div>
         </div>
-        <p class="muted" style="margin:8px 0 0;"><small>The skill defines what <b>"done"</b> means: no review skipped, no red tests — <b>the agent's standard becomes the team's standard</b>.</small></p>
-        <aside class="notes">This is the skill most of them will want first. Walk the two panes together: the numbered steps on the left reappear as the trace on the right — the user asked for a feature, never for a plan or a review; the gates came from SKILL.md. Point out the steps can also name MCP tools (end with github · create_pr, or post to Slack) — same composition as the standup skill. Real-world anchor: Claude Code's built-in /code-review and /security-review commands are exactly this kind of skill, and github.com/anthropics/skills has more examples worth reading. The deeper point: an agent will happily say "done" after step 2 — the skill is how you make its definition of done match your team's.</aside>
+        <p class="muted" style="margin:8px 0 0;"><small>The user did not ask for branch names, review convention, or tests. The <b>skill remembered</b>.</small></p>
+        <aside class="notes">This is the skill most of them will want first. Walk the two panes together: the conventions on the left reappear as the trace on the right — the user asked for a feature, never for a branch or PR format. Point out the steps can also name MCP tools: github create_pr, CI status, issue lookup, or Slack notification. Real-world anchor: code-review and security-review commands are exactly this kind of packaged workflow. The deeper point: an agent will happily say "done" after editing files — the skill is how you make its definition of done match your team's.</aside>
       </section>
 
       <!-- 27d. Progressive disclosure -->
@@ -1275,27 +1538,12 @@ claude
       <!-- 27d2b. Free skill packs -->
       <section>
         <h2>Free skill packs worth installing</h2>
-        <div class="cols3" style="margin-top:8px;">
-          <div class="card">
-            <span class="ico" style="font-size:1.5em; display:block; margin-bottom:6px;">📦</span>
-            <h3>anthropics/skills</h3>
-            <p><small>The <b>official open-source</b> repo: Office files (<code>docx</code> · <code>xlsx</code> · <code>pptx</code> · <code>pdf</code>), <b>skill-creator</b>, <b>mcp-builder</b>…</small></p>
-            <span class="eg">github.com/anthropics/skills</span>
-          </div>
-          <div class="card">
-            <span class="ico" style="font-size:1.5em; display:block; margin-bottom:6px;">🦸</span>
-            <h3 class="accent2">Superpowers</h3>
-            <p><small>Popular <b>community pack</b>: TDD, systematic debugging, planning — how-to-<i>think</i> workflows for coding agents.</small></p>
-            <span class="eg">github.com/obra/superpowers</span>
-          </div>
-          <div class="card">
-            <span class="ico" style="font-size:1.5em; display:block; margin-bottom:6px;">🔌</span>
-            <h3 class="good">Plugin marketplaces</h3>
-            <p><small>In Claude Code, <code>/plugin</code> installs packs bundling <b>skills + commands + MCP servers</b> — any git repo can be a marketplace.</small></p>
-            <span class="eg">docs.claude.com → plugins</span>
-          </div>
+        <div class="tiles" style="grid-template-columns: repeat(3, 1fr); gap:18px; margin-top:18px;">
+          <div class="tile" style="min-height:190px; text-align:center;"><span class="ico">📦</span><h3>anthropics/skills</h3><p>Official examples<br/><code>docx · xlsx · pptx · pdf</code><br/>skill-creator · mcp-builder</p></div>
+          <div class="tile" style="min-height:190px; text-align:center;"><span class="ico">🛠️</span><h3 class="accent2">Superpowers</h3><p>Community workflows<br/>TDD · debugging · planning</p></div>
+          <div class="tile" style="min-height:190px; text-align:center;"><span class="ico">🔌</span><h3 class="good">Plugins</h3><p>Skills + commands<br/>+ MCP servers<br/><code>/plugin</code></p></div>
         </div>
-        <blockquote style="margin-top:16px;"><small>⚠️ A skill is <b>instructions your agent will follow</b> — read <code>SKILL.md</code> before installing. Same supply-chain rule as MCP servers: <b>trust the author</b>.</small></blockquote>
+        <blockquote style="margin-top:16px;"><small>Read <code>SKILL.md</code> before installing. Your agent will follow it.</small></blockquote>
         <aside class="notes">Two fun meta-examples in the official repo: skill-creator is a skill that helps you write skills, and mcp-builder helps you write MCP servers — today's Part 3, packaged as know-how. The document skills (docx/xlsx/pptx/pdf) are the same ones behind Claude's file-creation features, so they're production-grade reading material. Superpowers (Jesse Vincent) is the best-known community pack — its debugging and TDD skills are worth reading even if you never install them, as models of how to write process instructions. Installing: clone folders into .claude/skills/, or use /plugin with a marketplace repo. Grading-free homework hint: reading two good skills is the fastest way to learn to write your own.</aside>
       </section>
 
@@ -1353,15 +1601,17 @@ claude
       <!-- 28. Recap -->
       <section>
         <h2>Recap — the mental model</h2>
-        <ul style="list-style:none; margin-left:0; padding-left:0;">
-          <li><span style="margin-right:10px;">🔍</span><b class="accent">Problem:</b> M apps × N tools = M×N custom glue.</li>
-          <li><span style="margin-right:10px;">🔌</span><b class="accent">MCP</b> = one open protocol → M + N connectors. "USB-C for AI."</li>
-          <li><span style="margin-right:10px;">🏠</span><b>Host</b> ⊃ <b>clients</b> (1:1) → <b>servers</b> — over <b>stdio</b> or <b>HTTP</b>, speaking <b>JSON-RPC</b>.</li>
-          <li><span style="margin-right:10px;">🎁</span>Servers offer <b class="accent">tools</b> (act) · <b class="accent2">resources</b> (read) · <b class="good">prompts</b> (reuse).</li>
-          <li><span style="margin-right:10px;">🧠</span>The model never sees MCP — <span class="muted">just a longer tool list; the loop is unchanged.</span></li>
-          <li><span style="margin-right:10px;">🛠️</span>~60 lines of Node.js = a real server reusable across <b>MCP-compatible</b> hosts.</li>
-          <li><span style="margin-right:10px;">📖</span><b class="good">Skills</b> = folders of instructions — know-how that <span class="muted">orchestrates tools with low standing context cost.</span></li>
-        </ul>
+        <div class="tiles" style="grid-template-columns: repeat(4, 1fr); gap:14px; margin-top:12px;">
+          <div class="tile" style="min-height:145px; text-align:center;"><span class="ico">🔍</span><h3>Problem</h3><p>M × N glue</p></div>
+          <div class="tile" style="min-height:145px; text-align:center;"><span class="ico">🔌</span><h3>MCP</h3><p>M + N connectors</p></div>
+          <div class="tile" style="min-height:145px; text-align:center;"><span class="ico">🏠</span><h3>Host</h3><p>clients → servers</p></div>
+          <div class="tile" style="min-height:145px; text-align:center;"><span class="ico">🎁</span><h3>Server</h3><p>tools · resources · prompts</p></div>
+          <div class="tile" style="min-height:145px; text-align:center;"><span class="ico">🧠</span><h3>Model</h3><p>sees tool list</p></div>
+          <div class="tile" style="min-height:145px; text-align:center;"><span class="ico">🛠️</span><h3>Build</h3><p>small server, big reach</p></div>
+          <div class="tile" style="min-height:145px; text-align:center;"><span class="ico">📖</span><h3>Skills</h3><p>repeatable know-how</p></div>
+          <div class="tile" style="min-height:145px; text-align:center;"><span class="ico">🔐</span><h3>Trust</h3><p>least privilege</p></div>
+        </div>
+        <blockquote style="margin-top:14px;"><small>Capabilities need design. Reach needs trust. Know-how needs skills.</small></blockquote>
       </section>
 
       <!-- 29. Where to go next -->
@@ -1390,72 +1640,86 @@ claude
       <section>
         <div class="kicker">Assignment · 1 / 2</div>
         <h2>📝 Homework — what to build</h2>
-        <div class="cols" style="gap:24px;">
-          <div class="card">
-            <h3 class="good">A — Make your agent an MCP host</h3>
-            <div class="visual-list">
-              <div class="visual-row"><span class="num">1</span><div><h3>Start</h3><p>Session-1 CLI agent</p></div></div>
-              <div class="visual-row"><span class="num">2</span><div><h3>Load</h3><p><code>config.json</code> servers: stdio + http</p></div></div>
-              <div class="visual-row"><span class="num">3</span><div><h3>Route</h3><p>Merge tools, dispatch calls</p></div></div>
-              <div class="visual-row"><span class="num">4</span><div><h3>Run offline</h3><p>Ollama + Qwen</p></div></div>
-            </div>
-            <pre style="font-size:0.32em; margin:10px 0 0;"><code data-trim data-noescape class="language-json">{
-  "model": "qwen3.5:4b",
-  "baseURL": "http://localhost:11434/v1",
-  "mcpServers": {
-    "todo":      { "command": "node", "args": ["server.js"] },
-    "todo-http": { "url": "https://you.onrender.com/mcp",
-                   "headers": { "Authorization": "Bearer …" } }
-  }
-}</code></pre>
-          </div>
-          <div class="card">
-            <h3 class="accent">B — 3 servers total, one per plug</h3>
-            <div class="tiles" style="grid-template-columns: 1fr; gap:12px;">
-              <div class="tile" style="min-height:0;"><span class="ico">🖥️</span><h3>stdio</h3><p>≥3 tools · 1 resource · 1 prompt · <code>isError</code></p></div>
-              <div class="tile" style="min-height:0;"><span class="ico">🔗</span><h3>local HTTP</h3><p>Streamable HTTP on localhost · Inspector passes</p></div>
-              <div class="tile" style="min-height:0;"><span class="ico">🌍</span><h3>public HTTP</h3><p>Deployed · API-key guard · classmate can connect</p></div>
-            </div>
-            <blockquote style="margin-top:12px;"><small>All 3 work from <b>Claude Code</b> and <b>your agent</b>.</small></blockquote>
-          </div>
-        </div>
+        <svg viewBox="0 0 1060 430" style="width:100%; max-width:1020px; height:auto; display:block; margin:2px auto 0;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Homework build map: one host connects to three MCP servers">
+          <defs>
+            <marker id="ahHw1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#57cc99"></path>
+            </marker>
+          </defs>
+          <rect x="385" y="42" width="290" height="116" rx="20" fill="#16201a" stroke="#57cc99" stroke-width="3"></rect>
+          <text x="530" y="84" text-anchor="middle" font-size="40">🏠</text>
+          <text x="530" y="118" text-anchor="middle" font-size="25" fill="#57cc99" font-weight="800">Your agent = MCP host</text>
+          <text x="530" y="142" text-anchor="middle" font-size="15" fill="#9aa7b6">load config · merge tools · dispatch calls</text>
+
+          <line x1="530" y1="162" x2="210" y2="245" stroke="#57cc99" stroke-width="5" marker-end="url(#ahHw1)"></line>
+          <line x1="530" y1="162" x2="530" y2="245" stroke="#57cc99" stroke-width="5" marker-end="url(#ahHw1)"></line>
+          <line x1="530" y1="162" x2="850" y2="245" stroke="#57cc99" stroke-width="5" marker-end="url(#ahHw1)"></line>
+
+          <g>
+            <rect x="60" y="245" width="285" height="126" rx="18" fill="#111b2e" stroke="#4dabf7" stroke-width="2.5"></rect>
+            <text x="202" y="288" text-anchor="middle" font-size="36">🖥️</text>
+            <text x="202" y="322" text-anchor="middle" font-size="24" fill="#4dabf7" font-weight="800">stdio server</text>
+            <text x="202" y="350" text-anchor="middle" font-size="16" fill="#d6e4ff">3 tools · resource · prompt</text>
+          </g>
+          <g>
+            <rect x="388" y="245" width="285" height="126" rx="18" fill="#111b2e" stroke="#ffd166" stroke-width="2.5"></rect>
+            <text x="530" y="288" text-anchor="middle" font-size="36">🔗</text>
+            <text x="530" y="322" text-anchor="middle" font-size="24" fill="#ffd166" font-weight="800">local HTTP</text>
+            <text x="530" y="350" text-anchor="middle" font-size="16" fill="#d6e4ff">localhost · Inspector passes</text>
+          </g>
+          <g>
+            <rect x="716" y="245" width="285" height="126" rx="18" fill="#111b2e" stroke="#ff6b6b" stroke-width="2.5"></rect>
+            <text x="858" y="288" text-anchor="middle" font-size="36">🌍</text>
+            <text x="858" y="322" text-anchor="middle" font-size="24" fill="#ff6b6b" font-weight="800">public HTTP</text>
+            <text x="858" y="350" text-anchor="middle" font-size="16" fill="#d6e4ff">deployed · API key</text>
+          </g>
+          <text x="530" y="410" text-anchor="middle" font-size="22" fill="#d6e4ff">All 3 must work from Claude Code and your agent.</text>
+        </svg>
+        <aside class="notes">Config detail to show in the repo, not on this slide: model qwen3.5:4b through Ollama, baseURL http://localhost:11434/v1, and mcpServers containing one stdio command plus one HTTP URL with Authorization bearer header. The stdio server needs at least three tools, one resource, one prompt, and clear isError behavior. The HTTP versions should pass Inspector; the public one needs deployment and API-key protection.</aside>
       </section>
 
       <!-- 31. HOMEWORK — part 2 -->
       <section>
         <div class="kicker">Assignment · 2 / 2</div>
         <h2>📝 Homework — submit &amp; grading</h2>
-        <div class="cols3" style="gap:18px;">
-          <div class="card">
-            <h3 class="accent">Demo &amp; submit</h3>
-            <div class="visual-list">
-              <div class="visual-row"><span class="num">🎥</span><div><h3>YouTube demo</h3><p>Short and runnable</p></div></div>
-              <div class="visual-row"><span class="num">📤</span><div><h3>Moodle</h3><p>Link + source code</p></div></div>
-              <div class="visual-row"><span class="num">🔑</span><div><h3>Public URL + key</h3><p>For the grader</p></div></div>
-            </div>
-          </div>
-          <div class="card">
-            <h3 class="accent2">Rules</h3>
-            <div class="visual-list">
-              <div class="visual-row"><span class="num">{ }</span><div><h3>Any SDK language</h3><p>TS · Python · Java · C#</p></div></div>
-              <div class="visual-row"><span class="num">AI</span><div><h3>Assistants allowed</h3><p>Use them, understand the code</p></div></div>
-              <div class="visual-row"><span class="num">🏠</span><div><h3>Offline model</h3><p>Ollama + Qwen / gpt-oss</p></div></div>
-            </div>
-          </div>
-          <div class="card">
-            <h3 class="good">Grading (100%)</h3>
-            <table style="font-size:0.48em; margin:0;">
-              <tbody>
-                <tr><td>Agent host</td><td class="accent2"><b>25%</b></td></tr>
-                <tr><td>🖥️ stdio server</td><td class="accent2"><b>20%</b></td></tr>
-                <tr><td>🔗 Local HTTP</td><td class="accent2"><b>15%</b></td></tr>
-                <tr><td>🌍 Public HTTP + key</td><td class="accent2"><b>20%</b></td></tr>
-                <tr><td>Offline E2E</td><td class="accent2"><b>10%</b></td></tr>
-                <tr><td>Demo + submit</td><td class="accent2"><b>10%</b></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <svg viewBox="0 0 1060 430" style="width:100%; max-width:1020px; height:auto; display:block; margin:2px auto 0;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Homework submission checklist and grading bars">
+          <rect x="50" y="42" width="360" height="320" rx="20" fill="#111b2e" stroke="#3a557a" stroke-width="2.5"></rect>
+          <text x="230" y="86" text-anchor="middle" font-size="28" fill="#4dabf7" font-weight="800">Submit</text>
+          <text x="104" y="136" font-size="34">🎥</text>
+          <text x="154" y="132" font-size="23" fill="#d6e4ff" font-weight="800">YouTube demo</text>
+          <text x="154" y="158" font-size="16" fill="#9aa7b6">short and runnable</text>
+          <text x="104" y="214" font-size="34">📤</text>
+          <text x="154" y="210" font-size="23" fill="#d6e4ff" font-weight="800">Moodle</text>
+          <text x="154" y="236" font-size="16" fill="#9aa7b6">link + source code</text>
+          <text x="104" y="292" font-size="34">🔑</text>
+          <text x="154" y="288" font-size="23" fill="#d6e4ff" font-weight="800">Public URL + key</text>
+          <text x="154" y="314" font-size="16" fill="#9aa7b6">for the grader</text>
+
+          <rect x="470" y="42" width="540" height="320" rx="20" fill="#0b1220" stroke="#3a557a" stroke-width="2.5"></rect>
+          <text x="740" y="86" text-anchor="middle" font-size="28" fill="#57cc99" font-weight="800">Grading = 100%</text>
+
+          <text x="510" y="132" font-size="20" fill="#d6e4ff" font-weight="800">Agent host</text>
+          <rect x="690" y="110" width="250" height="30" rx="15" fill="#1b2a3c"></rect>
+          <rect x="690" y="110" width="178" height="30" rx="15" fill="#57cc99"></rect>
+          <text x="958" y="132" font-size="20" fill="#57cc99" font-weight="800">25</text>
+
+          <text x="510" y="184" font-size="20" fill="#d6e4ff" font-weight="800">stdio server</text>
+          <rect x="690" y="162" width="250" height="30" rx="15" fill="#1b2a3c"></rect>
+          <rect x="690" y="162" width="143" height="30" rx="15" fill="#4dabf7"></rect>
+          <text x="958" y="184" font-size="20" fill="#4dabf7" font-weight="800">20</text>
+
+          <text x="510" y="236" font-size="20" fill="#d6e4ff" font-weight="800">Public HTTP</text>
+          <rect x="690" y="214" width="250" height="30" rx="15" fill="#1b2a3c"></rect>
+          <rect x="690" y="214" width="143" height="30" rx="15" fill="#ff6b6b"></rect>
+          <text x="958" y="236" font-size="20" fill="#ff6b6b" font-weight="800">20</text>
+
+          <text x="510" y="288" font-size="20" fill="#d6e4ff" font-weight="800">Rest</text>
+          <rect x="690" y="266" width="250" height="30" rx="15" fill="#1b2a3c"></rect>
+          <rect x="690" y="266" width="250" height="30" rx="15" fill="#ffd166"></rect>
+          <text x="958" y="288" font-size="20" fill="#ffd166" font-weight="800">35</text>
+
+          <text x="740" y="333" text-anchor="middle" font-size="17" fill="#9aa7b6">Any SDK language. AI allowed. Understand your code.</text>
+        </svg>
       </section>
 
       <!-- 32. REFERENCES -->
