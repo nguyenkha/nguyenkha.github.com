@@ -1547,6 +1547,31 @@ claude
         <aside class="notes">Two fun meta-examples in the official repo: skill-creator is a skill that helps you write skills, and mcp-builder helps you write MCP servers — today's Part 3, packaged as know-how. The document skills (docx/xlsx/pptx/pdf) are the same ones behind Claude's file-creation features, so they're production-grade reading material. Superpowers (Jesse Vincent) is the best-known community pack — its debugging and TDD skills are worth reading even if you never install them, as models of how to write process instructions. Installing: clone folders into .claude/skills/, or use /plugin with a marketplace repo. Grading-free homework hint: reading two good skills is the fastest way to learn to write your own.</aside>
       </section>
 
+      <!-- 27d2c. Built-in skill map -->
+      <section>
+        <h2>What comes built in?</h2>
+        <p class="muted">Different agent surfaces package the same idea: reusable know-how.</p>
+        <div class="tiles" style="grid-template-columns: repeat(3, 1fr); gap:18px; margin-top:18px;">
+          <div class="tile" style="min-height:220px; text-align:center;">
+            <span class="ico">💬</span>
+            <h3 class="accent">Claude.ai</h3>
+            <p>Document skills<br/><code>xlsx · docx · pptx · pdf</code><br/>auto-use when relevant</p>
+          </div>
+          <div class="tile" style="min-height:220px; text-align:center;">
+            <span class="ico">⌨️</span>
+            <h3 class="good">Claude Code</h3>
+            <p>Workflow skills<br/><code>/debug · /simplify</code><br/><code>/batch · /loop</code></p>
+          </div>
+          <div class="tile" style="min-height:220px; text-align:center;">
+            <span class="ico">🧭</span>
+            <h3 class="accent2">Codex</h3>
+            <p>Skills + plugins<br/>docs · slides · sheets<br/>sites · browser · more</p>
+          </div>
+        </div>
+        <div class="mini-flow"><span>built-in skills</span><span>+</span><span>your skills</span><span>+</span><span>MCP tools</span><span>→</span><span><b>agent toolkit</b></span></div>
+        <aside class="notes">Keep this as a mental map, not a product comparison. Claude.ai includes Anthropic document skills for Excel, Word, PowerPoint, and PDF. Claude Code has bundled workflow skills such as debug, simplify, batch, loop, and claude-api. Codex uses the same pattern in this environment: skills/plugins for documents, presentations, spreadsheets, sites, browser control, visualization, and coding workflows. Names and availability change, so the point is the pattern: products ship useful default know-how, and teams add their own.</aside>
+      </section>
+
       <!-- 27d3. Where does know-how live -->
       <section>
         <h2>Where does know-how live?</h2>
