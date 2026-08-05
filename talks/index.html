@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Talks — Kha Do</title>
+  <meta name="description" content="Slides from Kha Do's lecture series on building with LLMs: coding agents, MCP, and agent skills." />
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    :root {
+      --accent: #58c4dc;
+      --accent2: #f0a35e;
+      --bg: #14181f;
+      --panel: #1b212b;
+      --border: #2a3340;
+      --text: #dfe6ee;
+      --muted: #8b97a7;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --accent: #1c86a8;
+        --accent2: #c2691b;
+        --bg: #ffffff;
+        --panel: #f2f5f9;
+        --border: #d3dce6;
+        --text: #1b2430;
+        --muted: #5b6675;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", "Helvetica Neue", system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
+    h1 {
+      font-size: 2.2em;
+      letter-spacing: -0.01em;
+      margin: 0 0 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    .sub { color: var(--muted); margin: 0 0 36px; }
+    a.card {
+      display: block;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin-bottom: 18px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    a.card h2 { margin: 0 0 6px; font-size: 1.25em; letter-spacing: -0.01em; }
+    a.card p { margin: 0; color: var(--muted); font-size: 0.92em; }
+    .foot { margin-top: 40px; color: var(--muted); font-size: 0.88em; }
+    .foot a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Talks</h1>
+    <p class="sub">Slides from my lecture series on building with LLMs — Kha Do · <a href="https://kha.do" style="color:var(--accent); text-decoration:none;">kha.do</a></p>
+
+    <a class="card" href="/talks/2026-02-mcp/">
+      <div class="kicker">Session 2 · February 2026</div>
+      <h2>MCP — Plug Your Agent Into Everything</h2>
+      <p>Why MCP exists · use servers · build your own in Node.js (stdio &amp; HTTP) · auth for public servers · Agent Skills.</p>
+    </a>
+
+    <a class="card" href="/talks/2026-01-llms-to-coding-agent/">
+      <div class="kicker">Session 1 · January 2026</div>
+      <h2>From LLMs to Your Own Coding Agent</h2>
+      <p>How LLMs work in practice · context &amp; tool calling · build a mini coding agent in Node.js · agent techniques.</p>
+    </a>
+
+    <p class="foot">Decks are built with reveal.js — press <b>S</b> inside a deck for speaker notes, or append <a href="/talks/2026-02-mcp/?print-pdf">?print-pdf</a> to save as PDF.</p>
+  </div>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-53247198-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</body>
+</html>
