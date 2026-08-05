@@ -275,7 +275,7 @@
             <p style="font-size:0.9em;"><b class="accent">Model Context Protocol</b> — an <b>open standard</b> for connecting AI apps to tools &amp; data.</p>
             <blockquote class="big" style="font-size:1.0em;">Think <span class="accent2">USB-C for AI</span>: one port, any device.</blockquote>
             <ul style="font-size:0.72em;">
-              <li>Write a connector <b>once</b> → works in <b>every</b> MCP app</li>
+              <li>Write a connector <b>once</b> → reuse across <b>MCP-compatible</b> apps</li>
               <li>Announced by <b>Anthropic</b> (Nov 2024)</li>
               <li>Adopted across the industry: OpenAI, Google, Microsoft…</li>
               <li>SDKs: <b>TypeScript</b>, Python, Java, Kotlin, C#…</li>
@@ -309,7 +309,7 @@
             </svg>
           </div>
         </div>
-        <aside class="notes">MCP standardizes the wire between an AI app and a capability, the way USB-C standardizes the cable and LSP standardized editor↔language-server. The connector (an "MCP server") is written once by whoever knows the tool best — GitHub writes the GitHub server — and every MCP-speaking app gets it for free. Open spec at modelcontextprotocol.io; SDKs in most mainstream languages.</aside>
+        <aside class="notes">MCP standardizes the wire between an AI app and a capability, the way USB-C standardizes the cable and LSP standardized editor↔language-server. The connector (an "MCP server") is written once by whoever knows the tool best — GitHub writes the GitHub server — and MCP-compatible hosts can reuse it, subject to each host's transport/auth support. Open spec at modelcontextprotocol.io; SDKs in most mainstream languages.</aside>
       </section>
 
       <!-- 7b. Ship the plug with the product -->
@@ -329,13 +329,13 @@
             <h3 class="good">✅ You ship the official MCP server</h3>
             <ul style="font-size:0.7em;">
               <li>Written <b>once</b>, by the team that knows the API best</li>
-              <li>Every MCP app — Claude Code, IDEs, agents — works <b>day one</b></li>
+              <li>MCP-compatible hosts — Claude Code, IDEs, agents — can connect <b>day one</b></li>
               <li>Auth, rate limits, safe defaults — handled <b>by you</b></li>
             </ul>
           </div>
         </div>
         <blockquote style="margin-top:14px;"><small>The product checklist grew: API · docs · SDK · <b class="accent">MCP server</b>. GitHub, Notion, Stripe, Sentry already ship theirs — <b>"we have an API" is no longer the finish line</b>.</small></blockquote>
-        <aside class="notes">This is the M+N logic pointed at *them as builders*, not just agent users: the vendor is the natural owner of the connector, exactly like vendors own their SDKs and CLIs today. Evidence: GitHub, Notion, Stripe, Sentry, Linear, Atlassian all ship official servers now; meanwhile registries are full of third-party wrappers for products that don't — and those unofficial wrappers are precisely the supply-chain risk we'll flag in the security slide. Practical note for their future products: with the SDK this is small work — they'll build a full server in under an hour in Part 3 — and even a read-only tools-only server (search, fetch, status) already makes a product agent-friendly. If your product has an API, budget its MCP server next to it.</aside>
+        <aside class="notes">This is the M+N logic pointed at *them as builders*, not just agent users: the vendor is the natural owner of the connector, exactly like vendors own their SDKs and CLIs today. Evidence: GitHub, Notion, Stripe, Sentry, Linear, Atlassian and others publish MCP servers or MCP-compatible endpoints; meanwhile registries are full of third-party wrappers for products that don't — and those unofficial wrappers are precisely the supply-chain risk we'll flag in the security slide. Practical note for their future products: with the SDK this is small work — they'll build a full server in under an hour in Part 3 — and even a read-only tools-only server (search, fetch, status) already makes a product agent-friendly. If your product has an API, budget its MCP server next to it.</aside>
       </section>
 
       <!-- 8. Architecture -->
@@ -454,15 +454,15 @@
             <span class="ico" style="font-size:1.5em; display:block; margin-bottom:4px;">🌐</span>
             <h3 class="accent2">Streamable HTTP — remote</h3>
             <ul style="font-size:0.72em;">
-              <li>Server runs <b>anywhere</b>; client sends HTTP POSTs</li>
-              <li>Streams responses; <b>OAuth</b> for auth</li>
+              <li>Server runs <b>anywhere</b>; HTTP POST for requests</li>
+              <li>Optional GET/SSE stream for server messages</li>
               <li>How hosted servers work (GitHub, Notion, Stripe…)</li>
             </ul>
             <span class="eg"><code>claude mcp add --transport http github https://api.githubcopilot.com/mcp/</code></span>
           </div>
         </div>
         <blockquote style="margin-top:16px;"><small>⚠️ <b>Gotcha:</b> on stdio, <b>stdout belongs to the protocol</b> — one stray <code>console.log()</code> corrupts the stream. Log with <code>console.error()</code>.</small></blockquote>
-        <aside class="notes">stdio is what we'll use today: zero infrastructure, the host controls the process lifetime. Streamable HTTP replaced the older SSE transport in the 2025 spec revisions — you'll still see "SSE" in older tutorials; it's deprecated. The console.log gotcha is the #1 beginner bug in stdio servers: anything printed to stdout is parsed as JSON-RPC and breaks the session.</aside>
+        <aside class="notes">stdio is what we'll use today: zero infrastructure, the host controls the process lifetime. Streamable HTTP replaced the older HTTP+SSE transport: the new transport uses a single MCP endpoint with POST for client messages and optional GET/SSE for server-initiated messages. You'll still see old tutorials that configure separate SSE and message endpoints; that transport is deprecated. The console.log gotcha is the #1 beginner bug in stdio servers: anything printed to stdout is parsed as JSON-RPC and breaks the session.</aside>
       </section>
 
       <!-- 12. Where MCP fits in the agent loop -->
@@ -540,7 +540,7 @@
           </div>
           <div class="composer"><span>Ask about any connected service…</span><span class="send">Send</span></div>
         </div>
-        <p class="muted" style="text-align:center;"><small>No custom glue: the GitHub team wrote the server <b>once</b>; every MCP app can use it.</small></p>
+        <p class="muted" style="text-align:center;"><small>No custom glue: the GitHub team wrote the server <b>once</b>; MCP-compatible hosts can reuse it.</small></p>
       </section>
 
       <!-- 14. Popular servers -->
@@ -597,16 +597,16 @@ claude mcp get github</code></pre>
 
       <!-- 16. Works everywhere -->
       <section>
-        <h2>One server, every app</h2>
-        <p class="muted">Because it's a standard, your favorite host probably speaks MCP already:</p>
+        <h2>One server, many hosts</h2>
+        <p class="muted">Because it's a standard, more hosts can reuse the same connector:</p>
         <div class="anat" style="grid-template-columns: repeat(4, 1fr); margin-top:12px;">
           <div class="card"><span class="ico">⌨️</span><h3 class="accent">Claude Code</h3><p>CLI · this course's host</p></div>
           <div class="card"><span class="ico">💬</span><h3>Claude Desktop</h3><p>chat app · local servers</p></div>
           <div class="card"><span class="ico">🧩</span><h3 class="accent2">VS Code / Cursor</h3><p>IDE assistants</p></div>
-          <div class="card"><span class="ico">🤖</span><h3>ChatGPT · Gemini CLI</h3><p>other vendors, same plug</p></div>
+          <div class="card"><span class="ico">🤖</span><h3>ChatGPT · Gemini CLI</h3><p>other vendors, support varies</p></div>
         </div>
-        <blockquote style="margin-top:18px;"><small>Write your server <b>once</b> tonight → use it from <b class="accent">every</b> tool above tomorrow. That's the whole pitch.</small></blockquote>
-        <aside class="notes">This is why MCP won over per-vendor plugin systems: the ecosystem effect. The same todo server we build in Part 3 works unchanged in Claude Code, Claude Desktop, Cursor, and the OpenAI/Google hosts. Config file names differ per app but the JSON shape is nearly identical everywhere.</aside>
+        <blockquote style="margin-top:18px;"><small>Write your server <b>once</b> tonight → reuse it wherever the host supports that transport/auth.</small></blockquote>
+        <aside class="notes">This is why MCP is attractive compared with per-vendor plugin systems: the ecosystem effect. The same todo server we build in Part 3 can be reused in MCP-compatible hosts such as Claude Code, Claude Desktop, Cursor, and other vendors as their MCP support matures. Config file names differ per app and feature support can vary, especially for auth, remote HTTP, and write actions.</aside>
       </section>
 
       <!-- 17. Security -->
@@ -673,8 +673,8 @@ npm pkg set type=module          # enable ES modules (import/export)
 
 npm install @modelcontextprotocol/sdk zod
 </code></pre>
-        <p class="muted"><small>Requires <b>Node 18+</b>. <code>@modelcontextprotocol/sdk</code> is the official TypeScript SDK (works from plain JS); <b>zod</b> declares each tool's input schema.</small></p>
-        <aside class="notes">Same setup ritual as session 1's mini-agent. The SDK handles all the JSON-RPC plumbing from the wire-format slide — we only declare capabilities. Python folks: `pip install "mcp[cli]"` gives the equivalent FastMCP experience; homework allows any language with an SDK.</aside>
+        <p class="muted"><small>Requires <b>Node 20+</b>. <code>@modelcontextprotocol/sdk</code> is the SDK package used in this demo; <b>zod</b> declares each tool's input schema.</small></p>
+        <aside class="notes">Same setup ritual as session 1's mini-agent. The SDK handles all the JSON-RPC plumbing from the wire-format slide — we only declare capabilities. Current MCP TypeScript SDK docs recommend Node 20+ and newer package paths may appear in docs; pin the package version used in class so student copy-paste stays consistent. Python folks: `pip install "mcp[cli]"` gives the equivalent FastMCP experience; homework allows any language with an SDK.</aside>
       </section>
 
       <!-- 20. Step 1 server + first tool -->
@@ -702,7 +702,7 @@ server.registerTool(
 
 await server.connect(new StdioServerTransport());   // serve over stdin/stdout
 console.error("todo server ready");                 // stderr, NOT stdout!</code></pre>
-        <p class="muted"><small>That's a complete MCP server: name + version, one tool, stdio transport.</small></p>
+        <p class="muted"><small>That's a complete demo server: name + version, one tool, stdio transport.</small></p>
         <aside class="notes">Compare with session 1: there, a tool was an entry in our own `tools` array plus a handler. Here it's the same idea — name, description, schema, function — but *served* over a standard protocol instead of hard-coded into one agent. Point out the console.error line and retell the stdout gotcha from the transports slide.</aside>
       </section>
 
@@ -868,7 +868,7 @@ app.listen(3000);                           // → POST http://localhost:3000/mc
         <pre style="font-size:0.46em; margin-top:6px;"><code data-trim data-noescape class="language-bash">claude mcp add --transport http todo http://localhost:3000/mcp   # host = Claude Code
 npx @modelcontextprotocol/inspector          # or Inspector → transport: Streamable HTTP</code></pre>
         <p class="muted"><small>Same tools, resource, prompt — <b>only the transport changed</b>. But the host no longer owns the process: your server is now a web service <b class="accent2">anything that can reach port 3000 can call</b>…</small></p>
-        <aside class="notes">Live demo: node http.js, connect the Inspector over Streamable HTTP, call add_task — identical behavior to stdio. Two real differences: lifetime (you start/stop the process now; the host just sends HTTP POSTs) and reachability. Stateless mode (sessionIdGenerator: undefined) is the simplest start — a fresh transport+server per request; shared state (the tasks array) stays module-level in server.js, so every request sees the same list. The SDK also supports stateful sessions (session IDs, SSE streaming for server→client notifications) — point to the typescript-sdk README. The closing line is the setup for the next slide: reachability is a feature and a threat.</aside>
+        <aside class="notes">Live demo: node http.js, connect the Inspector over Streamable HTTP, call add_task — identical behavior to stdio. Two real differences: lifetime (you start/stop the process now; the host sends HTTP requests) and reachability. Stateless mode (sessionIdGenerator: undefined) is the simplest start — a fresh transport+server per request; shared state (the tasks array) stays module-level in server.js, so every request sees the same list. The SDK also supports stateful sessions (session IDs, resumability, and optional SSE streams for server→client notifications) — point to the typescript-sdk README. The closing line is the setup for the next slide: reachability is a feature and a threat.</aside>
       </section>
 
       <!-- 25c. Public HTTP server → auth -->
@@ -1037,13 +1037,13 @@ claude mcp add --transport http todo https://todo.example.com/mcp \
             <h3 class="accent">🎓 FIT LLM service — free GPU</h3>
             <ul style="font-size:0.72em;">
               <li><code>baseURL</code> → <code>api-fit.hcmus.edu.vn/v1</code></li>
-              <li><b>Qwen3.6-27B</b> · 64K context · tool calling ✓</li>
-              <li>API key: <span class="accent">fit.hcmus.edu.vn/llm-services</span></li>
+              <li><b>Current FIT model list</b> · tool calling ✓</li>
+              <li>Check model ID + key before class</li>
             </ul>
           </div>
         </div>
         <blockquote style="margin-top:16px;"><small>⚠️ Small models get <b>confused by big tool lists</b>. Connect <b class="accent2">one or two servers</b>, not ten — curate what the model sees.</small></blockquote>
-        <aside class="notes">Demo fallback order: qwen3.5:4b locally; FIT service if the laptop struggles. The tool-list warning is real and measurable: every tool definition is injected into context each turn, and a 4B model picking among 40 tools makes far more wrong calls than among 8. This previews the next slide's context-cost point and matches the homework rubric (offline model required).</aside>
+        <aside class="notes">Demo fallback order: qwen3.5:4b locally; FIT service if the laptop struggles. Verify the exact FIT model ID and context length before class, because hosted model names change. The tool-list warning is real and measurable: every exposed tool definition consumes context/attention, and a 4B model picking among 40 tools makes far more wrong calls than among 8. This previews the next slide's context-cost point and matches the homework rubric (offline model required).</aside>
       </section>
 
       <!-- 27. Honest limits -->
@@ -1052,7 +1052,7 @@ claude mcp add --transport http todo https://todo.example.com/mcp \
         <div class="cols">
           <div class="card">
             <h3><span style="margin-right:8px;">🪟</span>Context cost</h3>
-            <p><small><b>Every tool definition rides along each turn.</b></small></p>
+            <p><small><b>Tool definitions consume context.</b></small></p>
             <span class="eg">10 servers × 20 tools = thousands of tokens before "hello"</span>
           </div>
           <div class="card">
@@ -1072,7 +1072,7 @@ claude mcp add --transport http todo https://todo.example.com/mcp \
           </div>
         </div>
         <blockquote style="margin-top:14px;"><small>Same rule as session 1: <b class="accent">a few sharp tools</b> beat many fuzzy ones — MCP makes adding tools easy, <b>curating</b> them is your job.</small></blockquote>
-        <aside class="notes">MCP lowers the cost of adding capabilities to near zero, which makes over-connecting the new failure mode. Hosts are responding — Claude Code can defer tool schemas and search them on demand — but the principle stands: the model's attention and context are the scarce resources. Disable servers you're not using.</aside>
+        <aside class="notes">MCP lowers the cost of adding capabilities to near zero, which makes over-connecting the new failure mode. Exact schema-loading strategies vary by host — some can defer or search tool schemas — but the principle stands: the model's attention and context are scarce resources. Disable servers you're not using.</aside>
       </section>
 
       <!-- ===================== PART 4 ===================== -->
@@ -1105,7 +1105,7 @@ claude mcp add --transport http todo https://todo.example.com/mcp \
           </div>
         </div>
         <blockquote style="margin-top:10px;"><small><b class="accent">MCP</b> = can do · <b class="good">Skills</b> = should do.</small></blockquote>
-        <aside class="notes">Agent Skills (Anthropic, Oct 2025) formalize something teams were already doing with prompt snippets: package procedural knowledge next to the code. The contrast to set up: session 1 gave the agent hands (tools), today gave it reach (MCP) — skills give it training. Because a skill is just files, it needs no server, no auth, no lifecycle: git clone and your agent "knows" the team's workflows.</aside>
+        <aside class="notes">Agent Skills formalize something teams were already doing with prompt snippets: package procedural knowledge next to the code. The contrast to set up: session 1 gave the agent hands (tools), today gave it reach (MCP) — skills give it training. Because a skill is just files, it needs no server, no auth, no lifecycle: git clone and your agent has the team's workflows available.</aside>
       </section>
 
       <!-- 27c. Anatomy of a skill -->
@@ -1142,7 +1142,7 @@ description: Write my morning standup update.
           </div>
         </div>
         <p class="muted" style="text-align:center; margin-top:6px;"><small>Note steps 1–2: the skill <b>orchestrates the MCP tools</b> from Part 3 — capabilities and know-how compose.</small></p>
-        <aside class="notes">The description field is load-bearing: it's the only part the model sees up front, so it must say *when* to use the skill, not just what it is. The body is ordinary markdown — steps, rules, links to bundled files. Skills can also carry executable scripts the agent runs with bash. Same folder format works in Claude Code, Claude Desktop, claude.ai, and the Agent SDK — write once, use in every surface, which should sound familiar by now.</aside>
+        <aside class="notes">The description field is load-bearing: it helps the model decide when to use the skill, so it must say *when* to use it, not just what it is. The body is ordinary markdown — steps, rules, links to bundled files. Skills can also carry executable scripts the agent runs with bash. The core Agent Skills format is portable, while each surface may add its own loading locations, invocation rules, or extensions.</aside>
       </section>
 
       <!-- 27c2. A skill in action -->
@@ -1203,7 +1203,7 @@ description: Build a feature end-to-end.
       <!-- 27d. Progressive disclosure -->
       <section>
         <h2>Why skills are cheap — progressive disclosure</h2>
-        <p class="muted">A skill costs almost <b class="good">zero context</b> until the moment it's needed:</p>
+        <p class="muted">A skill has low standing cost until the moment it's needed:</p>
         <svg viewBox="0 0 1090 260" style="width:100%; max-width:1060px; height:auto; display:block; margin:0 auto;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Progressive disclosure of skills">
           <defs>
             <marker id="ahS" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
@@ -1241,8 +1241,8 @@ description: Build a feature end-to-end.
           </g>
           <text x="545" y="240" text-anchor="middle" fill="#8b97a7" font-size="14">install <tspan fill="#7bd88f">dozens of skills</tspan> without bloating the window</text>
         </svg>
-        <blockquote style="margin-top:8px;"><small>Contrast with Part 3's <b>Honest limits</b>: MCP tool schemas ride along <b class="accent2">every turn</b> — a skill costs ~nothing until used.</small></blockquote>
-        <aside class="notes">This is the same context-budget thinking from session 1, applied to knowledge instead of history: keep the index in context, page in the content. Three levels: (1) name+description always visible, (2) SKILL.md body on activation, (3) referenced files/scripts only when the instructions call for them. That's why a team can accumulate a large skill library without paying for it on every request — the trade-off MCP tools can't make, since the model must see a tool's schema to call it.</aside>
+        <blockquote style="margin-top:8px;"><small>Contrast with Part 3's <b>Honest limits</b>: tool schemas cost attention; skills load detail <b class="good">on demand</b>.</small></blockquote>
+        <aside class="notes">This is the same context-budget thinking from session 1, applied to knowledge instead of history: keep the index in context, page in the content. Three levels: (1) metadata such as name/description is available for routing, (2) SKILL.md body on activation, (3) referenced files/scripts only when the instructions call for them. That's why a team can accumulate a larger skill library with lower standing cost than pasting every workflow into CLAUDE.md. There is still some metadata/context cost, so attach only relevant skills.</aside>
       </section>
 
       <!-- 27d2. Write your first skill -->
@@ -1313,7 +1313,7 @@ claude
           <div class="card">
             <span class="ico" style="font-size:1.5em; display:block; margin-bottom:4px;">📖</span>
             <h3 class="good">Skills</h3>
-            <p><small><b>Loaded on demand</b> — many workflows, near-zero standing cost.</small></p>
+            <p><small><b>Loaded on demand</b> — many workflows, low standing cost.</small></p>
             <span class="eg">procedures: "how we do standups / releases / reviews"</span>
           </div>
           <div class="card">
@@ -1359,8 +1359,8 @@ claude
           <li><span style="margin-right:10px;">🏠</span><b>Host</b> ⊃ <b>clients</b> (1:1) → <b>servers</b> — over <b>stdio</b> or <b>HTTP</b>, speaking <b>JSON-RPC</b>.</li>
           <li><span style="margin-right:10px;">🎁</span>Servers offer <b class="accent">tools</b> (act) · <b class="accent2">resources</b> (read) · <b class="good">prompts</b> (reuse).</li>
           <li><span style="margin-right:10px;">🧠</span>The model never sees MCP — <span class="muted">just a longer tool list; the loop is unchanged.</span></li>
-          <li><span style="margin-right:10px;">🛠️</span>~60 lines of Node.js = a real server that works in <b>every</b> MCP app.</li>
-          <li><span style="margin-right:10px;">📖</span><b class="good">Skills</b> = folders of instructions — know-how that <span class="muted">orchestrates those tools, at ~zero context cost.</span></li>
+          <li><span style="margin-right:10px;">🛠️</span>~60 lines of Node.js = a real server reusable across <b>MCP-compatible</b> hosts.</li>
+          <li><span style="margin-right:10px;">📖</span><b class="good">Skills</b> = folders of instructions — know-how that <span class="muted">orchestrates tools with low standing context cost.</span></li>
         </ul>
       </section>
 
