@@ -1652,34 +1652,96 @@ claude
         <aside class="notes">Close the loop with the daily-standup example: the skill's steps literally call todo · list_tasks and github · list_issues — the servers we connected in Parts 2–3. Neither replaces the other: without the MCP servers the skill can't act; without the skill the agent does the task a different way every time. Together: consistent, capable, cheap on context.</aside>
       </section>
 
+      <!-- 27e2. Skill flow end to end -->
+      <section>
+        <h2>Skills in <em>your</em> agent — the flow</h2>
+        <p class="muted" style="margin:0 0 4px;">One request, end to end. <b class="accent">Loading a skill is just another tool call:</b></p>
+        <svg viewBox="0 0 1060 420" style="width:100%; max-width:1020px; height:auto; display:block; margin:0 auto;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Skill loading flow: request matches index, use_skill tool call loads SKILL.md, steps call MCP tools, formatted answer">
+          <defs>
+            <marker id="ahF" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#9aa7b6"/>
+            </marker>
+          </defs>
+          <!-- row 1 -->
+          <g>
+            <rect x="20" y="40" width="300" height="120" rx="12" fill="#182430" stroke="#58c4dc" stroke-width="2.5"/>
+            <circle cx="46" cy="66" r="13" fill="#f0a35e"/><text x="46" y="71" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">1</text>
+            <text x="170" y="80" text-anchor="middle" fill="#58c4dc" font-size="18" font-weight="700">💬 "standup time"</text>
+            <text x="170" y="108" text-anchor="middle" fill="#dfe6ee" font-size="14">no tool names, no format —</text>
+            <text x="170" y="128" text-anchor="middle" fill="#dfe6ee" font-size="14">the user just asks</text>
+          </g>
+          <g>
+            <rect x="380" y="40" width="300" height="120" rx="12" fill="#1b212b" stroke="#f0a35e" stroke-width="2.5"/>
+            <circle cx="406" cy="66" r="13" fill="#f0a35e"/><text x="406" y="71" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">2</text>
+            <text x="530" y="80" text-anchor="middle" fill="#f0a35e" font-size="18" font-weight="700">🧠 Model scans the index</text>
+            <text x="530" y="108" text-anchor="middle" fill="#dfe6ee" font-size="14">names + descriptions,</text>
+            <text x="530" y="128" text-anchor="middle" fill="#dfe6ee" font-size="14">already in the system prompt</text>
+          </g>
+          <g>
+            <rect x="740" y="40" width="300" height="120" rx="12" fill="#16201a" stroke="#7bd88f" stroke-width="2.5"/>
+            <circle cx="766" cy="66" r="13" fill="#f0a35e"/><text x="766" y="71" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">3</text>
+            <text x="890" y="80" text-anchor="middle" fill="#7bd88f" font-size="18" font-weight="700">🛠️ use_skill("daily-standup")</text>
+            <text x="890" y="108" text-anchor="middle" fill="#dfe6ee" font-size="14">a perfectly normal tool call —</text>
+            <text x="890" y="128" text-anchor="middle" fill="#dfe6ee" font-size="14">the loop doesn't change</text>
+          </g>
+          <!-- row 2 (right to left) -->
+          <g>
+            <rect x="740" y="250" width="300" height="120" rx="12" fill="#231c14" stroke="#f0a35e" stroke-width="2.5"/>
+            <circle cx="766" cy="276" r="13" fill="#f0a35e"/><text x="766" y="281" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">4</text>
+            <text x="890" y="290" text-anchor="middle" fill="#f0a35e" font-size="18" font-weight="700">📖 SKILL.md returns</text>
+            <text x="890" y="318" text-anchor="middle" fill="#dfe6ee" font-size="14">the body arrives as a tool result —</text>
+            <text x="890" y="338" text-anchor="middle" fill="#dfe6ee" font-size="14">instructions are now in context</text>
+          </g>
+          <g>
+            <rect x="380" y="250" width="300" height="120" rx="12" fill="#16201a" stroke="#7bd88f" stroke-width="2.5"/>
+            <circle cx="406" cy="276" r="13" fill="#f0a35e"/><text x="406" y="281" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">5</text>
+            <text x="530" y="290" text-anchor="middle" fill="#7bd88f" font-size="18" font-weight="700">🔌 Follows the steps</text>
+            <text x="530" y="318" text-anchor="middle" fill="#dfe6ee" font-size="14">step 1 says list tasks →</text>
+            <text x="530" y="338" text-anchor="middle" fill="#dfe6ee" font-size="14">calls todo · list_tasks via MCP</text>
+          </g>
+          <g>
+            <rect x="20" y="250" width="300" height="120" rx="12" fill="#172a1e" stroke="#7bd88f" stroke-width="2.5"/>
+            <circle cx="46" cy="276" r="13" fill="#f0a35e"/><text x="46" y="281" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">6</text>
+            <text x="170" y="290" text-anchor="middle" fill="#7bd88f" font-size="18" font-weight="700">✅ Done · Today · Blockers</text>
+            <text x="170" y="318" text-anchor="middle" fill="#dfe6ee" font-size="14">format from the skill,</text>
+            <text x="170" y="338" text-anchor="middle" fill="#dfe6ee" font-size="14">data from MCP</text>
+          </g>
+          <!-- arrows -->
+          <g stroke="#9aa7b6" stroke-width="2.5" marker-end="url(#ahF)">
+            <line x1="320" y1="100" x2="376" y2="100"/>
+            <line x1="680" y1="100" x2="736" y2="100"/>
+            <line x1="890" y1="160" x2="890" y2="246"/>
+            <line x1="740" y1="310" x2="684" y2="310"/>
+            <line x1="380" y1="310" x2="324" y2="310"/>
+          </g>
+          <text x="925" y="210" fill="#8b97a7" font-size="13.5">tool result</text>
+        </svg>
+        <p class="muted" style="text-align:center; margin-top:2px;"><small>Steps 2–4 are <b class="accent">progressive disclosure</b> flowing through the session-1 tool loop. Code next ↓</small></p>
+        <aside class="notes">Walk it before showing any code: the model's decision to load a skill is the same kind of decision as any tool call — that's the whole design. Step 2 works because the index (name + description per skill) was cheap enough to keep in the system prompt permanently; step 4 is where the real content enters context, only now that it's needed. Steps 5–6 are the composition punchline again: skill = process, MCP = reach. The next slide is this exact flow as ~20 lines of code.</aside>
+      </section>
+
       <!-- 27f. Build it yourself — skills in YOUR agent -->
       <section>
         <h2>Build it yourself — skills in <em>your</em> agent</h2>
-        <p class="muted">No protocol needed — your agent already has everything: <b class="accent">a file reader and a loop</b>. ~30 lines:</p>
-        <pre style="font-size:0.42em;"><code data-trim data-noescape class="language-javascript">// 1 · discover at startup: scan skills/*/SKILL.md, keep ONLY the frontmatter
+        <p class="muted" style="margin:0 0 6px;">No protocol needed — your agent already has <b class="accent">a file reader and a loop</b>:</p>
+        <pre style="font-size:0.42em;"><code data-trim data-noescape class="language-javascript">// 1 · discover at startup: scan skills/*/SKILL.md — keep ONLY the frontmatter
 const skills = loadSkillIndex("./skills");     // → [{ name, description, path }]
 
-// 2 · advertise cheaply: a one-line index per skill in the system prompt
+// 2 · advertise cheaply: one line per skill in the system prompt
 const SYSTEM = `You are a coding agent. Use tools to finish the task.
-
 Available skills:
 ${skills.map(s => `- ${s.name}: ${s.description}`).join("\n")}
-When a request matches a skill's description, call use_skill FIRST,
-then follow its instructions.`;
+If a request matches a skill, call use_skill FIRST, then follow its steps.`;
 
 // 3 · load on demand: ONE new tool — the agent loop is untouched
-tools.push({
-  name: "use_skill",
-  description: "Load a skill's instructions by name",
-  parameters: { name: "string" },
-});
+tools.push({ name: "use_skill",
+             description: "Load a skill's instructions by name",
+             parameters: { name: "string" } });
 handlers.use_skill = async ({ name }) =>
   fs.readFile(skills.find(s => s.name === name).path, "utf8");
 
-// 4 · bundled templates &amp; scripts? Already covered:
-//     the skill body says "read template.md" / "run scripts/x.sh"
-//     → your existing read_file / run_command tools handle it 🎉</code></pre>
-        <p class="muted" style="margin-top:6px;"><small>Flow: "standup time" → model matches the index → calls <code>use_skill("daily-standup")</code> → follows its steps → calls <code>todo · list_tasks</code> via MCP. <b class="good">Progressive disclosure through the tool loop you built in session 1.</b></small></p>
+// 4 · bundled templates &amp; scripts? read_file / run_command already handle it 🎉</code></pre>
+        <p class="muted" style="margin-top:4px;"><small>The previous slide's flow, in ~20 lines. <b class="good">Progressive disclosure through the tool loop you built in session 1.</b></small></p>
         <aside class="notes">The symmetry to land: MCP needed a protocol because it crosses a process boundary; skills don't cross anything — they're files next to the agent, so the integration is just (1) an index in the system prompt and (2) one file-reading tool. Loading flows through the exact tool-call mechanism from session 1 — the model decides when to load a skill the same way it decides any tool call (this mirrors how Claude Code implements it). Alternative design worth mentioning: host-side keyword matching that injects SKILL.md directly — simpler, but moves the "should I use this skill?" decision from the model to your code. Extras for the ambitious: a /name slash command in the REPL (~10 lines), and a skillDirs field in config.json beside mcpServers. Makes a nice bonus homework: "add skill support to your agent — hint: it's one tool."</aside>
       </section>
 
