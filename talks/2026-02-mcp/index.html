@@ -1804,11 +1804,22 @@ handlers.use_skill = async ({ name }) =>
             <marker id="ahHw1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
               <path d="M0,0 L8,3 L0,6 Z" fill="#57cc99"></path>
             </marker>
+            <marker id="ahHwS" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#c792ea"></path>
+            </marker>
           </defs>
           <rect x="385" y="42" width="290" height="116" rx="20" fill="#16201a" stroke="#57cc99" stroke-width="3"></rect>
           <text x="530" y="84" text-anchor="middle" font-size="40">🏠</text>
           <text x="530" y="118" text-anchor="middle" font-size="25" fill="#57cc99" font-weight="800">Your agent = MCP host</text>
           <text x="530" y="142" text-anchor="middle" font-size="15" fill="#9aa7b6">load config · merge tools · dispatch calls</text>
+
+          <g>
+            <rect x="60" y="44" width="260" height="112" rx="18" fill="#111b2e" stroke="#c792ea" stroke-width="2.5"></rect>
+            <text x="190" y="82" text-anchor="middle" font-size="32">📖</text>
+            <text x="190" y="114" text-anchor="middle" font-size="23" fill="#c792ea" font-weight="800">+ 1 skill</text>
+            <text x="190" y="140" text-anchor="middle" font-size="14" fill="#d6e4ff">use_skill · SKILL.md drives your tools</text>
+          </g>
+          <line x1="320" y1="100" x2="377" y2="100" stroke="#c792ea" stroke-width="4" marker-end="url(#ahHwS)"></line>
 
           <line x1="530" y1="162" x2="210" y2="245" stroke="#57cc99" stroke-width="5" marker-end="url(#ahHw1)"></line>
           <line x1="530" y1="162" x2="530" y2="245" stroke="#57cc99" stroke-width="5" marker-end="url(#ahHw1)"></line>
@@ -1832,9 +1843,9 @@ handlers.use_skill = async ({ name }) =>
             <text x="858" y="322" text-anchor="middle" font-size="24" fill="#ff6b6b" font-weight="800">public HTTP</text>
             <text x="858" y="350" text-anchor="middle" font-size="16" fill="#d6e4ff">deployed · API key</text>
           </g>
-          <text x="530" y="410" text-anchor="middle" font-size="22" fill="#d6e4ff">All 3 must work from Claude Code and your agent.</text>
+          <text x="530" y="410" text-anchor="middle" font-size="20" fill="#d6e4ff">All 3 servers + the skill must work from Claude Code and your agent.</text>
         </svg>
-        <aside class="notes">Config detail to show in the repo, not on this slide: model qwen3.5:4b through Ollama, baseURL http://localhost:11434/v1, and mcpServers containing one stdio command plus one HTTP URL with Authorization bearer header. The stdio server needs at least three tools, one resource, one prompt, and clear isError behavior. The HTTP versions should pass Inspector; the public one needs deployment and API-key protection.</aside>
+        <aside class="notes">Config detail to show in the repo, not on this slide: model qwen3.5:4b through Ollama, baseURL http://localhost:11434/v1, and mcpServers containing one stdio command plus one HTTP URL with Authorization bearer header. The stdio server needs at least three tools, one resource, one prompt, and clear isError behavior. The HTTP versions should pass Inspector; the public one needs deployment and API-key protection. Skill requirement (Part 4): the agent must implement skill support — a name+description index in the system prompt plus a use_skill tool (the Build-it-yourself slide) — and ship at least ONE skill whose steps call the student's own MCP tools (daily-standup pattern is fine, own idea better). Graded on it triggering from a plain natural ask, not just the explicit /command.</aside>
       </section>
 
       <!-- 31. HOMEWORK — part 2 -->
@@ -1857,27 +1868,32 @@ handlers.use_skill = async ({ name }) =>
           <rect x="470" y="42" width="540" height="320" rx="20" fill="#0b1220" stroke="#3a557a" stroke-width="2.5"></rect>
           <text x="740" y="86" text-anchor="middle" font-size="28" fill="#57cc99" font-weight="800">Grading = 100%</text>
 
-          <text x="510" y="132" font-size="20" fill="#d6e4ff" font-weight="800">Agent host</text>
-          <rect x="690" y="110" width="250" height="30" rx="15" fill="#1b2a3c"></rect>
-          <rect x="690" y="110" width="178" height="30" rx="15" fill="#57cc99"></rect>
-          <text x="958" y="132" font-size="20" fill="#57cc99" font-weight="800">25</text>
+          <text x="510" y="128" font-size="20" fill="#d6e4ff" font-weight="800">Agent host</text>
+          <rect x="690" y="106" width="250" height="28" rx="14" fill="#1b2a3c"></rect>
+          <rect x="690" y="106" width="250" height="28" rx="14" fill="#57cc99"></rect>
+          <text x="958" y="128" font-size="20" fill="#57cc99" font-weight="800">25</text>
 
-          <text x="510" y="184" font-size="20" fill="#d6e4ff" font-weight="800">stdio server</text>
-          <rect x="690" y="162" width="250" height="30" rx="15" fill="#1b2a3c"></rect>
-          <rect x="690" y="162" width="143" height="30" rx="15" fill="#4dabf7"></rect>
-          <text x="958" y="184" font-size="20" fill="#4dabf7" font-weight="800">20</text>
+          <text x="510" y="172" font-size="20" fill="#d6e4ff" font-weight="800">stdio server</text>
+          <rect x="690" y="150" width="250" height="28" rx="14" fill="#1b2a3c"></rect>
+          <rect x="690" y="150" width="200" height="28" rx="14" fill="#4dabf7"></rect>
+          <text x="958" y="172" font-size="20" fill="#4dabf7" font-weight="800">20</text>
 
-          <text x="510" y="236" font-size="20" fill="#d6e4ff" font-weight="800">Public HTTP</text>
-          <rect x="690" y="214" width="250" height="30" rx="15" fill="#1b2a3c"></rect>
-          <rect x="690" y="214" width="143" height="30" rx="15" fill="#ff6b6b"></rect>
-          <text x="958" y="236" font-size="20" fill="#ff6b6b" font-weight="800">20</text>
+          <text x="510" y="216" font-size="20" fill="#d6e4ff" font-weight="800">Public HTTP</text>
+          <rect x="690" y="194" width="250" height="28" rx="14" fill="#1b2a3c"></rect>
+          <rect x="690" y="194" width="150" height="28" rx="14" fill="#ff6b6b"></rect>
+          <text x="958" y="216" font-size="20" fill="#ff6b6b" font-weight="800">15</text>
 
-          <text x="510" y="288" font-size="20" fill="#d6e4ff" font-weight="800">Rest</text>
-          <rect x="690" y="266" width="250" height="30" rx="15" fill="#1b2a3c"></rect>
-          <rect x="690" y="266" width="250" height="30" rx="15" fill="#ffd166"></rect>
-          <text x="958" y="288" font-size="20" fill="#ffd166" font-weight="800">35</text>
+          <text x="510" y="260" font-size="20" fill="#d6e4ff" font-weight="800">Skill in agent</text>
+          <rect x="690" y="238" width="250" height="28" rx="14" fill="#1b2a3c"></rect>
+          <rect x="690" y="238" width="150" height="28" rx="14" fill="#c792ea"></rect>
+          <text x="958" y="260" font-size="20" fill="#c792ea" font-weight="800">15</text>
 
-          <text x="740" y="333" text-anchor="middle" font-size="17" fill="#9aa7b6">Any SDK language. AI allowed. Understand your code.</text>
+          <text x="510" y="304" font-size="20" fill="#d6e4ff" font-weight="800">Rest</text>
+          <rect x="690" y="282" width="250" height="28" rx="14" fill="#1b2a3c"></rect>
+          <rect x="690" y="282" width="250" height="28" rx="14" fill="#ffd166"></rect>
+          <text x="958" y="304" font-size="20" fill="#ffd166" font-weight="800">25</text>
+
+          <text x="740" y="340" text-anchor="middle" font-size="17" fill="#9aa7b6">Any SDK language. AI allowed. Understand your code.</text>
         </svg>
       </section>
 
