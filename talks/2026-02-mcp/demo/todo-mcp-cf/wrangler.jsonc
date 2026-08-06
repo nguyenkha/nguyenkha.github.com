@@ -1,0 +1,18 @@
+{
+  "name": "todo-mcp-cf",
+  "main": "src/server.js",
+  "compatibility_date": "2026-06-11",
+  "compatibility_flags": ["nodejs_compat"],
+  "kv_namespaces": [
+    {
+      "binding": "TODO_KV",
+      "id": "320d6d52418e4b41a377c018b0f5c08a"
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "todo.kha.do",
+      "custom_domain": true
+    }
+  ]
+}

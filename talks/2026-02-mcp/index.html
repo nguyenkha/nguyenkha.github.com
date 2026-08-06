@@ -1245,6 +1245,34 @@ claude mcp add --transport http todo https://todo.example.com/mcp \
         <aside class="notes">The question to train: every time you wire a server, ask which hop carries the credentials. Pattern 1 (Google Drive reference server): the client↔server hop is stdio — process trust, nothing to steal off the wire; the credential is a Google OAuth token the *server* holds, created once in Google Cloud Console (run the server's auth command, browser dance with Google, token cached locally in a file — env/config points at it). Pattern 2 (GitHub remote): the credential sits on the client↔server hop, per user, via the OAuth flow; GitHub then acts with that user's permissions upstream. Some remote servers do both hops: they take your OAuth login AND exchange/store upstream tokens. Note the reference gdrive server in modelcontextprotocol/servers is archived — the pattern, not the URL, is the lesson; community Workspace servers work the same way. The PAT option on GitHub's server is the perfect callback: level 1 (static key in a header) and level 2 (OAuth) are both real, shipping choices — pick by how many users and how much blast radius.</aside>
       </section>
 
+      <!-- 25g. Demo source code -->
+      <section>
+        <h2>Grab the demo code — three variants</h2>
+        <p class="muted">Same todo server, three homes — the <b class="accent">state story</b> in runnable code:</p>
+        <div class="cols3" style="margin-top:12px;">
+          <div class="card">
+            <span class="ico" style="font-size:1.5em; display:block; margin-bottom:4px;">🖥️</span>
+            <h3>todo-mcp</h3>
+            <p><small><b>stdio</b> — what we just built. One process <b>per host</b>; state dies with the session.</small></p>
+            <span class="eg"><a href="https://github.com/nguyenkha/nguyenkha.github.com/tree/master/talks/2026-02-mcp/demo/todo-mcp">source on GitHub</a></span>
+          </div>
+          <div class="card">
+            <span class="ico" style="font-size:1.5em; display:block; margin-bottom:4px;">🌐</span>
+            <h3 class="accent2">todo-mcp-http</h3>
+            <p><small><b>Streamable HTTP, local</b> — one process you run; every client <b>shares</b> the state.</small></p>
+            <span class="eg"><a href="https://github.com/nguyenkha/nguyenkha.github.com/tree/master/talks/2026-02-mcp/demo/todo-mcp-http">source on GitHub</a></span>
+          </div>
+          <div class="card">
+            <span class="ico" style="font-size:1.5em; display:block; margin-bottom:4px;">☁️</span>
+            <h3 class="good">todo-mcp-cf</h3>
+            <p><small><b>Cloudflare Workers + KV</b> — serverless; state lives in KV, <b>survives everything</b>.</small></p>
+            <span class="eg"><a href="https://github.com/nguyenkha/nguyenkha.github.com/tree/master/talks/2026-02-mcp/demo/todo-mcp-cf">source on GitHub</a> · live: <code>todo.kha.do/mcp</code></span>
+          </div>
+        </div>
+        <blockquote style="margin-top:16px;"><small>The two HTTP variants also expose a <b>REST API</b> (<code>/api/tasks</code>) beside <code>/mcp</code> — same state, two doors: <b class="accent">REST for humans &amp; scripts, MCP for models</b>.</small></blockquote>
+        <aside class="notes">Give students one link to remember: the GitHub demo folder. Walk the progression as the state lesson: stdio = per-host process, state per session; local HTTP = one process, shared in-memory state; Workers = ephemeral instances, state externalized to KV. The REST-beside-MCP point answers the inevitable "we already have REST, why MCP?" — REST needs the client to know the endpoints up front; MCP lets the model discover tools at runtime via tools/list. Live demo: connect claude.ai (custom connector) or Claude Code to todo.kha.do/mcp, then curl the REST API and watch both doors hit the same KV-backed list.</aside>
+      </section>
+
       <!-- 26. Local models -->
       <section>
         <h2>Works offline too — Ollama &amp; FIT</h2>
