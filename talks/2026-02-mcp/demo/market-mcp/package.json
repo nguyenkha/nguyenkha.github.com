@@ -1,0 +1,16 @@
+{
+  "name": "market-mcp",
+  "version": "1.0.0",
+  "description": "MCP server over stdio wrapping a Vietnamese financial-market API — demo for the MCP talk (FIT-HCMUS)",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "inspect": "npx @modelcontextprotocol/inspector node server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.24.0"
+  }
+}
