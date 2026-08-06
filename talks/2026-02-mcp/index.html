@@ -1652,6 +1652,37 @@ claude
         <aside class="notes">Close the loop with the daily-standup example: the skill's steps literally call todo · list_tasks and github · list_issues — the servers we connected in Parts 2–3. Neither replaces the other: without the MCP servers the skill can't act; without the skill the agent does the task a different way every time. Together: consistent, capable, cheap on context.</aside>
       </section>
 
+      <!-- 27f. Build it yourself — skills in YOUR agent -->
+      <section>
+        <h2>Build it yourself — skills in <em>your</em> agent</h2>
+        <p class="muted">No protocol needed — your agent already has everything: <b class="accent">a file reader and a loop</b>. ~30 lines:</p>
+        <pre style="font-size:0.42em;"><code data-trim data-noescape class="language-javascript">// 1 · discover at startup: scan skills/*/SKILL.md, keep ONLY the frontmatter
+const skills = loadSkillIndex("./skills");     // → [{ name, description, path }]
+
+// 2 · advertise cheaply: a one-line index per skill in the system prompt
+const SYSTEM = `You are a coding agent. Use tools to finish the task.
+
+Available skills:
+${skills.map(s => `- ${s.name}: ${s.description}`).join("\n")}
+When a request matches a skill's description, call use_skill FIRST,
+then follow its instructions.`;
+
+// 3 · load on demand: ONE new tool — the agent loop is untouched
+tools.push({
+  name: "use_skill",
+  description: "Load a skill's instructions by name",
+  parameters: { name: "string" },
+});
+handlers.use_skill = async ({ name }) =>
+  fs.readFile(skills.find(s => s.name === name).path, "utf8");
+
+// 4 · bundled templates &amp; scripts? Already covered:
+//     the skill body says "read template.md" / "run scripts/x.sh"
+//     → your existing read_file / run_command tools handle it 🎉</code></pre>
+        <p class="muted" style="margin-top:6px;"><small>Flow: "standup time" → model matches the index → calls <code>use_skill("daily-standup")</code> → follows its steps → calls <code>todo · list_tasks</code> via MCP. <b class="good">Progressive disclosure through the tool loop you built in session 1.</b></small></p>
+        <aside class="notes">The symmetry to land: MCP needed a protocol because it crosses a process boundary; skills don't cross anything — they're files next to the agent, so the integration is just (1) an index in the system prompt and (2) one file-reading tool. Loading flows through the exact tool-call mechanism from session 1 — the model decides when to load a skill the same way it decides any tool call (this mirrors how Claude Code implements it). Alternative design worth mentioning: host-side keyword matching that injects SKILL.md directly — simpler, but moves the "should I use this skill?" decision from the model to your code. Extras for the ambitious: a /name slash command in the REPL (~10 lines), and a skillDirs field in config.json beside mcpServers. Makes a nice bonus homework: "add skill support to your agent — hint: it's one tool."</aside>
+      </section>
+
       <!-- 28. Recap -->
       <section>
         <h2>Recap — the mental model</h2>
