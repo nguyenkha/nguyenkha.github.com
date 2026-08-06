@@ -1656,7 +1656,7 @@ claude
       <section>
         <h2>Skills in <em>your</em> agent — the flow</h2>
         <p class="muted" style="margin:0 0 4px;">One request, end to end. <b class="accent">Loading a skill is just another tool call:</b></p>
-        <svg viewBox="0 0 1060 420" style="width:100%; max-width:1020px; height:auto; display:block; margin:0 auto;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Skill loading flow: request matches index, use_skill tool call loads SKILL.md, steps call MCP tools, formatted answer">
+        <svg viewBox="0 0 1060 330" style="width:100%; max-width:1020px; height:auto; display:block; margin:0 auto;" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Skill loading flow: request matches index, use_skill tool call loads SKILL.md, steps call MCP tools, formatted answer">
           <defs>
             <marker id="ahF" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
               <path d="M0,0 L8,3 L0,6 Z" fill="#9aa7b6"/>
@@ -1664,59 +1664,71 @@ claude
           </defs>
           <!-- row 1 -->
           <g>
-            <rect x="20" y="40" width="300" height="120" rx="12" fill="#182430" stroke="#58c4dc" stroke-width="2.5"/>
-            <circle cx="46" cy="66" r="13" fill="#f0a35e"/><text x="46" y="71" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">1</text>
-            <text x="170" y="80" text-anchor="middle" fill="#58c4dc" font-size="18" font-weight="700">💬 "standup time"</text>
-            <text x="170" y="108" text-anchor="middle" fill="#dfe6ee" font-size="14">no tool names, no format —</text>
-            <text x="170" y="128" text-anchor="middle" fill="#dfe6ee" font-size="14">the user just asks</text>
+            <rect x="20" y="36" width="300" height="104" rx="12" fill="#182430" stroke="#58c4dc" stroke-width="2.5"/>
+            <circle cx="46" cy="60" r="13" fill="#f0a35e"/><text x="46" y="65" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">1</text>
+            <text x="170" y="68" text-anchor="middle" fill="#58c4dc" font-size="18" font-weight="700">💬 "standup time"</text>
+            <text x="170" y="94" text-anchor="middle" fill="#dfe6ee" font-size="14">no tool names, no format —</text>
+            <text x="170" y="114" text-anchor="middle" fill="#dfe6ee" font-size="14">the user just asks</text>
           </g>
           <g>
-            <rect x="380" y="40" width="300" height="120" rx="12" fill="#1b212b" stroke="#f0a35e" stroke-width="2.5"/>
-            <circle cx="406" cy="66" r="13" fill="#f0a35e"/><text x="406" y="71" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">2</text>
-            <text x="530" y="80" text-anchor="middle" fill="#f0a35e" font-size="18" font-weight="700">🧠 Model scans the index</text>
-            <text x="530" y="108" text-anchor="middle" fill="#dfe6ee" font-size="14">names + descriptions,</text>
-            <text x="530" y="128" text-anchor="middle" fill="#dfe6ee" font-size="14">already in the system prompt</text>
+            <rect x="380" y="36" width="300" height="104" rx="12" fill="#1b212b" stroke="#f0a35e" stroke-width="2.5"/>
+            <circle cx="406" cy="60" r="13" fill="#f0a35e"/><text x="406" y="65" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">2</text>
+            <text x="530" y="68" text-anchor="middle" fill="#f0a35e" font-size="18" font-weight="700">🧠 Model scans the index</text>
+            <text x="530" y="94" text-anchor="middle" fill="#dfe6ee" font-size="14">names + descriptions,</text>
+            <text x="530" y="114" text-anchor="middle" fill="#dfe6ee" font-size="14">already in the system prompt</text>
           </g>
           <g>
-            <rect x="740" y="40" width="300" height="120" rx="12" fill="#16201a" stroke="#7bd88f" stroke-width="2.5"/>
-            <circle cx="766" cy="66" r="13" fill="#f0a35e"/><text x="766" y="71" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">3</text>
-            <text x="890" y="80" text-anchor="middle" fill="#7bd88f" font-size="18" font-weight="700">🛠️ use_skill("daily-standup")</text>
-            <text x="890" y="108" text-anchor="middle" fill="#dfe6ee" font-size="14">a perfectly normal tool call —</text>
-            <text x="890" y="128" text-anchor="middle" fill="#dfe6ee" font-size="14">the loop doesn't change</text>
+            <rect x="740" y="36" width="300" height="104" rx="12" fill="#16201a" stroke="#7bd88f" stroke-width="2.5"/>
+            <circle cx="766" cy="60" r="13" fill="#f0a35e"/><text x="766" y="65" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">3</text>
+            <text x="890" y="68" text-anchor="middle" fill="#7bd88f" font-size="18" font-weight="700">🛠️ use_skill("daily-standup")</text>
+            <text x="890" y="94" text-anchor="middle" fill="#dfe6ee" font-size="14">a perfectly normal tool call —</text>
+            <text x="890" y="114" text-anchor="middle" fill="#dfe6ee" font-size="14">the loop doesn't change</text>
           </g>
           <!-- row 2 (right to left) -->
           <g>
-            <rect x="740" y="250" width="300" height="120" rx="12" fill="#231c14" stroke="#f0a35e" stroke-width="2.5"/>
-            <circle cx="766" cy="276" r="13" fill="#f0a35e"/><text x="766" y="281" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">4</text>
-            <text x="890" y="290" text-anchor="middle" fill="#f0a35e" font-size="18" font-weight="700">📖 SKILL.md returns</text>
-            <text x="890" y="318" text-anchor="middle" fill="#dfe6ee" font-size="14">the body arrives as a tool result —</text>
-            <text x="890" y="338" text-anchor="middle" fill="#dfe6ee" font-size="14">instructions are now in context</text>
+            <rect x="740" y="216" width="300" height="104" rx="12" fill="#231c14" stroke="#f0a35e" stroke-width="2.5"/>
+            <circle cx="766" cy="240" r="13" fill="#f0a35e"/><text x="766" y="245" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">4</text>
+            <text x="890" y="248" text-anchor="middle" fill="#f0a35e" font-size="18" font-weight="700">📖 SKILL.md returns</text>
+            <text x="890" y="274" text-anchor="middle" fill="#dfe6ee" font-size="14">the body arrives as a tool result —</text>
+            <text x="890" y="294" text-anchor="middle" fill="#dfe6ee" font-size="14">instructions are now in context ↓</text>
           </g>
           <g>
-            <rect x="380" y="250" width="300" height="120" rx="12" fill="#16201a" stroke="#7bd88f" stroke-width="2.5"/>
-            <circle cx="406" cy="276" r="13" fill="#f0a35e"/><text x="406" y="281" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">5</text>
-            <text x="530" y="290" text-anchor="middle" fill="#7bd88f" font-size="18" font-weight="700">🔌 Follows the steps</text>
-            <text x="530" y="318" text-anchor="middle" fill="#dfe6ee" font-size="14">step 1 says list tasks →</text>
-            <text x="530" y="338" text-anchor="middle" fill="#dfe6ee" font-size="14">calls todo · list_tasks via MCP</text>
+            <rect x="380" y="216" width="300" height="104" rx="12" fill="#16201a" stroke="#7bd88f" stroke-width="2.5"/>
+            <circle cx="406" cy="240" r="13" fill="#f0a35e"/><text x="406" y="245" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">5</text>
+            <text x="530" y="248" text-anchor="middle" fill="#7bd88f" font-size="18" font-weight="700">🔌 Follows the steps</text>
+            <text x="530" y="274" text-anchor="middle" fill="#dfe6ee" font-size="14">step 1 says list tasks →</text>
+            <text x="530" y="294" text-anchor="middle" fill="#dfe6ee" font-size="14">calls todo · list_tasks via MCP</text>
           </g>
           <g>
-            <rect x="20" y="250" width="300" height="120" rx="12" fill="#172a1e" stroke="#7bd88f" stroke-width="2.5"/>
-            <circle cx="46" cy="276" r="13" fill="#f0a35e"/><text x="46" y="281" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">6</text>
-            <text x="170" y="290" text-anchor="middle" fill="#7bd88f" font-size="18" font-weight="700">✅ Done · Today · Blockers</text>
-            <text x="170" y="318" text-anchor="middle" fill="#dfe6ee" font-size="14">format from the skill,</text>
-            <text x="170" y="338" text-anchor="middle" fill="#dfe6ee" font-size="14">data from MCP</text>
+            <rect x="20" y="216" width="300" height="104" rx="12" fill="#172a1e" stroke="#7bd88f" stroke-width="2.5"/>
+            <circle cx="46" cy="240" r="13" fill="#f0a35e"/><text x="46" y="245" text-anchor="middle" fill="#14181f" font-size="15" font-weight="700">6</text>
+            <text x="170" y="248" text-anchor="middle" fill="#7bd88f" font-size="18" font-weight="700">✅ Done · Today · Blockers</text>
+            <text x="170" y="274" text-anchor="middle" fill="#dfe6ee" font-size="14">format from the skill,</text>
+            <text x="170" y="294" text-anchor="middle" fill="#dfe6ee" font-size="14">data from MCP</text>
           </g>
           <!-- arrows -->
           <g stroke="#9aa7b6" stroke-width="2.5" marker-end="url(#ahF)">
-            <line x1="320" y1="100" x2="376" y2="100"/>
-            <line x1="680" y1="100" x2="736" y2="100"/>
-            <line x1="890" y1="160" x2="890" y2="246"/>
-            <line x1="740" y1="310" x2="684" y2="310"/>
-            <line x1="380" y1="310" x2="324" y2="310"/>
+            <line x1="320" y1="88" x2="376" y2="88"/>
+            <line x1="680" y1="88" x2="736" y2="88"/>
+            <line x1="890" y1="140" x2="890" y2="212"/>
+            <line x1="740" y1="268" x2="684" y2="268"/>
+            <line x1="380" y1="268" x2="324" y2="268"/>
           </g>
-          <text x="925" y="210" fill="#8b97a7" font-size="13.5">tool result</text>
+          <text x="925" y="180" fill="#8b97a7" font-size="13.5">tool result</text>
         </svg>
-        <p class="muted" style="text-align:center; margin-top:2px;"><small>Steps 2–4 are <b class="accent">progressive disclosure</b> flowing through the session-1 tool loop. Code next ↓</small></p>
+        <div style="display:grid; grid-template-columns: 190px 1fr; gap:16px; align-items:center; max-width:840px; margin:8px auto 0;">
+          <p class="muted" style="margin:0; font-size:0.55em; text-align:right; line-height:1.4;">📖 what arrives<br/>at step <b class="accent2">4</b> —<br/>the <b>entire</b> skill:</p>
+          <pre style="font-size:0.36em; margin:0;"><code data-trim data-noescape class="language-markdown">---
+name: daily-standup
+description: Write my morning standup update. Use when I ask
+  for a standup, a daily plan, or "what's on today".
+---
+# Daily standup
+1. Call the `todo` server's `list_tasks` tool to collect tasks.
+2. Write three sections: **Done · Today · Blockers**.
+3. Under 10 lines. Bullets. No fluff.</code></pre>
+        </div>
+        <p class="muted" style="text-align:center; margin-top:6px;"><small>Steps 2–4 are <b class="accent">progressive disclosure</b> flowing through the session-1 tool loop. Code next ↓</small></p>
         <aside class="notes">Walk it before showing any code: the model's decision to load a skill is the same kind of decision as any tool call — that's the whole design. Step 2 works because the index (name + description per skill) was cheap enough to keep in the system prompt permanently; step 4 is where the real content enters context, only now that it's needed. Steps 5–6 are the composition punchline again: skill = process, MCP = reach. The next slide is this exact flow as ~20 lines of code.</aside>
       </section>
 
