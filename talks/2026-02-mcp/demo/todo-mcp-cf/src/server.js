@@ -98,6 +98,33 @@ function createServer(env) {
   return server;
 }
 
+// ---- Auth — the "level 1" bearer-key guard from the talk ------------------
+// Enforced ONLY when the MCP_KEY secret exists (wrangler secret put MCP_KEY).
+// Delete the secret to reopen the server for open class demos.
+
+async function authorized(request, env) {
+  if (!env.MCP_KEY) return true; // no key configured → open (demo mode)
+  const token = (request.headers.get("authorization") ?? "").replace(
+    /^Bearer\s+/i,
+    ""
+  );
+  if (!token) return false;
+  // Compare SHA-256 digests (equal length) with a timing-safe comparison.
+  const enc = new TextEncoder();
+  const [a, b] = await Promise.all([
+    crypto.subtle.digest("SHA-256", enc.encode(token)),
+    crypto.subtle.digest("SHA-256", enc.encode(env.MCP_KEY)),
+  ]);
+  return crypto.subtle.timingSafeEqual(a, b);
+}
+
+function unauthorized() {
+  return Response.json(
+    { error: "unauthorized" },
+    { status: 401, headers: { "WWW-Authenticate": "Bearer" } }
+  );
+}
+
 // ---- REST API — the same KV state through a second, human-friendly door ---
 // (3 endpoints mirroring the 3 MCP tools; returns null if no route matches)
 
@@ -140,10 +167,12 @@ export default {
     if (pathname === "/" || pathname === "") {
       return new Response(
         "todo-mcp-cf — MCP endpoint at /mcp · REST at /api/tasks\n" +
+          (env.MCP_KEY ? "Auth: Bearer key required.\n" : "") +
           "Demo for https://kha.do/talks/2026-02-mcp/\n",
         { headers: { "content-type": "text/plain" } }
       );
     }
+    if (!(await authorized(request, env))) return unauthorized();
     if (pathname.startsWith("/api/")) {
       const res = await handleRest(request, env);
       if (res) return res;

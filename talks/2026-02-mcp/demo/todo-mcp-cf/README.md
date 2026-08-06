@@ -49,14 +49,41 @@ The `routes` entry in `wrangler.jsonc` binds the custom domain
 (`todo.kha.do`) — the zone must be on your Cloudflare account. Delete the
 `routes` block to deploy on the default `*.workers.dev` URL instead.
 
+## Auth — the talk's "level 1" bearer key, on Workers
+
+`/mcp` and `/api/*` require `Authorization: Bearer <key>` **when the
+`MCP_KEY` secret exists**; the root page stays open. No key configured →
+the server runs open (class-demo mode).
+
+```bash
+openssl rand -hex 32                      # generate a key
+npx wrangler secret put MCP_KEY           # paste it → auth ON (also put it in .dev.vars for wrangler dev)
+npx wrangler secret delete MCP_KEY        # auth OFF (open demo mode)
+```
+
+Implementation notes (mirrors the "API-key guard" slide, Workers edition):
+same **401 + `WWW-Authenticate: Bearer`** door OAuth would use; comparison is
+timing-safe (`crypto.subtle.timingSafeEqual` over SHA-256 digests); the key
+lives in a Worker secret + `.dev.vars` (both out of git), so rotation is one
+`secret put` away.
+
 ## Connect
 
 ```bash
-# Claude Code
-claude mcp add --transport http todo-cf https://todo.kha.do/mcp
+# Claude Code (with auth on)
+claude mcp add --transport http todo-cf https://todo.kha.do/mcp \
+  --header "Authorization: Bearer $MCP_KEY"
 
-# MCP Inspector: choose "Streamable HTTP", URL https://todo.kha.do/mcp
+# MCP Inspector: transport "Streamable HTTP", URL https://todo.kha.do/mcp,
+# add an Authorization header in the UI
+
+# curl
+curl -H "Authorization: Bearer $MCP_KEY" https://todo.kha.do/api/tasks
 ```
+
+⚠️ **claude.ai web custom connectors can't send a static bearer header** —
+they support OAuth or open servers only. For the web-connector demo, turn
+auth off (`secret delete`) or upgrade to OAuth (the exercise below).
 
 **claude.ai web** (the payoff): Settings → Connectors → *Add custom
 connector* → `https://todo.kha.do/mcp`. A public URL is exactly what web
@@ -78,8 +105,8 @@ Both doors call the same `addTask` / `completeTask` helpers over KV.
 
 ## Caveats (by design, for teaching)
 
-- **No auth**: anyone with the URL can read/write the list. Real remote
-  servers add OAuth (`workers-oauth-provider`) — left as an exercise.
+- **Auth is level 1**: one shared key = one shared identity, no scopes.
+  The spec way is OAuth 2.1 (`workers-oauth-provider`) — left as an exercise.
 - **Races**: read-modify-write on one KV key; two simultaneous writes can
   drop one. Durable Objects or D1 fix this.
 - **KV is eventually consistent** across edge locations — fine for a demo,
