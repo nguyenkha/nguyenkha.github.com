@@ -1843,7 +1843,7 @@ handlers.use_skill = async ({ name }) =>
             <text x="858" y="322" text-anchor="middle" font-size="24" fill="#ff6b6b" font-weight="800">public HTTP</text>
             <text x="858" y="350" text-anchor="middle" font-size="16" fill="#d6e4ff">deployed · API key</text>
           </g>
-          <text x="530" y="410" text-anchor="middle" font-size="20" fill="#d6e4ff">All 3 servers + the skill must work from Claude Code and your agent.</text>
+          <text x="530" y="410" text-anchor="middle" font-size="20" fill="#d6e4ff">All 3 servers + the skill must work from your agent.</text>
         </svg>
         <aside class="notes">Config detail to show in the repo, not on this slide: model qwen3.5:4b through Ollama, baseURL http://localhost:11434/v1, and mcpServers containing one stdio command plus one HTTP URL with Authorization bearer header. The stdio server needs at least three tools, one resource, one prompt, and clear isError behavior. The HTTP versions should pass Inspector; the public one needs deployment and API-key protection. Skill requirement (Part 4): the agent must implement skill support — a name+description index in the system prompt plus a use_skill tool (the Build-it-yourself slide) — and ship at least ONE skill whose steps call the student's own MCP tools (daily-standup pattern is fine, own idea better). Graded on it triggering from a plain natural ask, not just the explicit /command.</aside>
       </section>
@@ -1893,7 +1893,7 @@ handlers.use_skill = async ({ name }) =>
           <rect x="690" y="282" width="250" height="28" rx="14" fill="#ffd166"></rect>
           <text x="958" y="304" font-size="20" fill="#ffd166" font-weight="800">25</text>
 
-          <text x="740" y="340" text-anchor="middle" font-size="17" fill="#9aa7b6">Any SDK language. AI allowed. Understand your code.</text>
+          <text x="740" y="340" text-anchor="middle" font-size="17" fill="#9aa7b6">Any language, any tools — AI or by hand. Understand your code.</text>
         </svg>
       </section>
 
